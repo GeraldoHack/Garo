@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garo - Desabafos Anônimos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --roxo: #8A2BE2;
+            --roxo-claro: #9B59B6;
+            --azul: #3498DB;
+            --rosa: #FF6B9E;
+            --verde: #2ECC71;
+            --amarelo: #F1C40F;
+            --vermelho: #E74C3C;
+            --fundo: #F8F9FA;
+            --branco: #FFFFFF;
+            --cinza: #ECF0F1;
+            --cinza-escuro: #7F8C8D;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --sombra-destaque: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fundo);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== SPLASH SCREEN (PROFISSIONAL) ===== */
+        .splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--branco);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease;
+        }
+
+        .splash.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .logo-splash {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo-splash img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--roxo);
+            margin-bottom: 10px;
+            animation: slideUp 0.8s ease;
+        }
+
+        .splash-subtitle {
+            color: var(--cinza-escuro);
+            font-size: 1.2rem;
+            max-width: 80%;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(138, 43, 226, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--roxo);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background-color: var(--branco);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--roxo);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-title i {
+            color: var(--azul);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* ===== PRIVACIDADE ===== */
+        .privacy-notice {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--sombra);
+            border-left: 5px solid var(--verde);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy-notice h3 {
+            color: var(--roxo);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .privacy-notice p {
+            font-size: 0.95rem;
+            color: var(--cinza-escuro);
+            line-height: 1.7;
+        }
+
+        .privacy-notice::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--verde), var(--azul));
+        }
+
+        .warning-box {
+            background-color: #FFF9E6;
+            border-left: 4px solid #FFC107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .warning-box i {
+            color: #FFC107;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .warning-box p {
+            color: #8E6C0A;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* ===== FORMULÁRIO DE DESABAFO ===== */
+        .post-form {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--sombra-destaque);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            position: relative;
+        }
+
+        .post-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-form h2 {
+            margin-bottom: 25px;
+            color: var(--roxo);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .post-form h2 i {
+            color: var(--rosa);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid var(--cinza);
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 150px;
+            transition: all 0.3s ease;
+            background-color: #fdfdfd;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--roxo);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            background-color: var(--branco);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, var(--roxo), var(--azul));
+            color: var(--branco);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+            background: linear-gradient(to right, var(--azul), var(--roxo));
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: var(--cinza-escuro);
+        }
+
+        /* ===== LISTA DE DESABAFOS ===== */
+        .posts-list {
+            margin-bottom: 50px;
+        }
+
+        .post {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--sombra-destaque);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.05);
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: linear-gradient(135deg, var(--roxo), var(--azul));
+            color: var(--branco);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+        }
+
+        .post-content {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-content.long-text {
+            max-height: 120px;
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        }
+
+        .post-content.full-text {
+            max-height: none;
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--roxo);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            padding: 5px 0;
+        }
+
+        .read-more-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .read-more-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        .post-date {
+            color: var(--cinza-escuro);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* ===== REAÇÕES (EMOJIS REAIS) ===== */
+        .reactions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--cinza);
+        }
+
+        .reaction-btn {
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--cinza-escuro);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+
+        .reaction-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .reaction-btn.active {
+            font-weight: 600;
+        }
+
+        .reaction-btn span.emoji {
+            font-size: 1.3rem;
+        }
+
+        .like-btn:hover, .like-btn.active { color: var(--vermelho); }
+        .angry-btn:hover, .angry-btn.active { color: var(--amarelo); }
+        .laugh-btn:hover, .laugh-btn.active { color: var(--rosa); }
+        .sad-btn:hover, .sad-btn.active { color: var(--azul); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, var(--roxo), var(--azul));
+            color: var(--branco);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 70px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .privacy-footer {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 20px;
+        }
+
+        /* ===== TOAST NOTIFICATION ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--roxo);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .logo-text { font-size: 2.5rem; }
+            .app-title { font-size: 1.5rem; }
+            .post-form, .post { padding: 20px; }
+            .reactions { flex-wrap: wrap; }
+            .post-number { width: 40px; height: 40px; font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .post-form { padding: 20px 15px; }
+            .post { padding: 20px 15px; }
+            .form-footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-end;
+            }
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== SPLASH SCREEN PROFISSIONAL ===== -->
+    <div class="splash" id="splash">
+        <div class="logo-splash">
+            <img src="https://i.postimg.cc/wTtQ0C18/20250525-202500.png" alt="Logo Garo">
+        </div>
+        <h1 class="logo-text">Garo</h1>
+        <p class="splash-subtitle">Seu espaço seguro para desabafar</p>
+        <div class="loader"></div>
+    </div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <header>
+        <div class="header-content">
+            <h1 class="app-title"><i class="fas fa-comment-dots"></i> Garo</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- NOTA DE PRIVACIDADE -->
+        <div class="privacy-notice">
+            <h3><i class="fas fa-shield-alt"></i> Privacidade Garantida</h3>
+            <p>No Garo, valorizamos sua privacidade acima de tudo. Todos os desabafos são completamente anônimos. Não armazenamos nenhum dado pessoal, informação de identificação ou metadados que possam revelar sua identidade.</p>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p><strong>Importante:</strong> Por sua segurança, nunca compartilhe nomes, números de telefone, endereços ou qualquer informação pessoal nos desabafos. O anonimato é total, mas a responsabilidade é sua.</p>
+            </div>
+        </div>
+
+        <!-- FORMULÁRIO DE DESABAFO -->
+        <div class="post-form">
+            <h2><i class="fas fa-pencil-alt"></i> Novo Desabafo</h2>
+            <form id="newPostForm">
+                <div class="form-group">
+                    <textarea id="postContent" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)..." minlength="20" maxlength="1000"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Publicar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- LISTA DE DESABAFOS -->
+        <div class="posts-list" id="postsList">
+            <!-- Posts serão carregados aqui via JavaScript -->
+        </div>
+    </main>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Post publicado com sucesso!</span>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p class="privacy-footer"><i class="fas fa-lock"></i> Garantimos total anonimato. Nenhum dado pessoal é coletado ou armazenado. Todos os desabafos são completamente anônimos. Lembre-se: nunca compartilhe informações pessoais em suas postagens.</p>
+            <div class="copyright">
+                © <span id="currentYear"></span> Garo - Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FIREBASE & JAVASCRIPT ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script>
+        // CONFIGURAÇÃO DO FIREBASE (USE SUAS CHAVES)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjlGc_C5QvUahax-oDsNo0eknhqm1DHbQ",
+            authDomain: "jovem-782e3.firebaseapp.com",
+            projectId: "jovem-782e3",
+            storageBucket: "jovem-782e3.appspot.com",
+            messagingSenderId: "185954860082",
+            appId: "1:185954860082:web:ea2853cd6bf3cd7d81902b",
+            measurementId: "G-FQ93X662K2"
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Elementos da DOM
+        const splash = document.getElementById('splash');
+        const newPostForm = document.getElementById('newPostForm');
+        const postContent = document.getElementById('postContent');
+        const postsList = document.getElementById('postsList');
+        const currentYear = document.getElementById('currentYear');
+        const charCount = document.getElementById('charCount');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // Variáveis de estado
+        let posts = [];
+        let nextPostNumber = 1;
+
+        // Funções auxiliares
+        function formatDate(timestamp) {
+            if (!timestamp) return "Agora mesmo";
+            
+            const date = timestamp.toDate();
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 60) return "Agora mesmo";
+            if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} min atrás`;
+            if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} h atrás`;
+            
+            return date.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function showToast(message, duration = 3000) {
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        function createPostElement(post, number) {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+            postElement.dataset.id = post.id;
+            
+            // Verifica se o texto é longo (mais de 200 caracteres)
+            const isLongText = post.content.length > 200;
+            const contentClass = isLongText ? 'post-content long-text' : 'post-content';
+            
+            postElement.innerHTML = `
+                <div class="post-number">${number}</div>
+                <p class="${contentClass}">${post.content}</p>
+                ${isLongText ? '<button class="read-more-btn">Ler mais <i class="fas fa-chevron-down"></i></button>' : ''}
+                <span class="post-date">${formatDate(post.createdAt)}</span>
+                
+                <div class="reactions">
+                    <button class="reaction-btn like-btn" data-reaction="like">
+                        <span class="emoji">❤️</span>
+                        <span class="like-count">${post.reactions?.like || 0}</span>
+                    </button>
+                    <button class="reaction-btn angry-btn" data-reaction="angry">
+                        <span class="emoji">😠</span>
+                        <span class="angry-count">${post.reactions?.angry || 0}</span>
+                    </button>
+                    <button class="reaction-btn laugh-btn" data-reaction="laugh">
+                        <span class="emoji">😂</span>
+                        <span class="laugh-count">${post.reactions?.laugh || 0}</span>
+                    </button>
+                    <button class="reaction-btn sad-btn" data-reaction="sad">
+                        <span class="emoji">😢</span>
+                        <span class="sad-count">${post.reactions?.sad || 0}</span>
+                    </button>
+                </div>
+            `;
+            
+            return postElement;
+        }
+
+        function renderPosts() {
+            postsList.innerHTML = '';
+            
+            // Ordena do mais novo para o mais antigo
+            const sortedPosts = [...posts].sort((a, b) => 
+                b.createdAt?.seconds - a.createdAt?.seconds || 
+                b.createdAt?.nanoseconds - a.createdAt?.nanoseconds
+            );
+            
+            sortedPosts.forEach((post, index) => {
+                const postElement = createPostElement(post, sortedPosts.length - index);
+                postsList.appendChild(postElement);
+                
+                // Adiciona eventos de reação
+                const reactionBtns = postElement.querySelectorAll('.reaction-btn');
+                reactionBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const reaction = btn.dataset.reaction;
+                        updateReaction(post.id, reaction);
+                    });
+                });
+                
+                // Adiciona evento de ler mais/ler menos para textos longos
+                const readMoreBtn = postElement.querySelector('.read-more-btn');
+                const postContent = postElement.querySelector('.post-content');
+                
+                if (readMoreBtn && postContent) {
+                    readMoreBtn.addEventListener('click', () => {
+                        postContent.classList.toggle('full-text');
+                        
+                        if (postContent.classList.contains('full-text')) {
+                            readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
+                        } else {
+                            readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
+                        }
+                    });
+                }
+            });
+        }
+
+        // Funções Firebase
+        async function addPost(content) {
+            if (!content.trim() || content.length < 20) {
+                showToast("Seu desabafo precisa ter pelo menos 20 caracteres", 3000);
+                return;
+            }
+            
+            const newPost = {
+                content: content,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                reactions: {
+                    like: 0,
+                    angry: 0,
+                    laugh: 0,
+                    sad: 0
+                }
+            };
+            
+            try {
+                await db.collection('posts').add(newPost);
+                postContent.value = '';
+                showToast("Desabafo publicado com sucesso!", 3000);
+            } catch (error) {
+                console.error("Erro ao adicionar post:", error);
+                showToast("Erro ao publicar desabafo", 3000);
+            }
+        }
+
+        async function updateReaction(postId, reaction) {
+            try {
+                await db.collection('posts').doc(postId).update({
+                    [`reactions.${reaction}`]: firebase.firestore.FieldValue.increment(1)
+                });
+            } catch (error) {
+                console.error("Erro ao atualizar reação:", error);
+            }
+        }
+
+        function listenForPosts() {
+            db.collection('posts').onSnapshot(snapshot => {
+                posts = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                renderPosts();
+            });
+        }
+
+        // Event Listeners
+        newPostForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addPost(postContent.value.trim());
+        });
+
+        postContent.addEventListener('input', () => {
+            charCount.textContent = postContent.value.length;
+        });
+
+        // Inicialização
+        window.addEventListener('DOMContentLoaded', () => {
+            // Esconde a splash screen após 3 segundos
+            setTimeout(() => {
+                splash.classList.add('fade-out');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 1000);
+            }, 3000);
+            
+            // Atualiza o ano no rodapé
+            currentYear.textContent = new Date().getFullYear();
+            
+            // Inicia a escuta por posts
+            listenForPosts();
+            
+            // Atualiza contador de caracteres inicial
+            charCount.textContent = postContent.value.length;
+        });
+    </script>
+</body>
+</html>
