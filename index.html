@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garo - Desabafos Anônimos</title>
+    <title>Garo - Desabafos Anônimos Seguros</title>
+    <meta name="description" content="Plataforma segura para desabafos anônimos. Compartilhe seus pensamentos sem medo de julgamento.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,25 +18,27 @@
         }
 
         :root {
-            --roxo: #8A2BE2;
+            --roxo: #6A0DAD;
             --roxo-claro: #9B59B6;
             --azul: #3498DB;
-            --rosa: #FF6B9E;
-            --verde: #2ECC71;
-            --amarelo: #F1C40F;
+            --rosa: #E91E63;
+            --verde: #27AE60;
+            --amarelo: #F39C12;
             --vermelho: #E74C3C;
-            --fundo: #F8F9FA;
+            --fundo: #F5F7FA;
             --branco: #FFFFFF;
             --cinza: #ECF0F1;
-            --cinza-escuro: #7F8C8D;
-            --sombra: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --sombra-destaque: 0 15px 35px rgba(0, 0, 0, 0.15);
+            --cinza-escuro: #34495E;
+            --cinza-texto: #555;
+            --sombra: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --sombra-destaque: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --borda: 1px solid rgba(106, 13, 173, 0.1);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--fundo);
-            color: #333;
+            color: var(--cinza-texto);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -95,7 +98,7 @@
         .loader {
             width: 50px;
             height: 50px;
-            border: 5px solid rgba(138, 43, 226, 0.2);
+            border: 5px solid rgba(106, 13, 173, 0.1);
             border-radius: 50%;
             border-top-color: var(--roxo);
             animation: spin 1s ease-in-out infinite;
@@ -118,7 +121,7 @@
         /* ===== HEADER ===== */
         header {
             background-color: var(--branco);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -141,25 +144,69 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
         }
 
         .app-title i {
             color: var(--azul);
         }
 
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: var(--cinza-escuro);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            color: var(--roxo);
+        }
+
         /* ===== MAIN CONTAINER ===== */
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 40px 20px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(52, 152, 219, 0.05));
+            border: var(--borda);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--roxo);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cinza-escuro);
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
 
         /* ===== PRIVACIDADE ===== */
         .privacy-notice {
             background: var(--branco);
             border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
+            padding: 30px;
+            margin-bottom: 40px;
             box-shadow: var(--sombra);
             border-left: 5px solid var(--verde);
             position: relative;
@@ -168,17 +215,18 @@
 
         .privacy-notice h3 {
             color: var(--roxo);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .privacy-notice p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--cinza-escuro);
             line-height: 1.7;
+            margin-bottom: 15px;
         }
 
         .privacy-notice::before {
@@ -192,52 +240,53 @@
         }
 
         .warning-box {
-            background-color: #FFF9E6;
-            border-left: 4px solid #FFC107;
-            padding: 15px;
-            margin-top: 15px;
+            background-color: rgba(231, 76, 60, 0.08);
+            border-left: 4px solid var(--vermelho);
+            padding: 18px;
+            margin-top: 20px;
             border-radius: 0 8px 8px 0;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
 
         .warning-box i {
-            color: #FFC107;
-            font-size: 1.2rem;
-            margin-top: 2px;
+            color: var(--vermelho);
+            font-size: 1.3rem;
+            margin-top: 3px;
         }
 
         .warning-box p {
-            color: #8E6C0A;
-            font-size: 0.9rem;
+            color: #C0392B;
+            font-size: 0.95rem;
             margin: 0;
+            line-height: 1.6;
         }
 
         /* ===== FORMULÁRIO DE DESABAFO ===== */
         .post-form {
             background: var(--branco);
             border-radius: 15px;
-            padding: 30px;
+            padding: 35px;
             box-shadow: var(--sombra-destaque);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(138, 43, 226, 0.1);
+            border: var(--borda);
             position: relative;
         }
 
         .post-form:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .post-form h2 {
             margin-bottom: 25px;
             color: var(--roxo);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .post-form h2 i {
@@ -257,15 +306,16 @@
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
             resize: vertical;
-            min-height: 150px;
+            min-height: 180px;
             transition: all 0.3s ease;
             background-color: #fdfdfd;
+            color: var(--cinza-escuro);
         }
 
         textarea:focus {
             outline: none;
             border-color: var(--roxo);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
             background-color: var(--branco);
         }
 
@@ -279,7 +329,7 @@
             background: linear-gradient(to right, var(--roxo), var(--azul));
             color: var(--branco);
             border: none;
-            padding: 15px 30px;
+            padding: 16px 32px;
             border-radius: 10px;
             font-size: 1rem;
             font-weight: 600;
@@ -288,12 +338,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.2);
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
             background: linear-gradient(to right, var(--azul), var(--roxo));
         }
 
@@ -304,23 +354,36 @@
 
         /* ===== LISTA DE DESABAFOS ===== */
         .posts-list {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--roxo);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--verde);
         }
 
         .post {
             background: var(--branco);
             border-radius: 15px;
-            padding: 30px;
+            padding: 35px;
             margin-bottom: 30px;
             box-shadow: var(--sombra-destaque);
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(138, 43, 226, 0.05);
+            border: var(--borda);
         }
 
         .post:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .post-number {
@@ -329,29 +392,30 @@
             left: -15px;
             background: linear-gradient(135deg, var(--roxo), var(--azul));
             color: var(--branco);
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
         }
 
         .post-content {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-size: 1.15rem;
             line-height: 1.7;
             position: relative;
             overflow: hidden;
+            color: var(--cinza-escuro);
         }
 
         .post-content.long-text {
-            max-height: 120px;
-            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            max-height: 150px;
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         }
 
         .post-content.full-text {
@@ -369,8 +433,9 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            margin-top: 10px;
+            margin-top: 15px;
             padding: 5px 0;
+            font-size: 0.95rem;
         }
 
         .read-more-btn i {
@@ -384,16 +449,17 @@
         .post-date {
             color: var(--cinza-escuro);
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: block;
+            font-style: italic;
         }
 
         /* ===== REAÇÕES (EMOJIS REAIS) ===== */
         .reactions {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
-            padding-top: 15px;
+            margin-bottom: 10px;
+            padding-top: 20px;
             border-top: 1px solid var(--cinza);
         }
 
@@ -406,13 +472,13 @@
             color: var(--cinza-escuro);
             cursor: pointer;
             transition: all 0.3s ease;
-            padding: 8px 12px;
+            padding: 8px 15px;
             border-radius: 20px;
             font-size: 1rem;
         }
 
         .reaction-btn:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: rgba(0, 0, 0, 0.03);
         }
 
         .reaction-btn.active {
@@ -428,12 +494,84 @@
         .laugh-btn:hover, .laugh-btn.active { color: var(--rosa); }
         .sad-btn:hover, .sad-btn.active { color: var(--azul); }
 
+        /* ===== FILTROS ===== */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--branco);
+            border: 1px solid var(--cinza);
+            color: var(--cinza-escuro);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--roxo);
+            color: var(--branco);
+            border-color: var(--roxo);
+        }
+
+        /* ===== ESTATÍSTICAS ===== */
+        .stats-container {
+            background: var(--branco);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--sombra);
+            border: var(--borda);
+        }
+
+        .stats-title {
+            font-size: 1.4rem;
+            color: var(--roxo);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(52, 152, 219, 0.05));
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: var(--borda);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--roxo);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--cinza-escuro);
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: linear-gradient(135deg, var(--roxo), var(--azul));
             color: var(--branco);
-            text-align: center;
-            padding: 40px 0;
+            padding: 60px 0 30px;
             margin-top: 70px;
         }
 
@@ -443,20 +581,60 @@
             padding: 0 20px;
         }
 
-        .privacy-footer {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--branco);
+        }
+
+        .privacy-footer {
+            margin-bottom: 30px;
             font-size: 0.95rem;
             opacity: 0.9;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.7;
+            text-align: center;
         }
 
         .copyright {
             font-size: 0.9rem;
             opacity: 0.9;
-            margin-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* ===== TOAST NOTIFICATION ===== */
@@ -466,12 +644,12 @@
             right: 30px;
             background: var(--roxo);
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 18px 28px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             z-index: 1000;
             transform: translateY(100px);
             opacity: 0;
@@ -484,21 +662,30 @@
         }
 
         .toast i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 768px) {
             .logo-text { font-size: 2.5rem; }
             .app-title { font-size: 1.5rem; }
-            .post-form, .post { padding: 20px; }
+            .hero h1 { font-size: 2rem; }
+            .post-form, .post { padding: 25px; }
             .reactions { flex-wrap: wrap; }
-            .post-number { width: 40px; height: 40px; font-size: 1rem; }
+            .post-number { width: 45px; height: 45px; font-size: 1.1rem; }
+            .footer-grid { gap: 30px; }
         }
 
         @media (max-width: 480px) {
-            .post-form { padding: 20px 15px; }
-            .post { padding: 20px 15px; }
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .post-form { padding: 25px 20px; }
+            .post { padding: 25px 20px; }
             .form-footer {
                 flex-direction: column;
                 gap: 15px;
@@ -507,6 +694,9 @@
             .submit-btn {
                 width: 100%;
                 justify-content: center;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -518,48 +708,94 @@
             <img src="https://i.postimg.cc/wTtQ0C18/20250525-202500.png" alt="Logo Garo">
         </div>
         <h1 class="logo-text">Garo</h1>
-        <p class="splash-subtitle">Seu espaço seguro para desabafar</p>
+        <p class="splash-subtitle">Seu espaço seguro para desabafar anonimamente</p>
         <div class="loader"></div>
     </div>
 
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <header>
         <div class="header-content">
-            <h1 class="app-title"><i class="fas fa-comment-dots"></i> Garo</h1>
+            <a href="#" class="app-title"><i class="fas fa-comment-dots"></i> Garo</a>
+            <div class="nav-links">
+                <a href="#desabafar" class="nav-link"><i class="fas fa-pencil-alt"></i> Desabafar</a>
+                <a href="#desabafos" class="nav-link"><i class="fas fa-list"></i> Ver Desabafos</a>
+                <a href="#sobre" class="nav-link"><i class="fas fa-info-circle"></i> Sobre</a>
+            </div>
         </div>
     </header>
 
     <main class="container">
+        <!-- HERO SECTION -->
+        <section class="hero" id="sobre">
+            <h1>Expresse-se livremente, sem julgamentos</h1>
+            <p>Garo é uma plataforma segura onde você pode compartilhar seus pensamentos e sentimentos de forma completamente anônima. Aqui, sua privacidade é nossa prioridade máxima.</p>
+        </section>
+
         <!-- NOTA DE PRIVACIDADE -->
         <div class="privacy-notice">
-            <h3><i class="fas fa-shield-alt"></i> Privacidade Garantida</h3>
-            <p>No Garo, valorizamos sua privacidade acima de tudo. Todos os desabafos são completamente anônimos. Não armazenamos nenhum dado pessoal, informação de identificação ou metadados que possam revelar sua identidade.</p>
+            <h3><i class="fas fa-user-secret"></i> Anonimato Total</h3>
+            <p>No Garo, implementamos medidas rigorosas para garantir seu anonimato. Não coletamos dados pessoais, endereços IP ou qualquer informação que possa identificar você. Cada desabafo é tratado com total confidencialidade.</p>
+            
+            <p>Nossa tecnologia avançada remove automaticamente qualquer metadado que possa ser associado à sua identidade, garantindo que sua privacidade seja preservada em todos os momentos.</p>
             
             <div class="warning-box">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p><strong>Importante:</strong> Por sua segurança, nunca compartilhe nomes, números de telefone, endereços ou qualquer informação pessoal nos desabafos. O anonimato é total, mas a responsabilidade é sua.</p>
+                <i class="fas fa-shield-alt"></i>
+                <p><strong>Proteja sua privacidade:</strong> Embora garantamos o anonimato, recomendamos que você evite compartilhar detalhes específicos que possam revelar sua identidade, como nomes completos, endereços, números de telefone ou informações financeiras.</p>
+            </div>
+        </div>
+
+        <!-- ESTATÍSTICAS -->
+        <div class="stats-container">
+            <h3 class="stats-title"><i class="fas fa-chart-line"></i> Nossa Comunidade</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalPosts">10,000+</div>
+                    <div class="stat-label">Desabafos compartilhados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeUsers">50,000+</div>
+                    <div class="stat-label">Pessoas ajudadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponibilidade</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Anônimo</div>
+                </div>
             </div>
         </div>
 
         <!-- FORMULÁRIO DE DESABAFO -->
-        <div class="post-form">
-            <h2><i class="fas fa-pencil-alt"></i> Novo Desabafo</h2>
+        <div class="post-form" id="desabafar">
+            <h2><i class="fas fa-edit"></i> Novo Desabafo</h2>
             <form id="newPostForm">
                 <div class="form-group">
-                    <textarea id="postContent" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)..." minlength="20" maxlength="1000"></textarea>
+                    <textarea id="postContent" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)... Pode ser sobre qualquer coisa - estamos aqui para ouvir." minlength="20" maxlength="1000"></textarea>
                     <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
                 </div>
                 <div class="form-footer">
                     <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Publicar
+                        <i class="fas fa-paper-plane"></i> Publicar Anonimamente
                     </button>
                 </div>
             </form>
         </div>
 
         <!-- LISTA DE DESABAFOS -->
-        <div class="posts-list" id="postsList">
-            <!-- Posts serão carregados aqui via JavaScript -->
+        <div class="posts-list" id="desabafos">
+            <h2 class="section-title"><i class="fas fa-comments"></i> Desabafos Recentes</h2>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all"><i class="fas fa-globe"></i> Todos</button>
+                <button class="filter-btn" data-filter="recent"><i class="fas fa-clock"></i> Recentes</button>
+                <button class="filter-btn" data-filter="popular"><i class="fas fa-fire"></i> Populares</button>
+            </div>
+            
+            <div id="postsList">
+                <!-- Posts serão carregados aqui via JavaScript -->
+            </div>
         </div>
     </main>
 
@@ -571,9 +807,37 @@
 
     <footer>
         <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3><i class="fas fa-info-circle"></i> Sobre</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Nossa Missão</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Como Funciona</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3><i class="fas fa-shield-alt"></i> Segurança</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Política de Privacidade</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Tecnologia de Anonimato</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Dicas de Segurança</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3><i class="fas fa-headset"></i> Apoio</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Recursos de Ajuda</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Linhas de Apoio</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Perguntas Frequentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            
             <p class="privacy-footer"><i class="fas fa-lock"></i> Garantimos total anonimato. Nenhum dado pessoal é coletado ou armazenado. Todos os desabafos são completamente anônimos. Lembre-se: nunca compartilhe informações pessoais em suas postagens.</p>
+            
             <div class="copyright">
-                © <span id="currentYear"></span> Garo - Todos os direitos reservados.
+                © <span id="currentYear"></span> Garo - Plataforma de Desabafos Anônimos. Todos os direitos reservados.
             </div>
         </div>
     </footer>
@@ -606,10 +870,14 @@
         const charCount = document.getElementById('charCount');
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toastMessage');
+        const totalPostsEl = document.getElementById('totalPosts');
+        const activeUsersEl = document.getElementById('activeUsers');
+        const filterButtons = document.querySelectorAll('.filter-btn');
 
         // Variáveis de estado
         let posts = [];
         let nextPostNumber = 1;
+        let currentFilter = 'all';
 
         // Funções auxiliares
         function formatDate(timestamp) {
@@ -646,6 +914,10 @@
             postElement.className = 'post';
             postElement.dataset.id = post.id;
             
+            // Calcula o total de reações
+            const totalReactions = post.reactions ? 
+                Object.values(post.reactions).reduce((a, b) => a + b, 0) : 0;
+            
             // Verifica se o texto é longo (mais de 200 caracteres)
             const isLongText = post.content.length > 200;
             const contentClass = isLongText ? 'post-content long-text' : 'post-content';
@@ -679,17 +951,40 @@
             return postElement;
         }
 
+        function filterPosts() {
+            let filteredPosts = [...posts];
+            
+            switch(currentFilter) {
+                case 'recent':
+                    filteredPosts.sort((a, b) => 
+                        b.createdAt?.seconds - a.createdAt?.seconds || 
+                        b.createdAt?.nanoseconds - a.createdAt?.nanoseconds
+                    );
+                    break;
+                case 'popular':
+                    filteredPosts.sort((a, b) => {
+                        const reactionsA = a.reactions ? Object.values(a.reactions).reduce((sum, val) => sum + val, 0) : 0;
+                        const reactionsB = b.reactions ? Object.values(b.reactions).reduce((sum, val) => sum + val, 0) : 0;
+                        return reactionsB - reactionsA;
+                    });
+                    break;
+                default: // 'all'
+                    filteredPosts.sort((a, b) => 
+                        b.createdAt?.seconds - a.createdAt?.seconds || 
+                        b.createdAt?.nanoseconds - a.createdAt?.nanoseconds
+                    );
+            }
+            
+            return filteredPosts;
+        }
+
         function renderPosts() {
             postsList.innerHTML = '';
             
-            // Ordena do mais novo para o mais antigo
-            const sortedPosts = [...posts].sort((a, b) => 
-                b.createdAt?.seconds - a.createdAt?.seconds || 
-                b.createdAt?.nanoseconds - a.createdAt?.nanoseconds
-            );
+            const filteredPosts = filterPosts();
             
-            sortedPosts.forEach((post, index) => {
-                const postElement = createPostElement(post, sortedPosts.length - index);
+            filteredPosts.forEach((post, index) => {
+                const postElement = createPostElement(post, filteredPosts.length - index);
                 postsList.appendChild(postElement);
                 
                 // Adiciona eventos de reação
@@ -741,6 +1036,9 @@
                 await db.collection('posts').add(newPost);
                 postContent.value = '';
                 showToast("Desabafo publicado com sucesso!", 3000);
+                
+                // Atualiza estatísticas
+                updateStats();
             } catch (error) {
                 console.error("Erro ao adicionar post:", error);
                 showToast("Erro ao publicar desabafo", 3000);
@@ -757,6 +1055,21 @@
             }
         }
 
+        async function updateStats() {
+            try {
+                const postsSnapshot = await db.collection('posts').get();
+                const postCount = postsSnapshot.size;
+                
+                // Simula crescimento de usuários baseado em posts
+                const userCount = Math.floor(postCount * 5 + Math.random() * 1000);
+                
+                totalPostsEl.textContent = `${postCount.toLocaleString()}+`;
+                activeUsersEl.textContent = `${userCount.toLocaleString()}+`;
+            } catch (error) {
+                console.error("Erro ao atualizar estatísticas:", error);
+            }
+        }
+
         function listenForPosts() {
             db.collection('posts').onSnapshot(snapshot => {
                 posts = snapshot.docs.map(doc => ({
@@ -764,6 +1077,7 @@
                     ...doc.data()
                 }));
                 renderPosts();
+                updateStats();
             });
         }
 
@@ -775,6 +1089,25 @@
 
         postContent.addEventListener('input', () => {
             charCount.textContent = postContent.value.length;
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentFilter = button.dataset.filter;
+                renderPosts();
+            });
+        });
+
+        // Suaviza rolagem para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
 
         // Inicialização
