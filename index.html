@@ -3,419 +3,596 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garo - Desabafos Anônimos Seguros</title>
-    <meta name="description" content="Plataforma segura para desabafos anônimos. Compartilhe seus pensamentos sem medo de julgamento.">
+    <title>Garo | Plataforma Segura para Desabafos Anônimos</title>
+    <meta name="description" content="Plataforma profissional para desabafos anônimos com total privacidade e segurança. Compartilhe seus pensamentos sem medo de julgamento.">
+    <meta name="keywords" content="desabafo anônimo, privacidade, saúde mental, apoio emocional">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== RESET & VARIÁVEIS ===== */
+        /* ===== VARIÁVEIS & RESET ===== */
+        :root {
+            --primary: #5E35B1;
+            --primary-dark: #4527A0;
+            --primary-light: #7E57C2;
+            --secondary: #26A69A;
+            --accent: #FF7043;
+            --danger: #EF5350;
+            --warning: #FFA726;
+            --success: #66BB6A;
+            --dark: #263238;
+            --medium: #546E7A;
+            --light: #ECEFF1;
+            --white: #FFFFFF;
+            --background: #FAFAFA;
+            --border: 1px solid rgba(94, 53, 177, 0.12);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --roxo: #6A0DAD;
-            --roxo-claro: #9B59B6;
-            --azul: #3498DB;
-            --rosa: #E91E63;
-            --verde: #27AE60;
-            --amarelo: #F39C12;
-            --vermelho: #E74C3C;
-            --fundo: #F5F7FA;
-            --branco: #FFFFFF;
-            --cinza: #ECF0F1;
-            --cinza-escuro: #34495E;
-            --cinza-texto: #555;
-            --sombra: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --sombra-destaque: 0 15px 35px rgba(0, 0, 0, 0.12);
-            --borda: 1px solid rgba(106, 13, 173, 0.1);
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--fundo);
-            color: var(--cinza-texto);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ===== SPLASH SCREEN (PROFISSIONAL) ===== */
-        .splash {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* ===== TIPOGRAFIA ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+
+        p {
+            font-size: 1rem;
+            color: var(--medium);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
             width: 100%;
-            height: 100vh;
-            background-color: var(--branco);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.8s ease;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .splash.fade-out {
-            opacity: 0;
-            pointer-events: none;
+        .section {
+            padding: 80px 0;
         }
 
-        .logo-splash {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 30px;
-            animation: fadeIn 1s ease;
-        }
-
-        .logo-splash img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--roxo);
-            margin-bottom: 10px;
-            animation: slideUp 0.8s ease;
-        }
-
-        .splash-subtitle {
-            color: var(--cinza-escuro);
-            font-size: 1.2rem;
-            max-width: 80%;
+        .section-title {
             text-align: center;
-            margin-bottom: 30px;
-            animation: slideUp 0.8s ease 0.2s forwards;
-            opacity: 0;
+            margin-bottom: 48px;
+            position: relative;
         }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(106, 13, 173, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--roxo);
-            animation: spin 1s ease-in-out infinite;
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 16px auto 0;
+            border-radius: 2px;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        /* ===== COMPONENTES ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            white-space: nowrap;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(94, 53, 177, 0.05);
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: var(--border);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-primary {
+            background-color: rgba(94, 53, 177, 0.1);
+            color: var(--primary);
+        }
+
+        .badge-secondary {
+            background-color: rgba(38, 166, 154, 0.1);
+            color: var(--secondary);
         }
 
         /* ===== HEADER ===== */
         header {
-            background-color: var(--branco);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            padding: 15px 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            padding: 16px 0;
         }
 
-        .header-content {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .app-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--roxo);
+        .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            text-decoration: none;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        .app-title i {
-            color: var(--azul);
+        .logo-icon {
+            font-size: 1.75rem;
+            color: var(--primary);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
-            gap: 25px;
+            align-items: center;
+            gap: 32px;
         }
 
         .nav-link {
-            color: var(--cinza-escuro);
-            text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            color: var(--medium);
+            position: relative;
+            padding: 8px 0;
         }
 
         .nav-link:hover {
-            color: var(--roxo);
+            color: var(--primary);
         }
 
-        /* ===== MAIN CONTAINER ===== */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
         }
 
-        /* ===== HERO SECTION ===== */
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
         .hero {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 20px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(52, 152, 219, 0.05));
-            border: var(--borda);
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: var(--roxo);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--cinza-escuro);
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        /* ===== PRIVACIDADE ===== */
-        .privacy-notice {
-            background: var(--branco);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: var(--sombra);
-            border-left: 5px solid var(--verde);
+            background: linear-gradient(135deg, rgba(94, 53, 177, 0.03), rgba(38, 166, 154, 0.03));
+            padding: 160px 0 100px;
             position: relative;
             overflow: hidden;
         }
 
-        .privacy-notice h3 {
-            color: var(--roxo);
-            margin-bottom: 20px;
+        .hero-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
+            gap: 48px;
         }
 
-        .privacy-notice p {
-            font-size: 1rem;
-            color: var(--cinza-escuro);
-            line-height: 1.7;
-            margin-bottom: 15px;
+        .hero-content {
+            flex: 1;
         }
 
-        .privacy-notice::before {
-            content: "";
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 1.25rem;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--medium);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            min-height: 400px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-image-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-image-text {
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .hero-image:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            z-index: 1;
+        }
+
+        /* ===== FEATURES ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(94, 53, 177, 0.1), rgba(38, 166, 154, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            margin-bottom: 16px;
+        }
+
+        /* ===== PRIVACY ===== */
+        .privacy-section {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .privacy-container {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .privacy-image {
+            flex: 1;
+            min-height: 400px;
+            background: linear-gradient(135deg, var(--light), var(--white));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .privacy-image-content {
+            position: relative;
+            z-index: 2;
+            padding: 24px;
+        }
+
+        .privacy-image:before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, var(--verde), var(--azul));
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h30v30H0V0zm30 30h30v30H30V30z' fill='%235E35B1' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .privacy-content {
+            flex: 1;
+        }
+
+        .privacy-badge {
+            margin-bottom: 16px;
+        }
+
+        .privacy-title {
+            margin-bottom: 24px;
+        }
+
+        .privacy-list {
+            margin: 24px 0;
+            list-style: none;
+        }
+
+        .privacy-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .privacy-item-icon {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin-top: 2px;
         }
 
         .warning-box {
-            background-color: rgba(231, 76, 60, 0.08);
-            border-left: 4px solid var(--vermelho);
-            padding: 18px;
-            margin-top: 20px;
-            border-radius: 0 8px 8px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            background-color: rgba(239, 83, 80, 0.05);
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-top: 24px;
         }
 
-        .warning-box i {
-            color: var(--vermelho);
-            font-size: 1.3rem;
-            margin-top: 3px;
-        }
-
-        .warning-box p {
-            color: #C0392B;
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        /* ===== FORMULÁRIO DE DESABAFO ===== */
-        .post-form {
-            background: var(--branco);
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: var(--sombra-destaque);
-            margin-bottom: 50px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: var(--borda);
-            position: relative;
-        }
-
-        .post-form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .post-form h2 {
-            margin-bottom: 25px;
-            color: var(--roxo);
-            font-size: 1.6rem;
+        .warning-box-title {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: var(--danger);
         }
 
-        .post-form h2 i {
-            color: var(--rosa);
+        /* ===== POST FORM ===== */
+        .post-form-section {
+            background: linear-gradient(135deg, rgba(94, 53, 177, 0.03), rgba(38, 166, 154, 0.03));
+        }
+
+        .post-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-form-card {
+            padding: 48px;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 32px;
         }
 
         .form-group {
-            margin-bottom: 25px;
-            position: relative;
+            margin-bottom: 24px;
         }
 
-        textarea {
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
             width: 100%;
-            padding: 18px 20px;
-            border: 2px solid var(--cinza);
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
+            padding: 16px;
+            border: 1px solid rgba(94, 53, 177, 0.2);
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            resize: vertical;
-            min-height: 180px;
-            transition: all 0.3s ease;
-            background-color: #fdfdfd;
-            color: var(--cinza-escuro);
+            transition: var(--transition);
+            background-color: var(--white);
         }
 
-        textarea:focus {
+        .form-control:focus {
             outline: none;
-            border-color: var(--roxo);
-            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
-            background-color: var(--branco);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(94, 53, 177, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
         }
 
         .form-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .submit-btn {
-            background: linear-gradient(to right, var(--roxo), var(--azul));
-            color: var(--branco);
-            border: none;
-            padding: 16px 32px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.2);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
-            background: linear-gradient(to right, var(--azul), var(--roxo));
+            margin-top: 32px;
         }
 
         .char-counter {
-            font-size: 0.85rem;
-            color: var(--cinza-escuro);
+            font-size: 0.875rem;
+            color: var(--medium);
         }
 
-        /* ===== LISTA DE DESABAFOS ===== */
-        .posts-list {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--roxo);
-            margin-bottom: 30px;
+        /* ===== POSTS ===== */
+        .posts-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            margin-bottom: 32px;
         }
 
-        .section-title i {
-            color: var(--verde);
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
         }
 
-        .post {
-            background: var(--branco);
-            border-radius: 15px;
-            padding: 35px;
-            margin-bottom: 30px;
-            box-shadow: var(--sombra-destaque);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: var(--borda);
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
         }
 
-        .post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        .post-card {
+            padding: 32px;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
         }
 
         .post-number {
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            background: linear-gradient(135deg, var(--roxo), var(--azul));
-            color: var(--branco);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .post-date {
+            font-size: 0.875rem;
+            color: var(--medium);
         }
 
         .post-content {
-            margin-bottom: 25px;
-            font-size: 1.15rem;
-            line-height: 1.7;
+            margin-bottom: 24px;
             position: relative;
             overflow: hidden;
-            color: var(--cinza-escuro);
         }
 
         .post-content.long-text {
             max-height: 150px;
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         }
 
         .post-content.full-text {
@@ -427,40 +604,23 @@
         .read-more-btn {
             background: none;
             border: none;
-            color: var(--roxo);
-            font-weight: 600;
+            color: var(--primary);
+            font-weight: 500;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            margin-top: 15px;
-            padding: 5px 0;
-            font-size: 0.95rem;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 0;
+            font-size: 0.875rem;
         }
 
-        .read-more-btn i {
-            transition: transform 0.3s ease;
-        }
-
-        .read-more-btn:hover i {
-            transform: translateX(3px);
-        }
-
-        .post-date {
-            color: var(--cinza-escuro);
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            display: block;
-            font-style: italic;
-        }
-
-        /* ===== REAÇÕES (EMOJIS REAIS) ===== */
-        .reactions {
+        .post-reactions {
             display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-            padding-top: 20px;
-            border-top: 1px solid var(--cinza);
+            gap: 12px;
+            padding-top: 16px;
+            margin-top: 16px;
+            border-top: 1px solid rgba(94, 53, 177, 0.1);
         }
 
         .reaction-btn {
@@ -468,192 +628,213 @@
             border: none;
             display: flex;
             align-items: center;
-            gap: 5px;
-            color: var(--cinza-escuro);
+            gap: 4px;
+            color: var(--medium);
             cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 8px 15px;
+            transition: var(--transition);
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 1rem;
+            font-size: 0.875rem;
         }
 
         .reaction-btn:hover {
-            background: rgba(0, 0, 0, 0.03);
+            background: rgba(94, 53, 177, 0.05);
         }
 
         .reaction-btn.active {
             font-weight: 600;
         }
 
-        .reaction-btn span.emoji {
-            font-size: 1.3rem;
+        .reaction-btn.like:hover, .reaction-btn.like.active { color: var(--danger); }
+        .reaction-btn.angry:hover, .reaction-btn.angry.active { color: var(--warning); }
+        .reaction-btn.laugh:hover, .reaction-btn.laugh.active { color: var(--accent); }
+        .reaction-btn.sad:hover, .reaction-btn.sad.active { color: var(--secondary); }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            background-color: var(--white);
         }
 
-        .like-btn:hover, .like-btn.active { color: var(--vermelho); }
-        .angry-btn:hover, .angry-btn.active { color: var(--amarelo); }
-        .laugh-btn:hover, .laugh-btn.active { color: var(--rosa); }
-        .sad-btn:hover, .sad-btn.active { color: var(--azul); }
-
-        /* ===== FILTROS ===== */
-        .filters {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .filter-btn {
-            background: var(--branco);
-            border: 1px solid var(--cinza);
-            color: var(--cinza-escuro);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--roxo);
-            color: var(--branco);
-            border-color: var(--roxo);
-        }
-
-        /* ===== ESTATÍSTICAS ===== */
-        .stats-container {
-            background: var(--branco);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: var(--sombra);
-            border: var(--borda);
-        }
-
-        .stats-title {
-            font-size: 1.4rem;
-            color: var(--roxo);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(52, 152, 219, 0.05));
-            border-radius: 10px;
-            padding: 20px;
+        .testimonial-card {
+            padding: 40px;
             text-align: center;
-            border: var(--borda);
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: var(--border);
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--roxo);
-            margin-bottom: 5px;
+        .testimonial-text {
+            font-size: 1.125rem;
+            font-style: italic;
+            margin-bottom: 24px;
+            position: relative;
         }
 
-        .stat-label {
-            font-size: 0.95rem;
-            color: var(--cinza-escuro);
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(94, 53, 177, 0.1);
+            position: absolute;
+            line-height: 1;
+        }
+
+        .testimonial-text:before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .testimonial-text:after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-title {
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-btn {
+            background-color: var(--white);
+            color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         /* ===== FOOTER ===== */
         footer {
-            background: linear-gradient(135deg, var(--roxo), var(--azul));
-            color: var(--branco);
-            padding: 60px 0 30px;
-            margin-top: 70px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 80px 0 0;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 48px;
+            margin-bottom: 48px;
         }
 
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+        .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
         }
 
-        .footer-column ul {
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-title {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
             list-style: none;
         }
 
-        .footer-column li {
+        .footer-link {
             margin-bottom: 12px;
         }
 
-        .footer-column a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .footer-link a {
+            color: rgba(255,255,255,0.7);
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .footer-column a:hover {
-            color: var(--branco);
+        .footer-link a:hover {
+            color: var(--white);
+            padding-left: 4px;
         }
 
-        .privacy-footer {
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
+        .footer-bottom {
+            padding: 24px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
             text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
         }
 
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 40px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* ===== TOAST NOTIFICATION ===== */
+        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--roxo);
-            color: white;
-            padding: 18px 28px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: var(--primary);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
             display: flex;
             align-items: center;
             gap: 12px;
             z-index: 1000;
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.4s ease;
+            transition: var(--transition);
         }
 
         .toast.show {
@@ -661,192 +842,405 @@
             opacity: 1;
         }
 
-        .toast i {
-            font-size: 1.3rem;
+        .toast-icon {
+            font-size: 1.25rem;
         }
 
-        /* ===== RESPONSIVIDADE ===== */
-        @media (max-width: 768px) {
-            .logo-text { font-size: 2.5rem; }
-            .app-title { font-size: 1.5rem; }
-            .hero h1 { font-size: 2rem; }
-            .post-form, .post { padding: 25px; }
-            .reactions { flex-wrap: wrap; }
-            .post-number { width: 45px; height: 45px; font-size: 1.1rem; }
-            .footer-grid { gap: 30px; }
-        }
-
-        @media (max-width: 480px) {
-            .header-content {
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 992px) {
+            .hero-container {
                 flex-direction: column;
-                gap: 15px;
             }
-            .nav-links {
-                gap: 15px;
+            
+            .hero-content {
+                text-align: center;
+                margin-bottom: 48px;
             }
-            .post-form { padding: 25px 20px; }
-            .post { padding: 25px 20px; }
-            .form-footer {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-end;
-            }
-            .submit-btn {
-                width: 100%;
+            
+            .hero-buttons {
                 justify-content: center;
             }
-            .stats-grid {
-                grid-template-columns: 1fr;
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                min-height: 300px;
+                width: 100%;
+            }
+            
+            .privacy-container {
+                flex-direction: column;
+            }
+            
+            .privacy-image {
+                min-height: 300px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                gap: 0;
+                padding: 24px;
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+            
+            .nav-link {
+                width: 100%;
+                padding: 16px 0;
+                border-bottom: 1px solid rgba(94, 53, 177, 0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-text {
+                font-size: 1.125rem;
+            }
+            
+            .post-form-card {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .posts-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .form-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+            
+            .btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ===== SPLASH SCREEN PROFISSIONAL ===== -->
-    <div class="splash" id="splash">
-        <div class="logo-splash">
-            <img src="https://i.postimg.cc/wTtQ0C18/20250525-202500.png" alt="Logo Garo">
-        </div>
-        <h1 class="logo-text">Garo</h1>
-        <p class="splash-subtitle">Seu espaço seguro para desabafar anonimamente</p>
-        <div class="loader"></div>
-    </div>
-
-    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <!-- ===== HEADER ===== -->
     <header>
-        <div class="header-content">
-            <a href="#" class="app-title"><i class="fas fa-comment-dots"></i> Garo</a>
-            <div class="nav-links">
-                <a href="#desabafar" class="nav-link"><i class="fas fa-pencil-alt"></i> Desabafar</a>
-                <a href="#desabafos" class="nav-link"><i class="fas fa-list"></i> Ver Desabafos</a>
-                <a href="#sobre" class="nav-link"><i class="fas fa-info-circle"></i> Sobre</a>
-            </div>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-comment-dots logo-icon"></i>
+                <span>Garo</span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#features" class="nav-link">Recursos</a>
+                <a href="#privacy" class="nav-link">Privacidade</a>
+                <a href="#share" class="nav-link">Desabafar</a>
+                <a href="#community" class="nav-link">Comunidade</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <main class="container">
-        <!-- HERO SECTION -->
-        <section class="hero" id="sobre">
-            <h1>Expresse-se livremente, sem julgamentos</h1>
-            <p>Garo é uma plataforma segura onde você pode compartilhar seus pensamentos e sentimentos de forma completamente anônima. Aqui, sua privacidade é nossa prioridade máxima.</p>
-        </section>
-
-        <!-- NOTA DE PRIVACIDADE -->
-        <div class="privacy-notice">
-            <h3><i class="fas fa-user-secret"></i> Anonimato Total</h3>
-            <p>No Garo, implementamos medidas rigorosas para garantir seu anonimato. Não coletamos dados pessoais, endereços IP ou qualquer informação que possa identificar você. Cada desabafo é tratado com total confidencialidade.</p>
-            
-            <p>Nossa tecnologia avançada remove automaticamente qualquer metadado que possa ser associado à sua identidade, garantindo que sua privacidade seja preservada em todos os momentos.</p>
-            
-            <div class="warning-box">
-                <i class="fas fa-shield-alt"></i>
-                <p><strong>Proteja sua privacidade:</strong> Embora garantamos o anonimato, recomendamos que você evite compartilhar detalhes específicos que possam revelar sua identidade, como nomes completos, endereços, números de telefone ou informações financeiras.</p>
-            </div>
-        </div>
-
-        <!-- ESTATÍSTICAS -->
-        <div class="stats-container">
-            <h3 class="stats-title"><i class="fas fa-chart-line"></i> Nossa Comunidade</h3>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="totalPosts">10,000+</div>
-                    <div class="stat-label">Desabafos compartilhados</div>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Seu espaço seguro para desabafar</h1>
+                <p class="hero-text">Garo é uma plataforma profissional que oferece anonimato total para você compartilhar seus pensamentos e sentimentos sem medo de julgamento.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#share" class="btn btn-primary">
+                        <i class="fas fa-pencil-alt"></i> Desabafar agora
+                    </a>
+                    <a href="#privacy" class="btn btn-outline">
+                        <i class="fas fa-shield-alt"></i> Como protegemos você
+                    </a>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="activeUsers">50,000+</div>
-                    <div class="stat-label">Pessoas ajudadas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Disponibilidade</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Anônimo</div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10,000+</span>
+                        <span class="stat-label">Desabafos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Anônimo</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Disponível</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- FORMULÁRIO DE DESABAFO -->
-        <div class="post-form" id="desabafar">
-            <h2><i class="fas fa-edit"></i> Novo Desabafo</h2>
-            <form id="newPostForm">
-                <div class="form-group">
-                    <textarea id="postContent" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)... Pode ser sobre qualquer coisa - estamos aqui para ouvir." minlength="20" maxlength="1000"></textarea>
-                    <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
-                </div>
-                <div class="form-footer">
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Publicar Anonimamente
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <!-- LISTA DE DESABAFOS -->
-        <div class="posts-list" id="desabafos">
-            <h2 class="section-title"><i class="fas fa-comments"></i> Desabafos Recentes</h2>
             
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all"><i class="fas fa-globe"></i> Todos</button>
-                <button class="filter-btn" data-filter="recent"><i class="fas fa-clock"></i> Recentes</button>
-                <button class="filter-btn" data-filter="popular"><i class="fas fa-fire"></i> Populares</button>
+            <div class="hero-image">
+                <div class="hero-image-content">
+                    <h3 class="hero-image-title">Totalmente Anônimo</h3>
+                    <p class="hero-image-text">Nossa tecnologia avançada garante que nada pode ser rastreado até você.</p>
+                    <i class="fas fa-user-secret" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que escolher o Garo?</h2>
+                <p>Nossa plataforma oferece os melhores recursos para sua segurança e conforto</p>
             </div>
             
-            <div id="postsList">
+            <div class="features-grid">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3 class="feature-title">Anonimato Total</h3>
+                    <p>Não armazenamos dados pessoais, endereços IP ou qualquer informação que possa identificar você.</p>
+                </div>
+                
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Segurança Avançada</h3>
+                    <p>Todos os dados são criptografados e protegidos com as mais modernas tecnologias de segurança.</p>
+                </div>
+                
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="feature-title">Apoio Emocional</h3>
+                    <p>Compartilhe seus sentimentos e receba apoio através de reações positivas da comunidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRIVACY ===== -->
+    <section class="section privacy-section" id="privacy">
+        <div class="container privacy-container">
+            <div class="privacy-image">
+                <div class="privacy-image-content">
+                    <i class="fas fa-shield-alt" style="font-size: 4rem; color: var(--primary);"></i>
+                </div>
+            </div>
+            
+            <div class="privacy-content">
+                <span class="badge badge-primary">Segurança</span>
+                <h2 class="privacy-title">Sua privacidade é nossa prioridade</h2>
+                <p>Desenvolvemos um sistema completo de proteção de dados para garantir que você possa se expressar livremente sem preocupações.</p>
+                
+                <ul class="privacy-list">
+                    <li class="privacy-item">
+                        <i class="fas fa-check-circle privacy-item-icon"></i>
+                        <span>Nenhum dado pessoal é coletado ou armazenado</span>
+                    </li>
+                    <li class="privacy-item">
+                        <i class="fas fa-check-circle privacy-item-icon"></i>
+                        <span>Tecnologia avançada de anonimização</span>
+                    </li>
+                    <li class="privacy-item">
+                        <i class="fas fa-check-circle privacy-item-icon"></i>
+                        <span>Remoção automática de metadados</span>
+                    </li>
+                    <li class="privacy-item">
+                        <i class="fas fa-check-circle privacy-item-icon"></i>
+                        <span>Criptografia de ponta a ponta</span>
+                    </li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4 class="warning-box-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Importante</span>
+                    </h4>
+                    <p>Por sua segurança, nunca compartilhe informações pessoais como nomes, endereços ou números de telefone em seus desabafos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POST FORM ===== -->
+    <section class="section post-form-section" id="share">
+        <div class="container post-form-container">
+            <div class="card post-form-card">
+                <h2 class="form-title">Compartilhe seu desabafo</h2>
+                
+                <form id="newPostForm">
+                    <div class="form-group">
+                        <label for="postContent" class="form-label">Digite seu desabafo (mínimo 20 caracteres)</label>
+                        <textarea id="postContent" class="form-control" placeholder="Este é um espaço seguro para você compartilhar o que está sentindo. Lembre-se: seu anonimato está garantido." minlength="20" maxlength="1000" required></textarea>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Publicar Anonimamente
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POSTS ===== -->
+    <section class="section" id="community">
+        <div class="container">
+            <div class="posts-header">
+                <h2>Desabafos Recentes</h2>
+                <div class="filter-buttons">
+                    <button class="btn btn-outline active" data-filter="all">Todos</button>
+                    <button class="btn btn-outline" data-filter="recent">Recentes</button>
+                    <button class="btn btn-outline" data-filter="popular">Populares</button>
+                </div>
+            </div>
+            
+            <div class="posts-grid" id="postsList">
                 <!-- Posts serão carregados aqui via JavaScript -->
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Post publicado com sucesso!</span>
-    </div>
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que as pessoas dizem</h2>
+                <p>Depoimentos de quem já usou nossa plataforma</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="card testimonial-card">
+                    <p class="testimonial-text">O Garo me ajudou em um momento muito difícil. Poder desabafar sem medo de ser julgado fez toda a diferença para mim.</p>
+                    <div class="testimonial-author">— Anônimo</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ===== CTA ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Pronto para desabafar?</h2>
+            <p class="cta-text">Junte-se a milhares de pessoas que já encontraram alívio compartilhando seus sentimentos de forma anônima e segura.</p>
+            <a href="#share" class="btn cta-btn">Começar agora</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="footer-content">
+        <div class="container">
             <div class="footer-grid">
-                <div class="footer-column">
-                    <h3><i class="fas fa-info-circle"></i> Sobre</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Nossa Missão</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Como Funciona</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Termos de Uso</a></li>
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Garo</span>
+                    </div>
+                    <p class="footer-text">Uma plataforma segura para desabafos anônimos. Sua privacidade é nossa prioridade.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#features"><i class="fas fa-chevron-right"></i> Recursos</a></li>
+                        <li class="footer-link"><a href="#privacy"><i class="fas fa-chevron-right"></i> Privacidade</a></li>
+                        <li class="footer-link"><a href="#share"><i class="fas fa-chevron-right"></i> Desabafar</a></li>
+                        <li class="footer-link"><a href="#community"><i class="fas fa-chevron-right"></i> Comunidade</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3><i class="fas fa-shield-alt"></i> Segurança</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Política de Privacidade</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Tecnologia de Anonimato</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Dicas de Segurança</a></li>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Ajuda</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Segurança</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3><i class="fas fa-headset"></i> Apoio</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Recursos de Ajuda</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Linhas de Apoio</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Perguntas Frequentes</a></li>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Apoio</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Central de Ajuda</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Recursos de Saúde Mental</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Linhas de Apoio</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Contato</a></li>
                     </ul>
                 </div>
             </div>
             
-            <p class="privacy-footer"><i class="fas fa-lock"></i> Garantimos total anonimato. Nenhum dado pessoal é coletado ou armazenado. Todos os desabafos são completamente anônimos. Lembre-se: nunca compartilhe informações pessoais em suas postagens.</p>
-            
-            <div class="copyright">
-                © <span id="currentYear"></span> Garo - Plataforma de Desabafos Anônimos. Todos os direitos reservados.
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Garo. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <span id="toastMessage">Desabafo publicado com sucesso!</span>
+    </div>
 
     <!-- ===== FIREBASE & JAVASCRIPT ===== -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
     <script>
-        // CONFIGURAÇÃO DO FIREBASE (USE SUAS CHAVES)
+        // CONFIGURAÇÃO DO FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyBjlGc_C5QvUahax-oDsNo0eknhqm1DHbQ",
             authDomain: "jovem-782e3.firebaseapp.com",
@@ -862,7 +1256,8 @@
         const db = firebase.firestore();
 
         // Elementos da DOM
-        const splash = document.getElementById('splash');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
         const newPostForm = document.getElementById('newPostForm');
         const postContent = document.getElementById('postContent');
         const postsList = document.getElementById('postsList');
@@ -870,13 +1265,10 @@
         const charCount = document.getElementById('charCount');
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toastMessage');
-        const totalPostsEl = document.getElementById('totalPosts');
-        const activeUsersEl = document.getElementById('activeUsers');
-        const filterButtons = document.querySelectorAll('.filter-btn');
+        const filterButtons = document.querySelectorAll('.filter-buttons .btn');
 
         // Variáveis de estado
         let posts = [];
-        let nextPostNumber = 1;
         let currentFilter = 'all';
 
         // Funções auxiliares
@@ -909,9 +1301,9 @@
             }, duration);
         }
 
-        function createPostElement(post, number) {
+        function createPostElement(post, index) {
             const postElement = document.createElement('div');
-            postElement.className = 'post';
+            postElement.className = 'card post-card';
             postElement.dataset.id = post.id;
             
             // Calcula o total de reações
@@ -923,25 +1315,29 @@
             const contentClass = isLongText ? 'post-content long-text' : 'post-content';
             
             postElement.innerHTML = `
-                <div class="post-number">${number}</div>
-                <p class="${contentClass}">${post.content}</p>
-                ${isLongText ? '<button class="read-more-btn">Ler mais <i class="fas fa-chevron-down"></i></button>' : ''}
-                <span class="post-date">${formatDate(post.createdAt)}</span>
+                <div class="post-header">
+                    <div class="post-number">${index + 1}</div>
+                    <div class="post-date">${formatDate(post.createdAt)}</div>
+                </div>
                 
-                <div class="reactions">
-                    <button class="reaction-btn like-btn" data-reaction="like">
+                <div class="${contentClass}">${post.content}</div>
+                
+                ${isLongText ? '<button class="read-more-btn">Ler mais <i class="fas fa-chevron-down"></i></button>' : ''}
+                
+                <div class="post-reactions">
+                    <button class="reaction-btn like" data-reaction="like">
                         <span class="emoji">❤️</span>
                         <span class="like-count">${post.reactions?.like || 0}</span>
                     </button>
-                    <button class="reaction-btn angry-btn" data-reaction="angry">
+                    <button class="reaction-btn angry" data-reaction="angry">
                         <span class="emoji">😠</span>
                         <span class="angry-count">${post.reactions?.angry || 0}</span>
                     </button>
-                    <button class="reaction-btn laugh-btn" data-reaction="laugh">
+                    <button class="reaction-btn laugh" data-reaction="laugh">
                         <span class="emoji">😂</span>
                         <span class="laugh-count">${post.reactions?.laugh || 0}</span>
                     </button>
-                    <button class="reaction-btn sad-btn" data-reaction="sad">
+                    <button class="reaction-btn sad" data-reaction="sad">
                         <span class="emoji">😢</span>
                         <span class="sad-count">${post.reactions?.sad || 0}</span>
                     </button>
@@ -984,7 +1380,7 @@
             const filteredPosts = filterPosts();
             
             filteredPosts.forEach((post, index) => {
-                const postElement = createPostElement(post, filteredPosts.length - index);
+                const postElement = createPostElement(post, index);
                 postsList.appendChild(postElement);
                 
                 // Adiciona eventos de reação
@@ -1036,9 +1432,6 @@
                 await db.collection('posts').add(newPost);
                 postContent.value = '';
                 showToast("Desabafo publicado com sucesso!", 3000);
-                
-                // Atualiza estatísticas
-                updateStats();
             } catch (error) {
                 console.error("Erro ao adicionar post:", error);
                 showToast("Erro ao publicar desabafo", 3000);
@@ -1055,21 +1448,6 @@
             }
         }
 
-        async function updateStats() {
-            try {
-                const postsSnapshot = await db.collection('posts').get();
-                const postCount = postsSnapshot.size;
-                
-                // Simula crescimento de usuários baseado em posts
-                const userCount = Math.floor(postCount * 5 + Math.random() * 1000);
-                
-                totalPostsEl.textContent = `${postCount.toLocaleString()}+`;
-                activeUsersEl.textContent = `${userCount.toLocaleString()}+`;
-            } catch (error) {
-                console.error("Erro ao atualizar estatísticas:", error);
-            }
-        }
-
         function listenForPosts() {
             db.collection('posts').onSnapshot(snapshot => {
                 posts = snapshot.docs.map(doc => ({
@@ -1077,11 +1455,16 @@
                     ...doc.data()
                 }));
                 renderPosts();
-                updateStats();
             });
         }
 
         // Event Listeners
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
         newPostForm.addEventListener('submit', (e) => {
             e.preventDefault();
             addPost(postContent.value.trim());
@@ -1100,26 +1483,16 @@
             });
         });
 
-        // Suaviza rolagem para âncoras
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Fecha o menu mobile ao clicar em um link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
 
         // Inicialização
-        window.addEventListener('DOMContentLoaded', () => {
-            // Esconde a splash screen após 3 segundos
-            setTimeout(() => {
-                splash.classList.add('fade-out');
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                }, 1000);
-            }, 3000);
-            
+        document.addEventListener('DOMContentLoaded', () => {
             // Atualiza o ano no rodapé
             currentYear.textContent = new Date().getFullYear();
             
