@@ -206,6 +206,31 @@
             color: var(--primary);
         }
 
+        .post-content {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .post-content.collapsed {
+            max-height: 100px;
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0;
+            font-size: 0.875rem;
+        }
+
         .post-reactions {
             display: flex;
             gap: 12px;
@@ -438,12 +463,24 @@
             // Calcula o número do post (o mais antigo tem o menor número)
             const postNumber = totalPosts - index;
             
+            // Verifica se o texto é longo (mais de 200 caracteres)
+            const isLongText = post.content.length > 200;
+            
             postElement.innerHTML = `
                 <div class="post-header">
                     <span class="post-number">#${postNumber}</span>
                     <span class="post-date">${formatDate(post.createdAt)}</span>
                 </div>
-                <p>${post.content}</p>
+                
+                <div class="post-content ${isLongText ? 'collapsed' : ''}">
+                    <p>${post.content}</p>
+                </div>
+                
+                ${isLongText ? `
+                <button class="read-more-btn">
+                    Ler mais <i class="fas fa-chevron-down"></i>
+                </button>
+                ` : ''}
                 
                 <div class="post-reactions">
                     <button class="reaction-btn like" data-reaction="like">
@@ -534,6 +571,22 @@
                                 updateReaction(post.id, reaction);
                             });
                         });
+                        
+                        // Adiciona evento de ler mais/ler menos para textos longos
+                        const readMoreBtn = postElement.querySelector('.read-more-btn');
+                        const postContent = postElement.querySelector('.post-content');
+                        
+                        if (readMoreBtn && postContent) {
+                            readMoreBtn.addEventListener('click', () => {
+                                postContent.classList.toggle('collapsed');
+                                
+                                if (postContent.classList.contains('collapsed')) {
+                                    readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
+                                } else {
+                                    readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
+                                }
+                            });
+                        }
                     });
                 });
         }
