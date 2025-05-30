@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garo | Plataforma Segura para Desabafos Anônimos</title>
-    <meta name="description" content="Plataforma profissional para desabafos anônimos com total privacidade e segurança. Compartilhe seus pensamentos sem medo de julgamento.">
-    <meta name="keywords" content="desabafo anônimo, privacidade, saúde mental, apoio emocional">
+    <title>Garo | Desabafos Anônimos</title>
+    <meta name="description" content="Plataforma simples e segura para desabafos anônimos. Compartilhe o que sente sem medo de julgamento.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ===== VARIÁVEIS & RESET ===== */
         :root {
             --primary: #5E35B1;
             --primary-dark: #4527A0;
-            --primary-light: #7E57C2;
-            --secondary: #26A69A;
-            --accent: #FF7043;
+            --white: #FFFFFF;
+            --light: #F5F5F5;
+            --medium: #757575;
+            --dark: #212121;
             --danger: #EF5350;
             --warning: #FFA726;
-            --success: #66BB6A;
-            --dark: #263238;
-            --medium: #546E7A;
-            --light: #ECEFF1;
-            --white: #FFFFFF;
-            --background: #FAFAFA;
-            --border: 1px solid rgba(94, 53, 177, 0.12);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --accent: #FF7043;
+            --secondary: #26A69A;
+            --border: 1px solid rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --transition: all 0.2s ease;
         }
 
         * {
@@ -42,157 +34,81 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--background);
+            background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         /* ===== TIPOGRAFIA ===== */
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3 {
             font-weight: 600;
             line-height: 1.3;
-            color: var(--dark);
         }
 
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.75rem; }
-        h4 { font-size: 1.5rem; }
-        h5 { font-size: 1.25rem; }
-        h6 { font-size: 1rem; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.5rem; }
+        h3 { font-size: 1.25rem; }
 
         p {
-            font-size: 1rem;
             color: var(--medium);
-            line-height: 1.7;
             margin-bottom: 1rem;
         }
 
         a {
             text-decoration: none;
             color: var(--primary);
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--primary-dark);
         }
 
         /* ===== LAYOUT ===== */
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
         .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 48px;
-            position: relative;
-        }
-
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            margin: 16px auto 0;
-            border-radius: 2px;
+            padding: 60px 0;
         }
 
         /* ===== COMPONENTES ===== */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            display: inline-block;
             padding: 12px 24px;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius);
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
             border: none;
-            white-space: nowrap;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background-color: var(--primary);
             color: var(--white);
-            box-shadow: var(--shadow-sm);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: rgba(94, 53, 177, 0.05);
+            background-color: var(--primary-dark);
         }
 
         .card {
             background: var(--white);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-            border: var(--border);
-            transition: var(--transition);
-            overflow: hidden;
-        }
-
-        .card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-primary {
-            background-color: rgba(94, 53, 177, 0.1);
-            color: var(--primary);
-        }
-
-        .badge-secondary {
-            background-color: rgba(38, 166, 154, 0.1);
-            color: var(--secondary);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 20px;
         }
 
         /* ===== HEADER ===== */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             background-color: var(--white);
-            box-shadow: var(--shadow-sm);
-            z-index: 1000;
+            box-shadow: var(--shadow);
             padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-container {
@@ -202,49 +118,23 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo-icon {
-            font-size: 1.75rem;
+            font-weight: 600;
             color: var(--primary);
         }
 
         .nav-menu {
             display: flex;
-            align-items: center;
-            gap: 32px;
+            gap: 24px;
         }
 
         .nav-link {
             font-weight: 500;
-            color: var(--medium);
-            position: relative;
-            padding: 8px 0;
+            color: var(--dark);
         }
 
         .nav-link:hover {
             color: var(--primary);
-        }
-
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover:after {
-            width: 100%;
         }
 
         .mobile-menu-btn {
@@ -258,268 +148,35 @@
 
         /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, rgba(94, 53, 177, 0.03), rgba(38, 166, 154, 0.03));
-            padding: 160px 0 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-container {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-        }
-
-        .hero-content {
-            flex: 1;
+            text-align: center;
+            padding: 80px 0 60px;
         }
 
         .hero-title {
-            font-size: 3rem;
-            margin-bottom: 24px;
-            line-height: 1.2;
+            margin-bottom: 20px;
         }
 
         .hero-text {
-            font-size: 1.25rem;
-            margin-bottom: 32px;
             max-width: 600px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 32px;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--medium);
-        }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-            min-height: 400px;
-            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-image-content {
-            position: relative;
-            z-index: 2;
-            padding: 24px;
-            color: var(--white);
-            text-align: center;
-        }
-
-        .hero-image-title {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-        }
-
-        .hero-image-text {
-            opacity: 0.9;
-            margin-bottom: 24px;
-        }
-
-        .hero-image:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
-            z-index: 1;
-        }
-
-        /* ===== FEATURES ===== */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-
-        .feature-card {
-            padding: 32px;
-            text-align: center;
-        }
-
-        .feature-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, rgba(94, 53, 177, 0.1), rgba(38, 166, 154, 0.1));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 1.75rem;
-            color: var(--primary);
-        }
-
-        .feature-title {
-            margin-bottom: 16px;
-        }
-
-        /* ===== PRIVACY ===== */
-        .privacy-section {
-            background-color: var(--white);
-            position: relative;
-        }
-
-        .privacy-container {
-            display: flex;
-            align-items: center;
-            gap: 48px;
-        }
-
-        .privacy-image {
-            flex: 1;
-            min-height: 400px;
-            background: linear-gradient(135deg, var(--light), var(--white));
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .privacy-image-content {
-            position: relative;
-            z-index: 2;
-            padding: 24px;
-        }
-
-        .privacy-image:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h30v30H0V0zm30 30h30v30H30V30z' fill='%235E35B1' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-
-        .privacy-content {
-            flex: 1;
-        }
-
-        .privacy-badge {
-            margin-bottom: 16px;
-        }
-
-        .privacy-title {
-            margin-bottom: 24px;
-        }
-
-        .privacy-list {
-            margin: 24px 0;
-            list-style: none;
-        }
-
-        .privacy-item {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .privacy-item-icon {
-            color: var(--secondary);
-            font-size: 1.25rem;
-            margin-top: 2px;
-        }
-
-        .warning-box {
-            background-color: rgba(239, 83, 80, 0.05);
-            border-left: 4px solid var(--danger);
-            padding: 20px;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-top: 24px;
-        }
-
-        .warning-box-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-            color: var(--danger);
+            margin: 0 auto 30px;
         }
 
         /* ===== POST FORM ===== */
-        .post-form-section {
-            background: linear-gradient(135deg, rgba(94, 53, 177, 0.03), rgba(38, 166, 154, 0.03));
-        }
-
-        .post-form-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .post-form-card {
-            padding: 48px;
-        }
-
-        .form-title {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
         .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
+            margin-bottom: 20px;
         }
 
         .form-control {
             width: 100%;
             padding: 16px;
-            border: 1px solid rgba(94, 53, 177, 0.2);
-            border-radius: var(--radius-sm);
+            border: var(--border);
+            border-radius: var(--radius);
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            transition: var(--transition);
-            background-color: var(--white);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(94, 53, 177, 0.1);
         }
 
         textarea.form-control {
-            min-height: 180px;
+            min-height: 150px;
             resize: vertical;
         }
 
@@ -527,7 +184,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 32px;
         }
 
         .char-counter {
@@ -536,83 +192,18 @@
         }
 
         /* ===== POSTS ===== */
-        .posts-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 24px;
-        }
-
-        .post-card {
-            padding: 32px;
-        }
-
         .post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
+            color: var(--medium);
+            font-size: 0.875rem;
         }
 
         .post-number {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .post-date {
-            font-size: 0.875rem;
-            color: var(--medium);
-        }
-
-        .post-content {
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .post-content.long-text {
-            max-height: 150px;
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-        }
-
-        .post-content.full-text {
-            max-height: none;
-            mask-image: none;
-            -webkit-mask-image: none;
-        }
-
-        .read-more-btn {
-            background: none;
-            border: none;
+            font-weight: 600;
             color: var(--primary);
-            font-weight: 500;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 12px;
-            padding: 0;
-            font-size: 0.875rem;
         }
 
         .post-reactions {
@@ -620,7 +211,7 @@
             gap: 12px;
             padding-top: 16px;
             margin-top: 16px;
-            border-top: 1px solid rgba(94, 53, 177, 0.1);
+            border-top: var(--border);
         }
 
         .reaction-btn {
@@ -638,7 +229,7 @@
         }
 
         .reaction-btn:hover {
-            background: rgba(94, 53, 177, 0.05);
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .reaction-btn.active {
@@ -650,260 +241,40 @@
         .reaction-btn.laugh:hover, .reaction-btn.laugh.active { color: var(--accent); }
         .reaction-btn.sad:hover, .reaction-btn.sad.active { color: var(--secondary); }
 
-        /* ===== TESTIMONIALS ===== */
-        .testimonials-section {
-            background-color: var(--white);
-        }
-
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .testimonial-card {
-            padding: 40px;
-            text-align: center;
-            background-color: var(--white);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-            border: var(--border);
-        }
-
-        .testimonial-text {
-            font-size: 1.125rem;
-            font-style: italic;
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        .testimonial-text:before,
-        .testimonial-text:after {
-            content: '"';
-            font-size: 3rem;
-            color: rgba(94, 53, 177, 0.1);
-            position: absolute;
-            line-height: 1;
-        }
-
-        .testimonial-text:before {
-            top: -20px;
-            left: -20px;
-        }
-
-        .testimonial-text:after {
-            bottom: -40px;
-            right: -20px;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        /* ===== CTA ===== */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            text-align: center;
-            padding: 80px 0;
-        }
-
-        .cta-title {
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-
-        .cta-text {
-            color: rgba(255,255,255,0.9);
-            max-width: 600px;
-            margin: 0 auto 32px;
-        }
-
-        .cta-btn {
-            background-color: var(--white);
-            color: var(--primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
         /* ===== FOOTER ===== */
         footer {
             background-color: var(--dark);
-            color: var(--light);
-            padding: 80px 0 0;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.5rem;
-            font-weight: 700;
             color: var(--white);
-            margin-bottom: 24px;
+            padding: 40px 0;
+            text-align: center;
         }
 
         .footer-text {
             color: rgba(255,255,255,0.7);
-            margin-bottom: 24px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .footer-title {
-            color: var(--white);
-            margin-bottom: 24px;
-            font-size: 1.125rem;
-            font-weight: 600;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-link {
-            margin-bottom: 12px;
-        }
-
-        .footer-link a {
-            color: rgba(255,255,255,0.7);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .footer-link a:hover {
-            color: var(--white);
-            padding-left: 4px;
-        }
-
-        .footer-bottom {
-            padding: 24px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.875rem;
-        }
-
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            color: var(--white);
-            padding: 16px 24px;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast-icon {
-            font-size: 1.25rem;
         }
 
         /* ===== RESPONSIVO ===== */
-        @media (max-width: 992px) {
-            .hero-container {
-                flex-direction: column;
-            }
-            
-            .hero-content {
-                text-align: center;
-                margin-bottom: 48px;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .hero-stats {
-                justify-content: center;
-            }
-            
-            .hero-image {
-                min-height: 300px;
-                width: 100%;
-            }
-            
-            .privacy-container {
-                flex-direction: column;
-            }
-            
-            .privacy-image {
-                min-height: 300px;
-                width: 100%;
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-menu {
+                display: none;
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 left: 0;
                 width: 100%;
                 background-color: var(--white);
                 flex-direction: column;
                 gap: 0;
-                padding: 24px;
-                box-shadow: var(--shadow-md);
-                transform: translateY(-150%);
-                transition: var(--transition);
-                z-index: 999;
+                padding: 20px;
+                box-shadow: var(--shadow);
             }
             
             .nav-menu.active {
-                transform: translateY(0);
+                display: flex;
             }
             
             .nav-link {
-                width: 100%;
-                padding: 16px 0;
-                border-bottom: 1px solid rgba(94, 53, 177, 0.1);
+                padding: 12px 0;
+                border-bottom: var(--border);
             }
             
             .mobile-menu-btn {
@@ -911,56 +282,11 @@
             }
             
             .section {
-                padding: 60px 0;
+                padding: 40px 0;
             }
             
             .hero {
-                padding: 120px 0 60px;
-            }
-            
-            .hero-title {
-                font-size: 2.25rem;
-            }
-            
-            .hero-text {
-                font-size: 1.125rem;
-            }
-            
-            .post-form-card {
-                padding: 32px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                align-items: center;
-                gap: 16px;
-            }
-            
-            .filter-buttons {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .posts-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-            
-            .form-footer {
-                flex-direction: column;
-                gap: 16px;
-                align-items: flex-start;
-            }
-            
-            .btn {
-                width: 100%;
+                padding: 60px 0 40px;
             }
         }
     </style>
@@ -969,16 +295,12 @@
     <!-- ===== HEADER ===== -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
-                <i class="fas fa-comment-dots logo-icon"></i>
-                <span>Garo</span>
-            </a>
+            <a href="#" class="logo">Garo</a>
             
             <nav class="nav-menu" id="navMenu">
-                <a href="#features" class="nav-link">Recursos</a>
-                <a href="#privacy" class="nav-link">Privacidade</a>
                 <a href="#share" class="nav-link">Desabafar</a>
                 <a href="#community" class="nav-link">Comunidade</a>
+                <a href="#privacy" class="nav-link">Privacidade</a>
             </nav>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -989,143 +311,28 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">Seu espaço seguro para desabafar</h1>
-                <p class="hero-text">Garo é uma plataforma profissional que oferece anonimato total para você compartilhar seus pensamentos e sentimentos sem medo de julgamento.</p>
-                
-                <div class="hero-buttons">
-                    <a href="#share" class="btn btn-primary">
-                        <i class="fas fa-pencil-alt"></i> Desabafar agora
-                    </a>
-                    <a href="#privacy" class="btn btn-outline">
-                        <i class="fas fa-shield-alt"></i> Como protegemos você
-                    </a>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">10,000+</span>
-                        <span class="stat-label">Desabafos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Anônimo</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Disponível</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <div class="hero-image-content">
-                    <h3 class="hero-image-title">Totalmente Anônimo</h3>
-                    <p class="hero-image-text">Nossa tecnologia avançada garante que nada pode ser rastreado até você.</p>
-                    <i class="fas fa-user-secret" style="font-size: 3rem;"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FEATURES ===== -->
-    <section class="section" id="features">
         <div class="container">
-            <div class="section-title">
-                <h2>Por que escolher o Garo?</h2>
-                <p>Nossa plataforma oferece os melhores recursos para sua segurança e conforto</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="card feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-secret"></i>
-                    </div>
-                    <h3 class="feature-title">Anonimato Total</h3>
-                    <p>Não armazenamos dados pessoais, endereços IP ou qualquer informação que possa identificar você.</p>
-                </div>
-                
-                <div class="card feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h3 class="feature-title">Segurança Avançada</h3>
-                    <p>Todos os dados são criptografados e protegidos com as mais modernas tecnologias de segurança.</p>
-                </div>
-                
-                <div class="card feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="feature-title">Apoio Emocional</h3>
-                    <p>Compartilhe seus sentimentos e receba apoio através de reações positivas da comunidade.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PRIVACY ===== -->
-    <section class="section privacy-section" id="privacy">
-        <div class="container privacy-container">
-            <div class="privacy-image">
-                <div class="privacy-image-content">
-                    <i class="fas fa-shield-alt" style="font-size: 4rem; color: var(--primary);"></i>
-                </div>
-            </div>
-            
-            <div class="privacy-content">
-                <span class="badge badge-primary">Segurança</span>
-                <h2 class="privacy-title">Sua privacidade é nossa prioridade</h2>
-                <p>Desenvolvemos um sistema completo de proteção de dados para garantir que você possa se expressar livremente sem preocupações.</p>
-                
-                <ul class="privacy-list">
-                    <li class="privacy-item">
-                        <i class="fas fa-check-circle privacy-item-icon"></i>
-                        <span>Nenhum dado pessoal é coletado ou armazenado</span>
-                    </li>
-                    <li class="privacy-item">
-                        <i class="fas fa-check-circle privacy-item-icon"></i>
-                        <span>Tecnologia avançada de anonimização</span>
-                    </li>
-                    <li class="privacy-item">
-                        <i class="fas fa-check-circle privacy-item-icon"></i>
-                        <span>Remoção automática de metadados</span>
-                    </li>
-                    <li class="privacy-item">
-                        <i class="fas fa-check-circle privacy-item-icon"></i>
-                        <span>Criptografia de ponta a ponta</span>
-                    </li>
-                </ul>
-                
-                <div class="warning-box">
-                    <h4 class="warning-box-title">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>Importante</span>
-                    </h4>
-                    <p>Por sua segurança, nunca compartilhe informações pessoais como nomes, endereços ou números de telefone em seus desabafos.</p>
-                </div>
-            </div>
+            <h1 class="hero-title">Seu espaço seguro para desabafar</h1>
+            <p class="hero-text">No Garo, você pode compartilhar seus pensamentos e sentimentos de forma totalmente anônima, sem medo de julgamento.</p>
+            <a href="#share" class="btn btn-primary">Começar agora</a>
         </div>
     </section>
 
     <!-- ===== POST FORM ===== -->
-    <section class="section post-form-section" id="share">
-        <div class="container post-form-container">
-            <div class="card post-form-card">
-                <h2 class="form-title">Compartilhe seu desabafo</h2>
+    <section class="section" id="share">
+        <div class="container">
+            <div class="card">
+                <h2>Compartilhe seu desabafo</h2>
+                <p style="margin-bottom: 20px;">Seu anonimato é garantido. Não armazenamos nenhum dado pessoal.</p>
                 
                 <form id="newPostForm">
                     <div class="form-group">
-                        <label for="postContent" class="form-label">Digite seu desabafo (mínimo 20 caracteres)</label>
-                        <textarea id="postContent" class="form-control" placeholder="Este é um espaço seguro para você compartilhar o que está sentindo. Lembre-se: seu anonimato está garantido." minlength="20" maxlength="1000" required></textarea>
+                        <textarea id="postContent" class="form-control" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)" minlength="20" maxlength="1000" required></textarea>
                     </div>
                     
                     <div class="form-footer">
                         <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Publicar Anonimamente
-                        </button>
+                        <button type="submit" class="btn btn-primary">Publicar</button>
                     </div>
                 </form>
             </div>
@@ -1135,106 +342,40 @@
     <!-- ===== POSTS ===== -->
     <section class="section" id="community">
         <div class="container">
-            <div class="posts-header">
-                <h2>Desabafos Recentes</h2>
-                <div class="filter-buttons">
-                    <button class="btn btn-outline active" data-filter="all">Todos</button>
-                    <button class="btn btn-outline" data-filter="recent">Recentes</button>
-                    <button class="btn btn-outline" data-filter="popular">Populares</button>
-                </div>
-            </div>
+            <h2 style="margin-bottom: 20px;">Desabafos Recentes</h2>
             
-            <div class="posts-grid" id="postsList">
+            <div id="postsList">
                 <!-- Posts serão carregados aqui via JavaScript -->
             </div>
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
-    <section class="section testimonials-section">
+    <!-- ===== PRIVACITY ===== -->
+    <section class="section" id="privacy">
         <div class="container">
-            <div class="section-title">
-                <h2>O que as pessoas dizem</h2>
-                <p>Depoimentos de quem já usou nossa plataforma</p>
+            <div class="card">
+                <h2>Privacidade e Segurança</h2>
+                <p style="margin-bottom: 16px;">Sua privacidade é nossa prioridade máxima:</p>
+                
+                <ul style="list-style-position: inside; margin-bottom: 20px;">
+                    <li style="margin-bottom: 8px;">Nenhum dado pessoal é coletado</li>
+                    <li style="margin-bottom: 8px;">Não armazenamos endereços IP ou metadados</li>
+                    <li style="margin-bottom: 8px;">Tecnologia de anonimização avançada</li>
+                    <li>Totalmente livre de rastreamento</li>
+                </ul>
+                
+                <p><strong>Importante:</strong> Por sua segurança, evite compartilhar informações pessoais em seus desabafos.</p>
             </div>
-            
-            <div class="testimonials-slider">
-                <div class="card testimonial-card">
-                    <p class="testimonial-text">O Garo me ajudou em um momento muito difícil. Poder desabafar sem medo de ser julgado fez toda a diferença para mim.</p>
-                    <div class="testimonial-author">— Anônimo</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CTA ===== -->
-    <section class="cta-section">
-        <div class="container">
-            <h2 class="cta-title">Pronto para desabafar?</h2>
-            <p class="cta-text">Junte-se a milhares de pessoas que já encontraram alívio compartilhando seus sentimentos de forma anônima e segura.</p>
-            <a href="#share" class="btn cta-btn">Começar agora</a>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <i class="fas fa-comment-dots"></i>
-                        <span>Garo</span>
-                    </div>
-                    <p class="footer-text">Uma plataforma segura para desabafos anônimos. Sua privacidade é nossa prioridade.</p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h3 class="footer-title">Links Rápidos</h3>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#features"><i class="fas fa-chevron-right"></i> Recursos</a></li>
-                        <li class="footer-link"><a href="#privacy"><i class="fas fa-chevron-right"></i> Privacidade</a></li>
-                        <li class="footer-link"><a href="#share"><i class="fas fa-chevron-right"></i> Desabafar</a></li>
-                        <li class="footer-link"><a href="#community"><i class="fas fa-chevron-right"></i> Comunidade</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3 class="footer-title">Ajuda</h3>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Segurança</a></li>
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li>
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3 class="footer-title">Apoio</h3>
-                    <ul class="footer-links">
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Central de Ajuda</a></li>
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Recursos de Saúde Mental</a></li>
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Linhas de Apoio</a></li>
-                        <li class="footer-link"><a href="#"><i class="fas fa-chevron-right"></i> Contato</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Garo. Todos os direitos reservados.</p>
-            </div>
+            <p class="footer-text">Garo - Plataforma de desabafos anônimos</p>
+            <p class="footer-text">&copy; <span id="currentYear"></span> Todos os direitos reservados</p>
         </div>
     </footer>
-
-    <!-- ===== TOAST ===== -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle toast-icon"></i>
-        <span id="toastMessage">Desabafo publicado com sucesso!</span>
-    </div>
 
     <!-- ===== FIREBASE & JAVASCRIPT ===== -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
@@ -1263,13 +404,10 @@
         const postsList = document.getElementById('postsList');
         const currentYear = document.getElementById('currentYear');
         const charCount = document.getElementById('charCount');
-        const toast = document.getElementById('toast');
-        const toastMessage = document.getElementById('toastMessage');
-        const filterButtons = document.querySelectorAll('.filter-buttons .btn');
 
         // Variáveis de estado
         let posts = [];
-        let currentFilter = 'all';
+        let totalPosts = 0;
 
         // Funções auxiliares
         function formatDate(timestamp) {
@@ -1292,37 +430,20 @@
             });
         }
 
-        function showToast(message, duration = 3000) {
-            toastMessage.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, duration);
-        }
-
         function createPostElement(post, index) {
             const postElement = document.createElement('div');
-            postElement.className = 'card post-card';
+            postElement.className = 'card';
             postElement.dataset.id = post.id;
             
-            // Calcula o total de reações
-            const totalReactions = post.reactions ? 
-                Object.values(post.reactions).reduce((a, b) => a + b, 0) : 0;
-            
-            // Verifica se o texto é longo (mais de 200 caracteres)
-            const isLongText = post.content.length > 200;
-            const contentClass = isLongText ? 'post-content long-text' : 'post-content';
+            // Calcula o número do post (o mais antigo tem o menor número)
+            const postNumber = totalPosts - index;
             
             postElement.innerHTML = `
                 <div class="post-header">
-                    <div class="post-number">${index + 1}</div>
-                    <div class="post-date">${formatDate(post.createdAt)}</div>
+                    <span class="post-number">#${postNumber}</span>
+                    <span class="post-date">${formatDate(post.createdAt)}</span>
                 </div>
-                
-                <div class="${contentClass}">${post.content}</div>
-                
-                ${isLongText ? '<button class="read-more-btn">Ler mais <i class="fas fa-chevron-down"></i></button>' : ''}
+                <p>${post.content}</p>
                 
                 <div class="post-reactions">
                     <button class="reaction-btn like" data-reaction="like">
@@ -1347,73 +468,10 @@
             return postElement;
         }
 
-        function filterPosts() {
-            let filteredPosts = [...posts];
-            
-            switch(currentFilter) {
-                case 'recent':
-                    filteredPosts.sort((a, b) => 
-                        b.createdAt?.seconds - a.createdAt?.seconds || 
-                        b.createdAt?.nanoseconds - a.createdAt?.nanoseconds
-                    );
-                    break;
-                case 'popular':
-                    filteredPosts.sort((a, b) => {
-                        const reactionsA = a.reactions ? Object.values(a.reactions).reduce((sum, val) => sum + val, 0) : 0;
-                        const reactionsB = b.reactions ? Object.values(b.reactions).reduce((sum, val) => sum + val, 0) : 0;
-                        return reactionsB - reactionsA;
-                    });
-                    break;
-                default: // 'all'
-                    filteredPosts.sort((a, b) => 
-                        b.createdAt?.seconds - a.createdAt?.seconds || 
-                        b.createdAt?.nanoseconds - a.createdAt?.nanoseconds
-                    );
-            }
-            
-            return filteredPosts;
-        }
-
-        function renderPosts() {
-            postsList.innerHTML = '';
-            
-            const filteredPosts = filterPosts();
-            
-            filteredPosts.forEach((post, index) => {
-                const postElement = createPostElement(post, index);
-                postsList.appendChild(postElement);
-                
-                // Adiciona eventos de reação
-                const reactionBtns = postElement.querySelectorAll('.reaction-btn');
-                reactionBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const reaction = btn.dataset.reaction;
-                        updateReaction(post.id, reaction);
-                    });
-                });
-                
-                // Adiciona evento de ler mais/ler menos para textos longos
-                const readMoreBtn = postElement.querySelector('.read-more-btn');
-                const postContent = postElement.querySelector('.post-content');
-                
-                if (readMoreBtn && postContent) {
-                    readMoreBtn.addEventListener('click', () => {
-                        postContent.classList.toggle('full-text');
-                        
-                        if (postContent.classList.contains('full-text')) {
-                            readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
-                        } else {
-                            readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
-                        }
-                    });
-                }
-            });
-        }
-
         // Funções Firebase
         async function addPost(content) {
             if (!content.trim() || content.length < 20) {
-                showToast("Seu desabafo precisa ter pelo menos 20 caracteres", 3000);
+                alert("Seu desabafo precisa ter pelo menos 20 caracteres");
                 return;
             }
             
@@ -1431,10 +489,10 @@
             try {
                 await db.collection('posts').add(newPost);
                 postContent.value = '';
-                showToast("Desabafo publicado com sucesso!", 3000);
+                alert("Desabafo publicado com sucesso!");
             } catch (error) {
                 console.error("Erro ao adicionar post:", error);
-                showToast("Erro ao publicar desabafo", 3000);
+                alert("Erro ao publicar desabafo");
             }
         }
 
@@ -1449,13 +507,35 @@
         }
 
         function listenForPosts() {
-            db.collection('posts').onSnapshot(snapshot => {
-                posts = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-                renderPosts();
-            });
+            db.collection('posts')
+                .orderBy('createdAt', 'desc')
+                .onSnapshot(snapshot => {
+                    posts = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    
+                    // Atualiza o total de posts
+                    totalPosts = posts.length;
+                    
+                    // Limpa a lista de posts
+                    postsList.innerHTML = '';
+                    
+                    // Adiciona os posts ordenados (mais recentes primeiro)
+                    posts.forEach((post, index) => {
+                        const postElement = createPostElement(post, index);
+                        postsList.appendChild(postElement);
+                        
+                        // Adiciona eventos de reação
+                        const reactionBtns = postElement.querySelectorAll('.reaction-btn');
+                        reactionBtns.forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                const reaction = btn.dataset.reaction;
+                                updateReaction(post.id, reaction);
+                            });
+                        });
+                    });
+                });
         }
 
         // Event Listeners
@@ -1472,15 +552,6 @@
 
         postContent.addEventListener('input', () => {
             charCount.textContent = postContent.value.length;
-        });
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                currentFilter = button.dataset.filter;
-                renderPosts();
-            });
         });
 
         // Fecha o menu mobile ao clicar em um link
