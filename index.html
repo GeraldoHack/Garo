@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Garo | Desabafos Anônimos</title>
-    <meta name="description" content="Plataforma simples e segura para desabafos anônimos. Compartilhe o que sente sem medo de julgamento.">
+    <meta name="description" content="Plataforma segura para desabafos anônimos. Compartilhe sem medo de julgamento.">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#5E35B1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +33,12 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --bottom-bar-height: 60px;
             --top-bar-height: 56px;
+            
+            /* Dark mode variables */
+            --dark-bg: #121212;
+            --dark-card: #1E1E1E;
+            --dark-text: #E0E0E0;
+            --dark-border: rgba(255,255,255,0.1);
         }
 
         * {
@@ -50,6 +56,12 @@
             overscroll-behavior-y: contain;
             padding-bottom: var(--bottom-bar-height);
             padding-top: var(--top-bar-height);
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
         }
 
         /* ===== TIPOGRAFIA ===== */
@@ -66,6 +78,10 @@
             color: var(--medium);
             margin-bottom: 1rem;
             font-size: 0.9375rem;
+        }
+
+        .dark-mode p {
+            color: rgba(255,255,255,0.7);
         }
 
         a {
@@ -114,6 +130,16 @@
             width: 100%;
         }
 
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: rgba(94, 53, 177, 0.1);
+        }
+
         .card {
             background: var(--white);
             border-radius: var(--radius-lg);
@@ -121,6 +147,12 @@
             padding: 20px;
             margin-bottom: 16px;
             transition: var(--transition);
+        }
+
+        .dark-mode .card {
+            background: var(--dark-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: var(--dark-text);
         }
 
         .card:active {
@@ -140,6 +172,12 @@
             display: flex;
             align-items: center;
             padding: 0 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode .top-bar {
+            background-color: var(--dark-card);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
         .top-bar-title {
@@ -175,6 +213,12 @@
             box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
             display: flex;
             z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode .bottom-nav {
+            background-color: var(--dark-card);
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.3);
         }
 
         .nav-item {
@@ -187,6 +231,10 @@
             font-size: 0.75rem;
             text-decoration: none;
             transition: var(--transition);
+        }
+
+        .dark-mode .nav-item {
+            color: rgba(255,255,255,0.7);
         }
 
         .nav-item.active {
@@ -214,10 +262,20 @@
             transition: var(--transition);
         }
 
+        .dark-mode .form-control {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
         .form-control:focus {
             outline: none;
             border-color: var(--primary-light);
             background-color: var(--white);
+        }
+
+        .dark-mode .form-control:focus {
+            background-color: #333;
         }
 
         textarea.form-control {
@@ -236,6 +294,10 @@
             color: var(--medium);
         }
 
+        .dark-mode .char-counter {
+            color: rgba(255,255,255,0.6);
+        }
+
         /* ===== POSTS ===== */
         .post-header {
             display: flex;
@@ -244,6 +306,10 @@
             margin-bottom: 12px;
             color: var(--medium);
             font-size: 0.8125rem;
+        }
+
+        .dark-mode .post-header {
+            color: rgba(255,255,255,0.6);
         }
 
         .post-number {
@@ -257,6 +323,10 @@
             margin-bottom: 12px;
             font-size: 0.9375rem;
             line-height: 1.5;
+        }
+
+        .dark-mode .post-content {
+            color: var(--dark-text);
         }
 
         .post-content.collapsed {
@@ -287,6 +357,10 @@
             border-top: var(--border);
         }
 
+        .dark-mode .post-reactions {
+            border-top: var(--dark-border);
+        }
+
         .reaction-btn {
             background: none;
             border: none;
@@ -301,8 +375,16 @@
             font-size: 0.8125rem;
         }
 
+        .dark-mode .reaction-btn {
+            color: rgba(255,255,255,0.7);
+        }
+
         .reaction-btn:hover {
             background: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .reaction-btn:hover {
+            background: rgba(255,255,255,0.1);
         }
 
         .reaction-btn.active {
@@ -342,6 +424,36 @@
             margin: 0;
         }
 
+        .feed-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .sort-btn {
+            background: none;
+            border: none;
+            color: var(--medium);
+            font-size: 0.875rem;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .dark-mode .sort-btn {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .sort-btn.active {
+            background: rgba(94, 53, 177, 0.1);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .dark-mode .sort-btn.active {
+            background: rgba(94, 53, 177, 0.2);
+        }
+
         .refresh-btn {
             background: none;
             border: none;
@@ -353,6 +465,117 @@
 
         .refresh-btn:active {
             transform: rotate(180deg);
+        }
+
+        /* ===== COMENTÁRIOS ===== */
+        .comments-section {
+            margin-top: 16px;
+            border-top: var(--border);
+            padding-top: 16px;
+        }
+
+        .dark-mode .comments-section {
+            border-top: var(--dark-border);
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 12px;
+            border: var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            background-color: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .dark-mode .comment-input {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background-color: var(--white);
+        }
+
+        .dark-mode .comment-input:focus {
+            background-color: #333;
+        }
+
+        .comment-submit {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            padding: 0 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .comment-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .comment {
+            background-color: var(--light-gray);
+            border-radius: var(--radius);
+            padding: 12px;
+            font-size: 0.875rem;
+        }
+
+        .dark-mode .comment {
+            background-color: #2a2a2a;
+            color: var(--dark-text);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.75rem;
+            color: var(--medium);
+        }
+
+        .dark-mode .comment-header {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .comment-content {
+            line-height: 1.4;
+        }
+
+        /* ===== FAVORITOS ===== */
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: var(--medium);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .favorite-btn.active {
+            color: var(--danger);
+        }
+
+        .dark-mode .favorite-btn {
+            color: rgba(255,255,255,0.7);
         }
 
         /* ===== LOADING ===== */
@@ -388,8 +611,16 @@
             margin-bottom: 16px;
         }
 
+        .dark-mode .empty-icon {
+            color: rgba(255,255,255,0.5);
+        }
+
         .empty-text {
             color: var(--medium);
+        }
+
+        .dark-mode .empty-text {
+            color: rgba(255,255,255,0.7);
         }
 
         /* ===== MODAL ===== */
@@ -425,6 +656,10 @@
             overflow-y: auto;
         }
 
+        .dark-mode .modal {
+            background: var(--dark-card);
+        }
+
         .modal-overlay.active .modal {
             transform: translateY(0);
         }
@@ -435,6 +670,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .dark-mode .modal-header {
+            border-bottom: var(--dark-border);
         }
 
         .modal-title {
@@ -448,6 +687,10 @@
             font-size: 1.25rem;
             color: var(--medium);
             cursor: pointer;
+        }
+
+        .dark-mode .modal-close {
+            color: rgba(255,255,255,0.7);
         }
 
         .modal-body {
@@ -491,8 +734,9 @@
             animation: slideUp 0.3s ease;
         }
 
-        .install-prompt.active {
-            display: block;
+        .dark-mode .install-prompt {
+            background: var(--dark-card);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .install-prompt-header {
@@ -527,6 +771,10 @@
             cursor: pointer;
         }
 
+        .dark-mode .install-prompt-close {
+            color: rgba(255,255,255,0.7);
+        }
+
         .install-prompt-buttons {
             display: flex;
             gap: 12px;
@@ -548,6 +796,11 @@
             color: var(--dark);
         }
 
+        .dark-mode .install-prompt-btn.secondary {
+            background: #2a2a2a;
+            color: var(--dark-text);
+        }
+
         .install-prompt-btn.primary {
             background: var(--primary);
             color: var(--white);
@@ -556,6 +809,51 @@
         @keyframes slideUp {
             from { transform: translateY(100px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ===== DARK MODE TOGGLE ===== */
+        .dark-mode-toggle {
+            position: relative;
+            width: 50px;
+            height: 24px;
+        }
+
+        .dark-mode-checkbox {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .dark-mode-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .dark-mode-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .dark-mode-checkbox:checked + .dark-mode-slider {
+            background-color: var(--primary);
+        }
+
+        .dark-mode-checkbox:checked + .dark-mode-slider:before {
+            transform: translateX(26px);
         }
     </style>
 </head>
@@ -577,9 +875,13 @@
         <section class="page active" id="feedPage">
             <div class="feed-header">
                 <h2 class="feed-title">Desabafos Recentes</h2>
-                <button class="refresh-btn" id="feedRefreshBtn">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
+                <div class="feed-actions">
+                    <button class="sort-btn active" id="sortNewest">Mais novos</button>
+                    <button class="sort-btn" id="sortPopular">Mais curtidos</button>
+                    <button class="refresh-btn" id="feedRefreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
             </div>
             
             <div class="container">
@@ -667,10 +969,38 @@
                 <button class="btn btn-primary btn-block" style="margin-bottom: 12px;" id="installBtn">
                     <i class="fas fa-download"></i> Instalar App
                 </button>
+                
+                <label class="dark-mode-toggle" style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <span class="dark-mode-slider"></span>
+                    <span>Modo Escuro</span>
+                </label>
+                
                 <p style="text-align: center; font-size: 0.8125rem; color: var(--medium);">
-                    Garo v1.2.14<br>
+                    Garo v1.1.0<br>
                     &copy; <span id="currentYear"></span>
                 </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL DE COMENTÁRIOS ===== -->
+    <div class="modal-overlay" id="commentsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Comentários</h3>
+                <button class="modal-close" id="closeCommentsBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="comments-section" id="commentsSection">
+                    <!-- Comentários serão carregados aqui -->
+                </div>
+                <div class="comment-form">
+                    <input type="text" class="comment-input" id="commentInput" placeholder="Escreva um comentário de apoio...">
+                    <button class="comment-submit" id="commentSubmit" disabled>Enviar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -701,11 +1031,13 @@
     <!-- ===== FIREBASE & JAVASCRIPT ===== -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
     <script>
         // CONFIGURAÇÃO DO FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyBjlGc_C5QvUahax-oDsNo0eknhqm1DHbQ",
             authDomain: "jovem-782e3.firebaseapp.com",
+            databaseURL: "https://jovem-782e3-default-rtdb.firebaseio.com",
             projectId: "jovem-782e3",
             storageBucket: "jovem-782e3.appspot.com",
             messagingSenderId: "185954860082",
@@ -716,6 +1048,7 @@
         // Inicializa o Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const rtdb = firebase.database();
 
         // Elementos da DOM
         const menuBtn = document.getElementById('menuBtn');
@@ -736,6 +1069,14 @@
         const closeInstallPrompt = document.getElementById('closeInstallPrompt');
         const cancelInstallBtn = document.getElementById('cancelInstallBtn');
         const confirmInstallBtn = document.getElementById('confirmInstallBtn');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const sortNewestBtn = document.getElementById('sortNewest');
+        const sortPopularBtn = document.getElementById('sortPopular');
+        const commentsModal = document.getElementById('commentsModal');
+        const closeCommentsBtn = document.getElementById('closeCommentsBtn');
+        const commentsSection = document.getElementById('commentsSection');
+        const commentInput = document.getElementById('commentInput');
+        const commentSubmit = document.getElementById('commentSubmit');
 
         // Elementos de navegação
         const feedPage = document.getElementById('feedPage');
@@ -750,6 +1091,18 @@
         let totalPosts = 0;
         let deferredPrompt = null;
         let isRefreshing = false;
+        let currentSort = 'newest';
+        let currentPostId = null;
+        let favorites = {};
+
+        // Inicializa o modo escuro
+        function initDarkMode() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+        }
 
         // Funções auxiliares
         function formatDate(timestamp) {
@@ -770,56 +1123,6 @@
                 hour: '2-digit',
                 minute: '2-digit'
             });
-        }
-
-        function createPostElement(post, index) {
-            const postElement = document.createElement('div');
-            postElement.className = 'card';
-            postElement.dataset.id = post.id;
-            
-            // Calcula o número do post (o mais antigo tem o menor número)
-            const postNumber = totalPosts - index;
-            
-            // Verifica se o texto é longo (mais de 200 caracteres)
-            const isLongText = post.content.length > 200;
-            
-            postElement.innerHTML = `
-                <div class="post-header">
-                    <span class="post-number">#${postNumber}</span>
-                    <span class="post-date">${formatDate(post.createdAt)}</span>
-                </div>
-                
-                <div class="post-content ${isLongText ? 'collapsed' : ''}">
-                    <p>${post.content}</p>
-                </div>
-                
-                ${isLongText ? `
-                <button class="read-more-btn">
-                    Ler mais <i class="fas fa-chevron-down"></i>
-                </button>
-                ` : ''}
-                
-                <div class="post-reactions">
-                    <button class="reaction-btn like" data-reaction="like">
-                        <span class="emoji">❤️</span>
-                        <span class="like-count">${post.reactions?.like || 0}</span>
-                    </button>
-                    <button class="reaction-btn angry" data-reaction="angry">
-                        <span class="emoji">😠</span>
-                        <span class="angry-count">${post.reactions?.angry || 0}</span>
-                    </button>
-                    <button class="reaction-btn laugh" data-reaction="laugh">
-                        <span class="emoji">😂</span>
-                        <span class="laugh-count">${post.reactions?.laugh || 0}</span>
-                    </button>
-                    <button class="reaction-btn sad" data-reaction="sad">
-                        <span class="emoji">😢</span>
-                        <span class="sad-count">${post.reactions?.sad || 0}</span>
-                    </button>
-                </div>
-            `;
-            
-            return postElement;
         }
 
         function showToast(message, duration = 3000) {
@@ -859,7 +1162,99 @@
             menuModal.classList.remove('active');
         }
 
-        // Funções Firebase
+        // Funções para favoritos
+        function loadFavorites() {
+            const userId = localStorage.getItem('userId') || generateUserId();
+            localStorage.setItem('userId', userId);
+            
+            rtdb.ref(`favorites/${userId}`).on('value', (snapshot) => {
+                favorites = snapshot.val() || {};
+                updateFavoriteButtons();
+            });
+        }
+
+        function generateUserId() {
+            return 'user_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function toggleFavorite(postId) {
+            const userId = localStorage.getItem('userId');
+            const isFavorite = !!favorites[postId];
+            
+            if (isFavorite) {
+                rtdb.ref(`favorites/${userId}/${postId}`).remove();
+            } else {
+                rtdb.ref(`favorites/${userId}/${postId}`).set(true);
+            }
+        }
+
+        function updateFavoriteButtons() {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const postId = btn.closest('.card').dataset.id;
+                if (favorites[postId]) {
+                    btn.classList.add('active');
+                    btn.innerHTML = '<i class="fas fa-heart"></i>';
+                } else {
+                    btn.classList.remove('active');
+                    btn.innerHTML = '<i class="far fa-heart"></i>';
+                }
+            });
+        }
+
+        // Funções para comentários
+        function openCommentsModal(postId) {
+            currentPostId = postId;
+            commentsModal.classList.add('active');
+            loadComments(postId);
+        }
+
+        function loadComments(postId) {
+            commentsSection.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            
+            db.collection('posts').doc(postId).collection('comments')
+                .orderBy('createdAt', 'asc')
+                .onSnapshot(snapshot => {
+                    if (snapshot.empty) {
+                        commentsSection.innerHTML = '<p style="text-align: center; color: var(--medium);">Nenhum comentário ainda. Seja o primeiro a apoiar!</p>';
+                        return;
+                    }
+                    
+                    commentsSection.innerHTML = '<div class="comment-list"></div>';
+                    const commentList = commentsSection.querySelector('.comment-list');
+                    
+                    snapshot.forEach(doc => {
+                        const comment = doc.data();
+                        const commentElement = document.createElement('div');
+                        commentElement.className = 'comment';
+                        commentElement.innerHTML = `
+                            <div class="comment-header">
+                                <span>Anônimo</span>
+                                <span>${formatDate(comment.createdAt)}</span>
+                            </div>
+                            <div class="comment-content">${comment.text}</div>
+                        `;
+                        commentList.appendChild(commentElement);
+                    });
+                });
+        }
+
+        function addComment(postId, text) {
+            if (!text.trim()) return;
+            
+            db.collection('posts').doc(postId).collection('comments').add({
+                text: text,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                commentInput.value = '';
+                commentSubmit.disabled = true;
+                showToast('Comentário enviado com sucesso!');
+            }).catch(error => {
+                console.error("Erro ao adicionar comentário:", error);
+                showToast("Erro ao enviar comentário");
+            });
+        }
+
+        // Funções Firebase para posts
         async function addPost(content) {
             if (!content.trim() || content.length < 20) {
                 showToast("Seu desabafo precisa ter pelo menos 20 caracteres");
@@ -903,80 +1298,173 @@
             loadingPosts.style.display = 'flex';
             postsList.innerHTML = '';
             
-            db.collection('posts')
-                .orderBy('createdAt', 'desc')
-                .onSnapshot(snapshot => {
-                    if (isRefreshing) {
-                        showToast("Feed atualizado");
-                        isRefreshing = false;
-                    }
-                    
-                    posts = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
-                    
-                    // Atualiza o total de posts
-                    totalPosts = posts.length;
-                    
-                    // Limpa a lista de posts
-                    postsList.innerHTML = '';
-                    
-                    if (posts.length === 0) {
-                        postsList.innerHTML = `
-                            <div class="empty-state">
-                                <div class="empty-icon">
-                                    <i class="far fa-comment-dots"></i>
-                                </div>
-                                <p class="empty-text">Nenhum desabafo encontrado</p>
-                            </div>
-                        `;
-                    } else {
-                        // Adiciona os posts ordenados (mais recentes primeiro)
-                        posts.forEach((post, index) => {
-                            const postElement = createPostElement(post, index);
-                            postsList.appendChild(postElement);
-                            
-                            // Adiciona eventos de reação
-                            const reactionBtns = postElement.querySelectorAll('.reaction-btn');
-                            reactionBtns.forEach(btn => {
-                                btn.addEventListener('click', () => {
-                                    const reaction = btn.dataset.reaction;
-                                    updateReaction(post.id, reaction);
-                                });
-                            });
-                            
-                            // Adiciona evento de ler mais/ler menos para textos longos
-                            const readMoreBtn = postElement.querySelector('.read-more-btn');
-                            const postContent = postElement.querySelector('.post-content');
-                            
-                            if (readMoreBtn && postContent) {
-                                readMoreBtn.addEventListener('click', () => {
-                                    postContent.classList.toggle('collapsed');
-                                    
-                                    if (postContent.classList.contains('collapsed')) {
-                                        readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
-                                    } else {
-                                        readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
-                                    }
-                                });
-                            }
-                        });
-                    }
-                    
-                    loadingPosts.style.display = 'none';
-                }, error => {
-                    console.error("Erro ao carregar posts:", error);
-                    loadingPosts.style.display = 'none';
+            let query = db.collection('posts').orderBy('createdAt', 'desc');
+            
+            if (currentSort === 'popular') {
+                query = db.collection('posts').orderBy('reactions.like', 'desc');
+            }
+            
+            query.onSnapshot(snapshot => {
+                if (isRefreshing) {
+                    showToast("Feed atualizado");
+                    isRefreshing = false;
+                }
+                
+                posts = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                // Atualiza o total de posts
+                totalPosts = posts.length;
+                
+                // Limpa a lista de posts
+                postsList.innerHTML = '';
+                
+                if (posts.length === 0) {
                     postsList.innerHTML = `
                         <div class="empty-state">
                             <div class="empty-icon">
-                                <i class="fas fa-exclamation-triangle"></i>
+                                <i class="far fa-comment-dots"></i>
                             </div>
-                            <p class="empty-text">Erro ao carregar desabafos</p>
+                            <p class="empty-text">Nenhum desabafo encontrado</p>
                         </div>
                     `;
-                });
+                } else {
+                    // Adiciona os posts ordenados
+                    posts.forEach((post, index) => {
+                        const postElement = createPostElement(post, index);
+                        postsList.appendChild(postElement);
+                        
+                        // Adiciona eventos de reação
+                        const reactionBtns = postElement.querySelectorAll('.reaction-btn');
+                        reactionBtns.forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                const reaction = btn.dataset.reaction;
+                                updateReaction(post.id, reaction);
+                            });
+                        });
+                        
+                        // Adiciona evento de ler mais/ler menos para textos longos
+                        const readMoreBtn = postElement.querySelector('.read-more-btn');
+                        const postContent = postElement.querySelector('.post-content');
+                        
+                        if (readMoreBtn && postContent) {
+                            readMoreBtn.addEventListener('click', () => {
+                                postContent.classList.toggle('collapsed');
+                                
+                                if (postContent.classList.contains('collapsed')) {
+                                    readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
+                                } else {
+                                    readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
+                                }
+                            });
+                        }
+                        
+                        // Adiciona botão de favorito
+                        const favoriteBtn = document.createElement('button');
+                        favoriteBtn.className = 'favorite-btn';
+                        favoriteBtn.innerHTML = '<i class="far fa-heart"></i>';
+                        favoriteBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            toggleFavorite(post.id);
+                        });
+                        
+                        const postHeader = postElement.querySelector('.post-header');
+                        postHeader.insertBefore(favoriteBtn, postHeader.firstChild);
+                        
+                        // Adiciona botão de comentários
+                        const commentsBtn = document.createElement('button');
+                        commentsBtn.className = 'reaction-btn';
+                        commentsBtn.innerHTML = '<i class="far fa-comment"></i>';
+                        commentsBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            openCommentsModal(post.id);
+                        });
+                        
+                        const postReactions = postElement.querySelector('.post-reactions');
+                        postReactions.appendChild(commentsBtn);
+                        
+                        // Adiciona evento para abrir comentários ao clicar no card
+                        postElement.addEventListener('click', () => {
+                            openCommentsModal(post.id);
+                        });
+                    });
+                    
+                    // Atualiza botões de favoritos
+                    updateFavoriteButtons();
+                }
+                
+                loadingPosts.style.display = 'none';
+            }, error => {
+                console.error("Erro ao carregar posts:", error);
+                loadingPosts.style.display = 'none';
+                postsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <p class="empty-text">Erro ao carregar desabafos</p>
+                    </div>
+                `;
+            });
+        }
+
+        function createPostElement(post, index) {
+            const postElement = document.createElement('div');
+            postElement.className = 'card';
+            postElement.dataset.id = post.id;
+            
+            // Calcula o número do post (o mais antigo tem o menor número)
+            const postNumber = totalPosts - index;
+            
+            // Verifica se o texto é longo (mais de 200 caracteres)
+            const isLongText = post.content.length > 200;
+            
+            // Calcula o total de reações
+            const totalReactions = post.reactions ? 
+                Object.values(post.reactions).reduce((a, b) => a + b, 0) : 0;
+            
+            postElement.innerHTML = `
+                <div class="post-header">
+                    <span class="post-number">#${postNumber}</span>
+                    <span class="post-date">${formatDate(post.createdAt)}</span>
+                </div>
+                
+                <div class="post-content ${isLongText ? 'collapsed' : ''}">
+                    <p>${post.content}</p>
+                </div>
+                
+                ${isLongText ? `
+                <button class="read-more-btn">
+                    Ler mais <i class="fas fa-chevron-down"></i>
+                </button>
+                ` : ''}
+                
+                <div class="post-reactions">
+                    <button class="reaction-btn like" data-reaction="like">
+                        <span class="emoji">❤️</span>
+                        <span class="like-count">${post.reactions?.like || 0}</span>
+                    </button>
+                    <button class="reaction-btn angry" data-reaction="angry">
+                        <span class="emoji">😠</span>
+                        <span class="angry-count">${post.reactions?.angry || 0}</span>
+                    </button>
+                    <button class="reaction-btn laugh" data-reaction="laugh">
+                        <span class="emoji">😂</span>
+                        <span class="laugh-count">${post.reactions?.laugh || 0}</span>
+                    </button>
+                    <button class="reaction-btn sad" data-reaction="sad">
+                        <span class="emoji">😢</span>
+                        <span class="sad-count">${post.reactions?.sad || 0}</span>
+                    </button>
+                    <span style="margin-left: auto; font-size: 0.75rem; color: var(--medium);">
+                        ${totalReactions} ${totalReactions === 1 ? 'reação' : 'reações'}
+                    </span>
+                </div>
+            `;
+            
+            return postElement;
         }
 
         // Event Listeners
@@ -1027,6 +1515,63 @@
         menuModal.addEventListener('click', (e) => {
             if (e.target === menuModal) {
                 menuModal.classList.remove('active');
+            }
+        });
+
+        commentsModal.addEventListener('click', (e) => {
+            if (e.target === commentsModal) {
+                commentsModal.classList.remove('active');
+            }
+        });
+
+        closeCommentsBtn.addEventListener('click', () => {
+            commentsModal.classList.remove('active');
+        });
+
+        // Modo escuro
+        darkModeToggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        // Ordenação
+        sortNewestBtn.addEventListener('click', () => {
+            if (currentSort !== 'newest') {
+                currentSort = 'newest';
+                sortNewestBtn.classList.add('active');
+                sortPopularBtn.classList.remove('active');
+                listenForPosts();
+            }
+        });
+
+        sortPopularBtn.addEventListener('click', () => {
+            if (currentSort !== 'popular') {
+                currentSort = 'popular';
+                sortPopularBtn.classList.add('active');
+                sortNewestBtn.classList.remove('active');
+                listenForPosts();
+            }
+        });
+
+        // Comentários
+        commentInput.addEventListener('input', () => {
+            commentSubmit.disabled = !commentInput.value.trim();
+        });
+
+        commentSubmit.addEventListener('click', () => {
+            if (currentPostId && commentInput.value.trim()) {
+                addComment(currentPostId, commentInput.value.trim());
+            }
+        });
+
+        commentInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && currentPostId && commentInput.value.trim()) {
+                addComment(currentPostId, commentInput.value.trim());
             }
         });
 
@@ -1088,6 +1633,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Atualiza o ano no rodapé
             currentYear.textContent = new Date().getFullYear();
+            
+            // Inicia o modo escuro
+            initDarkMode();
+            
+            // Carrega favoritos
+            loadFavorites();
             
             // Inicia a escuta por posts
             listenForPosts();
