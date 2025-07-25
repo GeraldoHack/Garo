@@ -2,20 +2,24 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Garo | Desabafos Anônimos</title>
     <meta name="description" content="Plataforma simples e segura para desabafos anônimos. Compartilhe o que sente sem medo de julgamento.">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#5E35B1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ===== VARIÁVEIS & RESET ===== */
         :root {
             --primary: #5E35B1;
+            --primary-light: #7E57C2;
             --primary-dark: #4527A0;
             --white: #FFFFFF;
             --light: #F5F5F5;
+            --light-gray: #EEEEEE;
             --medium: #757575;
             --dark: #212121;
             --danger: #EF5350;
@@ -23,37 +27,45 @@
             --accent: #FF7043;
             --secondary: #26A69A;
             --border: 1px solid rgba(0, 0, 0, 0.1);
-            --radius: 8px;
-            --shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --transition: all 0.2s ease;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --shadow: 0 2px 10px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bottom-bar-height: 60px;
+            --top-bar-height: 56px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
+            overscroll-behavior-y: contain;
+            padding-bottom: var(--bottom-bar-height);
+            padding-top: var(--top-bar-height);
         }
 
         /* ===== TIPOGRAFIA ===== */
         h1, h2, h3 {
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1.3;
         }
 
-        h1 { font-size: 2rem; }
-        h2 { font-size: 1.5rem; }
-        h3 { font-size: 1.25rem; }
+        h1 { font-size: 1.5rem; }
+        h2 { font-size: 1.25rem; }
+        h3 { font-size: 1.1rem; }
 
         p {
             color: var(--medium);
             margin-bottom: 1rem;
+            font-size: 0.9375rem;
         }
 
         a {
@@ -64,24 +76,28 @@
         /* ===== LAYOUT ===== */
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
         .section {
-            padding: 60px 0;
+            padding: 24px 0;
         }
 
         /* ===== COMPONENTES ===== */
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
             border-radius: var(--radius);
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.9375rem;
             cursor: pointer;
             transition: var(--transition);
             border: none;
+            gap: 8px;
         }
 
         .btn-primary {
@@ -93,77 +109,98 @@
             background-color: var(--primary-dark);
         }
 
+        .btn-block {
+            display: flex;
+            width: 100%;
+        }
+
         .card {
             background: var(--white);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
-            padding: 24px;
-            margin-bottom: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: var(--transition);
         }
 
-        /* ===== HEADER ===== */
-        header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            padding: 16px 0;
-            position: sticky;
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--top-bar-height);
+            background-color: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             z-index: 100;
-        }
-
-        .header-container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            padding: 0 16px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .top-bar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
             color: var(--primary);
+            flex-grow: 1;
+            text-align: center;
         }
 
-        .nav-menu {
+        .top-bar-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
-            gap: 24px;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
+            align-items: center;
+            justify-content: center;
             background: none;
             border: none;
-            font-size: 1.5rem;
             color: var(--primary);
+            font-size: 1.25rem;
             cursor: pointer;
         }
 
-        /* ===== HERO ===== */
-        .hero {
-            text-align: center;
-            padding: 80px 0 60px;
+        /* ===== BOTTOM NAV BAR ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--bottom-bar-height);
+            background-color: var(--white);
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            z-index: 100;
         }
 
-        .hero-title {
-            margin-bottom: 20px;
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium);
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .hero-text {
-            max-width: 600px;
-            margin: 0 auto 30px;
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
         }
 
         /* ===== POST FORM ===== */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .form-control {
@@ -172,12 +209,20 @@
             border: var(--border);
             border-radius: var(--radius);
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9375rem;
+            background-color: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background-color: var(--white);
         }
 
         textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+            min-height: 120px;
+            resize: none;
         }
 
         .form-footer {
@@ -187,7 +232,7 @@
         }
 
         .char-counter {
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             color: var(--medium);
         }
 
@@ -196,9 +241,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             color: var(--medium);
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
         }
 
         .post-number {
@@ -209,7 +254,9 @@
         .post-content {
             position: relative;
             overflow: hidden;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            font-size: 0.9375rem;
+            line-height: 1.5;
         }
 
         .post-content.collapsed {
@@ -228,14 +275,15 @@
             align-items: center;
             gap: 6px;
             padding: 0;
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
+            margin-top: 8px;
         }
 
         .post-reactions {
             display: flex;
-            gap: 12px;
-            padding-top: 16px;
-            margin-top: 16px;
+            gap: 8px;
+            padding-top: 12px;
+            margin-top: 12px;
             border-top: var(--border);
         }
 
@@ -250,7 +298,7 @@
             transition: var(--transition);
             padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
         }
 
         .reaction-btn:hover {
@@ -261,146 +309,394 @@
             font-weight: 600;
         }
 
-        .reaction-btn.like:hover, .reaction-btn.like.active { color: var(--danger); }
-        .reaction-btn.angry:hover, .reaction-btn.angry.active { color: var(--warning); }
-        .reaction-btn.laugh:hover, .reaction-btn.laugh.active { color: var(--accent); }
-        .reaction-btn.sad:hover, .reaction-btn.sad.active { color: var(--secondary); }
+        .reaction-btn.like:hover, .reaction-btn.like.active { color: var(--danger); background: rgba(239, 83, 80, 0.1); }
+        .reaction-btn.angry:hover, .reaction-btn.angry.active { color: var(--warning); background: rgba(255, 167, 38, 0.1); }
+        .reaction-btn.laugh:hover, .reaction-btn.laugh.active { color: var(--accent); background: rgba(255, 112, 67, 0.1); }
+        .reaction-btn.sad:hover, .reaction-btn.sad.active { color: var(--secondary); background: rgba(38, 166, 154, 0.1); }
 
-        /* ===== FOOTER ===== */
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 40px 0;
+        /* ===== PÁGINAS ===== */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== FEED ===== */
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 16px;
+        }
+
+        .feed-title {
+            margin: 0;
+        }
+
+        .refresh-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-btn:active {
+            transform: rotate(180deg);
+        }
+
+        /* ===== LOADING ===== */
+        .loading {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(94, 53, 177, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
             text-align: center;
+            padding: 40px 20px;
         }
 
-        .footer-text {
-            color: rgba(255,255,255,0.7);
+        .empty-icon {
+            font-size: 3rem;
+            color: var(--medium);
+            opacity: 0.5;
+            margin-bottom: 16px;
         }
 
-        /* ===== RESPONSIVO ===== */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
-                flex-direction: column;
-                gap: 0;
-                padding: 20px;
-                box-shadow: var(--shadow);
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .nav-link {
-                padding: 12px 0;
-                border-bottom: var(--border);
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .section {
-                padding: 40px 0;
-            }
-            
-            .hero {
-                padding: 60px 0 40px;
-            }
+        .empty-text {
+            color: var(--medium);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 400px;
+            transform: translateY(20px);
+            transition: var(--transition);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 16px;
+            border-bottom: var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--medium);
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 16px;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            z-index: 1001;
+            opacity: 0;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .toast.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== PWA INSTALL PROMPT ===== */
+        .install-prompt {
+            position: fixed;
+            bottom: calc(var(--bottom-bar-height) + 16px);
+            left: 16px;
+            right: 16px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 16px;
+            z-index: 1000;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        .install-prompt.active {
+            display: block;
+        }
+
+        .install-prompt-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .install-prompt-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-light);
+            color: var(--white);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.25rem;
+        }
+
+        .install-prompt-title {
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .install-prompt-close {
+            background: none;
+            border: none;
+            color: var(--medium);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+        .install-prompt-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .install-prompt-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .install-prompt-btn.secondary {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .install-prompt-btn.primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <!-- ===== HEADER ===== -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Garo</a>
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <button class="top-bar-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="top-bar-title" id="pageTitle">Garo</div>
+        <button class="top-bar-btn" id="refreshBtn">
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+
+    <!-- ===== PÁGINAS ===== -->
+    <main>
+        <!-- PÁGINA INICIAL (FEED) -->
+        <section class="page active" id="feedPage">
+            <div class="feed-header">
+                <h2 class="feed-title">Desabafos Recentes</h2>
+                <button class="refresh-btn" id="feedRefreshBtn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
             
-            <nav class="nav-menu" id="navMenu">
-                <a href="#share" class="nav-link">Desabafar</a>
-                <a href="#community" class="nav-link">Comunidade</a>
-                <a href="#privacy" class="nav-link">Privacidade</a>
-            </nav>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+            <div class="container">
+                <div id="postsList">
+                    <!-- Posts serão carregados aqui via JavaScript -->
+                </div>
+                
+                <div class="loading" id="loadingPosts">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DE DESABAFO -->
+        <section class="page" id="sharePage">
+            <div class="section">
+                <div class="container">
+                    <div class="card">
+                        <h2>Compartilhe seu desabafo</h2>
+                        <p style="margin-bottom: 16px;">Seu anonimato é garantido. Não armazenamos nenhum dado pessoal.</p>
+                        
+                        <form id="newPostForm">
+                            <div class="form-group">
+                                <textarea id="postContent" class="form-control" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)" minlength="20" maxlength="1000" required></textarea>
+                            </div>
+                            
+                            <div class="form-footer">
+                                <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
+                                <button type="submit" class="btn btn-primary">Publicar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DE PRIVACIDADE -->
+        <section class="page" id="privacyPage">
+            <div class="section">
+                <div class="container">
+                    <div class="card">
+                        <h2>Privacidade e Segurança</h2>
+                        <p style="margin-bottom: 16px;">Sua privacidade é nossa prioridade máxima:</p>
+                        
+                        <ul style="list-style-position: inside; margin-bottom: 20px;">
+                            <li style="margin-bottom: 8px;">Nenhum dado pessoal é coletado</li>
+                            <li style="margin-bottom: 8px;">Não armazenamos endereços IP ou metadados</li>
+                            <li style="margin-bottom: 8px;">Tecnologia de anonimização avançada</li>
+                            <li>Totalmente livre de rastreamento</li>
+                        </ul>
+                        
+                        <p><strong>Importante:</strong> Por sua segurança, evite compartilhar informações pessoais em seus desabafos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== BOTTOM NAV BAR ===== -->
+    <nav class="bottom-nav">
+        <a href="#feed" class="nav-item active" id="feedNav">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Início</span>
+        </a>
+        <a href="#share" class="nav-item" id="shareNav">
+            <i class="fas fa-edit nav-icon"></i>
+            <span>Desabafar</span>
+        </a>
+        <a href="#privacy" class="nav-item" id="privacyNav">
+            <i class="fas fa-lock nav-icon"></i>
+            <span>Privacidade</span>
+        </a>
+    </nav>
+
+    <!-- ===== MODAL DE MENU ===== -->
+    <div class="modal-overlay" id="menuModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Menu</h3>
+                <button class="modal-close" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-primary btn-block" style="margin-bottom: 12px;" id="installBtn">
+                    <i class="fas fa-download"></i> Instalar App
+                </button>
+                <p style="text-align: center; font-size: 0.8125rem; color: var(--medium);">
+                    Garo v1.0.0<br>
+                    &copy; <span id="currentYear"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== PWA INSTALL PROMPT ===== -->
+    <div class="install-prompt" id="installPrompt">
+        <div class="install-prompt-header">
+            <div class="install-prompt-icon">
+                <i class="fas fa-download"></i>
+            </div>
+            <div class="install-prompt-title">Instalar Garo</div>
+            <button class="install-prompt-close" id="closeInstallPrompt">
+                <i class="fas fa-times"></i>
             </button>
         </div>
-    </header>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Seu espaço seguro para desabafar</h1>
-            <p class="hero-text">No Garo, você pode compartilhar seus pensamentos e sentimentos de forma totalmente anônima, sem medo de julgamento.</p>
-            <a href="#share" class="btn btn-primary">Começar agora</a>
+        <p style="font-size: 0.875rem; color: var(--medium);">
+            Adicione Garo à sua tela inicial para uma melhor experiência e acesso rápido.
+        </p>
+        <div class="install-prompt-buttons">
+            <button class="install-prompt-btn secondary" id="cancelInstallBtn">Depois</button>
+            <button class="install-prompt-btn primary" id="confirmInstallBtn">Instalar</button>
         </div>
-    </section>
-
-    <!-- ===== POST FORM ===== -->
-    <section class="section" id="share">
-        <div class="container">
-            <div class="card">
-                <h2>Compartilhe seu desabafo</h2>
-                <p style="margin-bottom: 20px;">Seu anonimato é garantido. Não armazenamos nenhum dado pessoal.</p>
-                
-                <form id="newPostForm">
-                    <div class="form-group">
-                        <textarea id="postContent" class="form-control" placeholder="Digite seu desabafo aqui (mínimo 20 caracteres)" minlength="20" maxlength="1000" required></textarea>
-                    </div>
-                    
-                    <div class="form-footer">
-                        <div class="char-counter"><span id="charCount">0</span>/1000 caracteres</div>
-                        <button type="submit" class="btn btn-primary">Publicar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== POSTS ===== -->
-    <section class="section" id="community">
-        <div class="container">
-            <h2 style="margin-bottom: 20px;">Desabafos Recentes</h2>
-            
-            <div id="postsList">
-                <!-- Posts serão carregados aqui via JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PRIVACITY ===== -->
-    <section class="section" id="privacy">
-        <div class="container">
-            <div class="card">
-                <h2>Privacidade e Segurança</h2>
-                <p style="margin-bottom: 16px;">Sua privacidade é nossa prioridade máxima:</p>
-                
-                <ul style="list-style-position: inside; margin-bottom: 20px;">
-                    <li style="margin-bottom: 8px;">Nenhum dado pessoal é coletado</li>
-                    <li style="margin-bottom: 8px;">Não armazenamos endereços IP ou metadados</li>
-                    <li style="margin-bottom: 8px;">Tecnologia de anonimização avançada</li>
-                    <li>Totalmente livre de rastreamento</li>
-                </ul>
-                
-                <p><strong>Importante:</strong> Por sua segurança, evite compartilhar informações pessoais em seus desabafos.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="container">
-            <p class="footer-text">Garo - Plataforma de desabafos anônimos</p>
-            <p class="footer-text">&copy; <span id="currentYear"></span> Todos os direitos reservados</p>
-        </div>
-    </footer>
+    </div>
 
     <!-- ===== FIREBASE & JAVASCRIPT ===== -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
@@ -422,17 +718,38 @@
         const db = firebase.firestore();
 
         // Elementos da DOM
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
+        const menuBtn = document.getElementById('menuBtn');
+        const menuModal = document.getElementById('menuModal');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const feedRefreshBtn = document.getElementById('feedRefreshBtn');
         const newPostForm = document.getElementById('newPostForm');
         const postContent = document.getElementById('postContent');
         const postsList = document.getElementById('postsList');
+        const loadingPosts = document.getElementById('loadingPosts');
         const currentYear = document.getElementById('currentYear');
         const charCount = document.getElementById('charCount');
+        const toast = document.getElementById('toast');
+        const pageTitle = document.getElementById('pageTitle');
+        const installBtn = document.getElementById('installBtn');
+        const installPrompt = document.getElementById('installPrompt');
+        const closeInstallPrompt = document.getElementById('closeInstallPrompt');
+        const cancelInstallBtn = document.getElementById('cancelInstallBtn');
+        const confirmInstallBtn = document.getElementById('confirmInstallBtn');
+
+        // Elementos de navegação
+        const feedPage = document.getElementById('feedPage');
+        const sharePage = document.getElementById('sharePage');
+        const privacyPage = document.getElementById('privacyPage');
+        const feedNav = document.getElementById('feedNav');
+        const shareNav = document.getElementById('shareNav');
+        const privacyNav = document.getElementById('privacyNav');
 
         // Variáveis de estado
         let posts = [];
         let totalPosts = 0;
+        let deferredPrompt = null;
+        let isRefreshing = false;
 
         // Funções auxiliares
         function formatDate(timestamp) {
@@ -505,10 +822,47 @@
             return postElement;
         }
 
+        function showToast(message, duration = 3000) {
+            toast.textContent = message;
+            toast.classList.add('active');
+            
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, duration);
+        }
+
+        function navigateTo(page) {
+            // Esconde todas as páginas
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            
+            // Mostra a página selecionada
+            switch(page) {
+                case 'feed':
+                    feedPage.classList.add('active');
+                    feedNav.classList.add('active');
+                    pageTitle.textContent = 'Garo';
+                    break;
+                case 'share':
+                    sharePage.classList.add('active');
+                    shareNav.classList.add('active');
+                    pageTitle.textContent = 'Desabafar';
+                    break;
+                case 'privacy':
+                    privacyPage.classList.add('active');
+                    privacyNav.classList.add('active');
+                    pageTitle.textContent = 'Privacidade';
+                    break;
+            }
+            
+            // Fecha o menu se estiver aberto
+            menuModal.classList.remove('active');
+        }
+
         // Funções Firebase
         async function addPost(content) {
             if (!content.trim() || content.length < 20) {
-                alert("Seu desabafo precisa ter pelo menos 20 caracteres");
+                showToast("Seu desabafo precisa ter pelo menos 20 caracteres");
                 return;
             }
             
@@ -526,10 +880,11 @@
             try {
                 await db.collection('posts').add(newPost);
                 postContent.value = '';
-                alert("Desabafo publicado com sucesso!");
+                showToast("Desabafo publicado com sucesso!");
+                navigateTo('feed');
             } catch (error) {
                 console.error("Erro ao adicionar post:", error);
-                alert("Erro ao publicar desabafo");
+                showToast("Erro ao publicar desabafo");
             }
         }
 
@@ -540,13 +895,22 @@
                 });
             } catch (error) {
                 console.error("Erro ao atualizar reação:", error);
+                showToast("Erro ao registrar reação");
             }
         }
 
         function listenForPosts() {
+            loadingPosts.style.display = 'flex';
+            postsList.innerHTML = '';
+            
             db.collection('posts')
                 .orderBy('createdAt', 'desc')
                 .onSnapshot(snapshot => {
+                    if (isRefreshing) {
+                        showToast("Feed atualizado");
+                        isRefreshing = false;
+                    }
+                    
                     posts = snapshot.docs.map(doc => ({
                         id: doc.id,
                         ...doc.data()
@@ -558,44 +922,80 @@
                     // Limpa a lista de posts
                     postsList.innerHTML = '';
                     
-                    // Adiciona os posts ordenados (mais recentes primeiro)
-                    posts.forEach((post, index) => {
-                        const postElement = createPostElement(post, index);
-                        postsList.appendChild(postElement);
-                        
-                        // Adiciona eventos de reação
-                        const reactionBtns = postElement.querySelectorAll('.reaction-btn');
-                        reactionBtns.forEach(btn => {
-                            btn.addEventListener('click', () => {
-                                const reaction = btn.dataset.reaction;
-                                updateReaction(post.id, reaction);
+                    if (posts.length === 0) {
+                        postsList.innerHTML = `
+                            <div class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="far fa-comment-dots"></i>
+                                </div>
+                                <p class="empty-text">Nenhum desabafo encontrado</p>
+                            </div>
+                        `;
+                    } else {
+                        // Adiciona os posts ordenados (mais recentes primeiro)
+                        posts.forEach((post, index) => {
+                            const postElement = createPostElement(post, index);
+                            postsList.appendChild(postElement);
+                            
+                            // Adiciona eventos de reação
+                            const reactionBtns = postElement.querySelectorAll('.reaction-btn');
+                            reactionBtns.forEach(btn => {
+                                btn.addEventListener('click', () => {
+                                    const reaction = btn.dataset.reaction;
+                                    updateReaction(post.id, reaction);
+                                });
                             });
+                            
+                            // Adiciona evento de ler mais/ler menos para textos longos
+                            const readMoreBtn = postElement.querySelector('.read-more-btn');
+                            const postContent = postElement.querySelector('.post-content');
+                            
+                            if (readMoreBtn && postContent) {
+                                readMoreBtn.addEventListener('click', () => {
+                                    postContent.classList.toggle('collapsed');
+                                    
+                                    if (postContent.classList.contains('collapsed')) {
+                                        readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
+                                    } else {
+                                        readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
+                                    }
+                                });
+                            }
                         });
-                        
-                        // Adiciona evento de ler mais/ler menos para textos longos
-                        const readMoreBtn = postElement.querySelector('.read-more-btn');
-                        const postContent = postElement.querySelector('.post-content');
-                        
-                        if (readMoreBtn && postContent) {
-                            readMoreBtn.addEventListener('click', () => {
-                                postContent.classList.toggle('collapsed');
-                                
-                                if (postContent.classList.contains('collapsed')) {
-                                    readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
-                                } else {
-                                    readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
-                                }
-                            });
-                        }
-                    });
+                    }
+                    
+                    loadingPosts.style.display = 'none';
+                }, error => {
+                    console.error("Erro ao carregar posts:", error);
+                    loadingPosts.style.display = 'none';
+                    postsList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <p class="empty-text">Erro ao carregar desabafos</p>
+                        </div>
+                    `;
                 });
         }
 
         // Event Listeners
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        menuBtn.addEventListener('click', () => {
+            menuModal.classList.add('active');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            menuModal.classList.remove('active');
+        });
+
+        refreshBtn.addEventListener('click', () => {
+            isRefreshing = true;
+            listenForPosts();
+        });
+
+        feedRefreshBtn.addEventListener('click', () => {
+            isRefreshing = true;
+            listenForPosts();
         });
 
         newPostForm.addEventListener('submit', (e) => {
@@ -607,12 +1007,81 @@
             charCount.textContent = postContent.value.length;
         });
 
-        // Fecha o menu mobile ao clicar em um link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
+        // Navegação
+        feedNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('feed');
+        });
+
+        shareNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('share');
+        });
+
+        privacyNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('privacy');
+        });
+
+        // Fecha o modal ao clicar fora
+        menuModal.addEventListener('click', (e) => {
+            if (e.target === menuModal) {
+                menuModal.classList.remove('active');
+            }
+        });
+
+        // PWA Install Prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Mostra o botão de instalação no menu
+            installBtn.style.display = 'flex';
+            
+            // Pode mostrar o prompt personalizado também
+            setTimeout(() => {
+                installPrompt.classList.add('active');
+            }, 3000);
+        });
+
+        installBtn.addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        showToast('Garo será instalado em breve!');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
+
+        confirmInstallBtn.addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        showToast('Garo será instalado em breve!');
+                    }
+                    deferredPrompt = null;
+                    installPrompt.classList.remove('active');
+                });
+            }
+        });
+
+        cancelInstallBtn.addEventListener('click', () => {
+            installPrompt.classList.remove('active');
+        });
+
+        closeInstallPrompt.addEventListener('click', () => {
+            installPrompt.classList.remove('active');
+        });
+
+        // Verifica se o app já está instalado
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+            installPrompt.classList.remove('active');
+            showToast('Garo foi instalado com sucesso!');
         });
 
         // Inicialização
@@ -625,7 +1094,87 @@
             
             // Atualiza contador de caracteres inicial
             charCount.textContent = postContent.value.length;
+            
+            // Esconde o botão de instalação se não for suportado
+            if (!deferredPrompt) {
+                installBtn.style.display = 'none';
+            }
+            
+            // Verifica se está em modo standalone (PWA instalado)
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                installBtn.style.display = 'none';
+            }
         });
+
+        // Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registrado com sucesso: ', registration.scope);
+                }).catch(error => {
+                    console.log('Falha ao registrar ServiceWorker: ', error);
+                });
+            });
+        }
+    </script>
+
+    <!-- Manifest para PWA -->
+    <script>
+        const manifest = {
+            "name": "Garo",
+            "short_name": "Garo",
+            "description": "Plataforma de desabafos anônimos",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#F5F5F5",
+            "theme_color": "#5E35B1",
+            "icons": [
+                {
+                    "src": "icons/icon-72x72.png",
+                    "sizes": "72x72",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-96x96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-128x128.png",
+                    "sizes": "128x128",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-144x144.png",
+                    "sizes": "144x144",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-152x152.png",
+                    "sizes": "152x152",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-192x192.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-384x384.png",
+                    "sizes": "384x384",
+                    "type": "image/png"
+                },
+                {
+                    "src": "icons/icon-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
+        };
+
+        const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+        const manifestUrl = URL.createObjectURL(blob);
+        document.querySelector('link[rel="manifest"]').href = manifestUrl;
     </script>
 </body>
 </html>
