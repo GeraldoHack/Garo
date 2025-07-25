@@ -826,6 +826,166 @@
         .dark-mode-checkbox:checked + .dark-mode-slider:before {
             transform: translateX(26px);
         }
+
+        /* ===== MODAL DE COMENTÁRIOS POPUP ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .dark-mode .modal {
+            background: var(--dark-card);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dark-mode .modal-header {
+            border-bottom: var(--dark-border);
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--medium);
+            cursor: pointer;
+        }
+
+        .dark-mode .modal-close {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+        }
+
+        .modal-footer {
+            padding: 16px 20px;
+            border-top: var(--border);
+        }
+
+        .dark-mode .modal-footer {
+            border-top: var(--dark-border);
+        }
+
+        /* ===== PÁGINAS ADICIONAIS ===== */
+        .about-page, .contact-page, .policy-page {
+            padding: 16px;
+        }
+
+        .about-page h2, .contact-page h2, .policy-page h2 {
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .about-page p, .contact-page p, .policy-page p {
+            margin-bottom: 12px;
+        }
+
+        .contact-form {
+            margin-top: 20px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .contact-form .form-control {
+            width: 100%;
+            padding: 12px;
+            border: var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9375rem;
+            background-color: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .dark-mode .contact-form .form-control {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        .contact-form textarea.form-control {
+            min-height: 120px;
+            resize: none;
+        }
+
+        .contact-form .btn-primary {
+            width: 100%;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--light-gray);
+            border-radius: var(--radius);
+        }
+
+        .dark-mode .contact-info {
+            background: #2a2a2a;
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -906,6 +1066,81 @@
                 </div>
             </div>
         </section>
+
+        <!-- PÁGINA SOBRE -->
+        <section class="page" id="aboutPage">
+            <div class="section">
+                <div class="container">
+                    <div class="card about-page">
+                        <h2>Sobre o Garo</h2>
+                        <p>O Garo é uma plataforma de desabafos anônimos criada para proporcionar um espaço seguro onde as pessoas podem compartilhar seus pensamentos e sentimentos sem medo de julgamento.</p>
+                        <p>Nossa missão é promover o bem-estar emocional através da expressão livre e anônima, criando uma comunidade de apoio mútuo.</p>
+                        <p>Você pode usar o Garo para:</p>
+                        <ul style="list-style-position: inside; margin: 12px 0;">
+                            <li style="margin-bottom: 8px;">Desabafar sobre seus sentimentos</li>
+                            <li style="margin-bottom: 8px;">Compartilhar experiências pessoais</li>
+                            <li style="margin-bottom: 8px;">Receber apoio da comunidade</li>
+                            <li>Expressar-se livremente sem revelar sua identidade</li>
+                        </ul>
+                        <p>Todos os desabafos são completamente anônimos e não armazenamos nenhum dado que possa identificar os usuários.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DE CONTATO -->
+        <section class="page" id="contactPage">
+            <div class="section">
+                <div class="container">
+                    <div class="card contact-page">
+                        <h2>Contato</h2>
+                        <p>Entre em contato conosco para dúvidas, sugestões ou relatar problemas.</p>
+                        
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> geraldoafoso042@gmail.com</p>
+                            <p><i class="fas fa-info-circle"></i> Respondemos em até 48 horas</p>
+                        </div>
+                        
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <textarea id="contactMessage" class="form-control" placeholder="Digite sua mensagem aqui" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA DE POLÍTICA DE PRIVACIDADE -->
+        <section class="page" id="policyPage">
+            <div class="section">
+                <div class="container">
+                    <div class="card policy-page">
+                        <h2>Política de Privacidade</h2>
+                        <p>Última atualização: 25/07/2025</p>
+                        
+                        <h3 style="margin-top: 20px;">1. Informações que coletamos</h3>
+                        <p>O Garo não coleta nenhuma informação pessoal identificável. Todos os desabafos são completamente anônimos.</p>
+                        
+                        <h3 style="margin-top: 16px;">2. Como usamos as informações</h3>
+                        <p>Os desabafos são armazenados apenas para exibição na plataforma. Não usamos os dados para nenhum outro propósito.</p>
+                        
+                        <h3 style="margin-top: 16px;">3. Compartilhamento de informações</h3>
+                        <p>Não compartilhamos nenhuma informação com terceiros, pois não coletamos dados pessoais.</p>
+                        
+                        <h3 style="margin-top: 16px;">4. Segurança</h3>
+                        <p>Implementamos medidas de segurança técnicas e organizacionais para proteger os dados da plataforma contra acesso não autorizado.</p>
+                        
+                        <h3 style="margin-top: 16px;">5. Alterações nesta política</h3>
+                        <p>Podemos atualizar esta política periodicamente. A versão mais recente estará sempre disponível nesta página.</p>
+                        
+                        <h3 style="margin-top: 16px;">6. Contato</h3>
+                        <p>Para dúvidas sobre esta política, entre em contato pelo e-mail: geraldoafoso042@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- ===== BOTTOM NAV BAR ===== -->
@@ -956,42 +1191,43 @@
                     </label>
                 </div>
                 
-                <div class="drawer-item">
+                <a href="#about" class="drawer-item" id="drawerAbout">
                     <i class="fas fa-info-circle"></i>
                     <span>Sobre o Garo</span>
-                </div>
-                <div class="drawer-item">
+                </a>
+                <a href="#contact" class="drawer-item" id="drawerContact">
                     <i class="fas fa-envelope"></i>
                     <span>Contato</span>
-                </div>
-                <div class="drawer-item">
+                </a>
+                <a href="#policy" class="drawer-item" id="drawerPolicy">
                     <i class="fas fa-shield-alt"></i>
                     <span>Política de Privacidade</span>
-                </div>
+                </a>
             </div>
             
             <div class="drawer-footer">
-                <p>Garo v1.2.0</p>
+                <p>Garo v1.2.14</p>
                 <p>&copy; <span id="currentYear"></span> Todos os direitos reservados</p>
-                <p>geraldoafoso042@gmail.com</p>
             </div>
         </div>
     </div>
 
-    <!-- ===== MODAL DE COMENTÁRIOS ===== -->
-    <div class="drawer-overlay" id="commentsModal">
-        <div class="drawer">
-            <div class="drawer-header">
-                <h3 class="drawer-title">Comentários</h3>
-                <button class="drawer-close" id="closeCommentsBtn">
+    <!-- ===== MODAL DE COMENTÁRIOS POPUP ===== -->
+    <div class="modal-overlay" id="commentsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Comentários</h3>
+                <button class="modal-close" id="closeCommentsBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="drawer-body">
+            <div class="modal-body">
                 <div class="comments-section" id="commentsSection">
                     <!-- Comentários serão carregados aqui -->
                 </div>
-                <div class="comment-form" style="padding: 0 16px;">
+            </div>
+            <div class="modal-footer">
+                <div class="comment-form">
                     <input type="text" class="comment-input" id="commentInput" placeholder="Escreva um comentário de apoio...">
                     <button class="comment-submit" id="commentSubmit" disabled>
                         <i class="fas fa-paper-plane"></i>
@@ -1047,17 +1283,27 @@
         const commentsSection = document.getElementById('commentsSection');
         const commentInput = document.getElementById('commentInput');
         const commentSubmit = document.getElementById('commentSubmit');
-        const drawerFeed = document.getElementById('drawerFeed');
-        const drawerShare = document.getElementById('drawerShare');
-        const drawerPrivacy = document.getElementById('drawerPrivacy');
+        const contactForm = document.getElementById('contactForm');
+        const contactMessage = document.getElementById('contactMessage');
 
         // Elementos de navegação
         const feedPage = document.getElementById('feedPage');
         const sharePage = document.getElementById('sharePage');
         const privacyPage = document.getElementById('privacyPage');
+        const aboutPage = document.getElementById('aboutPage');
+        const contactPage = document.getElementById('contactPage');
+        const policyPage = document.getElementById('policyPage');
+        
         const feedNav = document.getElementById('feedNav');
         const shareNav = document.getElementById('shareNav');
         const privacyNav = document.getElementById('privacyNav');
+        
+        const drawerFeed = document.getElementById('drawerFeed');
+        const drawerShare = document.getElementById('drawerShare');
+        const drawerPrivacy = document.getElementById('drawerPrivacy');
+        const drawerAbout = document.getElementById('drawerAbout');
+        const drawerContact = document.getElementById('drawerContact');
+        const drawerPolicy = document.getElementById('drawerPolicy');
 
         // Variáveis de estado
         let posts = [];
@@ -1129,6 +1375,18 @@
                     privacyNav.classList.add('active');
                     pageTitle.textContent = 'Privacidade';
                     break;
+                case 'about':
+                    aboutPage.classList.add('active');
+                    pageTitle.textContent = 'Sobre o Garo';
+                    break;
+                case 'contact':
+                    contactPage.classList.add('active');
+                    pageTitle.textContent = 'Contato';
+                    break;
+                case 'policy':
+                    policyPage.classList.add('active');
+                    pageTitle.textContent = 'Política de Privacidade';
+                    break;
             }
             
             // Fecha o drawer se estiver aberto
@@ -1153,7 +1411,7 @@
                         return;
                     }
                     
-                    commentsSection.innerHTML = '<div class="comment-list" style="padding: 0 16px;"></div>';
+                    commentsSection.innerHTML = '<div class="comment-list"></div>';
                     const commentList = commentsSection.querySelector('.comment-list');
                     
                     snapshot.forEach(doc => {
@@ -1199,6 +1457,22 @@
                         resolve(0);
                     });
             });
+        }
+
+        // Função para enviar mensagem de contato
+        function sendContactMessage(message) {
+            if (!message.trim()) {
+                showToast("Por favor, digite sua mensagem");
+                return;
+            }
+            
+            // Aqui você pode implementar o envio para um backend ou simplesmente abrir o cliente de e-mail
+            const email = "geraldoafoso042@gmail.com";
+            const subject = "Contato via Garo";
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+            
+            window.location.href = mailtoLink;
+            showToast("Redirecionando para seu cliente de e-mail...");
         }
 
         // Funções Firebase para posts
@@ -1443,6 +1717,21 @@
             navigateTo('privacy');
         });
 
+        drawerAbout.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('about');
+        });
+
+        drawerContact.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('contact');
+        });
+
+        drawerPolicy.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('policy');
+        });
+
         closeCommentsBtn.addEventListener('click', () => {
             commentsModal.classList.remove('active');
         });
@@ -1502,6 +1791,12 @@
             }
         });
 
+        // Contato
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sendContactMessage(contactMessage.value.trim());
+        });
+
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             // Atualiza o ano no rodapé
@@ -1515,6 +1810,12 @@
             
             // Atualiza contador de caracteres inicial
             charCount.textContent = postContent.value.length;
+            
+            // Verifica a hash da URL para navegação inicial
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                navigateTo(hash);
+            }
         });
 
         // Service Worker para PWA
