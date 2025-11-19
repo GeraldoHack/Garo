@@ -2312,7 +2312,7 @@
         // Sistema de compartilhamento
         function openShareModal(post) {
             currentSharePost = post;
-            const postUrl = `https://garo-desabafos-anonimos.vercel.app/#post-${post.id}`;
+            const postUrl = `https://garo-desabafos-anonimos.vercel.app;
             const shareMessage = `Confira este desabafo no Garo: "${post.content.substring(0, 100)}..."\n\n${postUrl}`;
             
             shareText.value = shareMessage;
@@ -2320,7 +2320,7 @@
         }
 
         function shareToPlatform(platform) {
-            const postUrl = `https://garo-desabafos-anonimos.vercel.app/#post-${currentSharePost.id}`;
+            const postUrl = `https://garo-desabafos-anonimos.vercel.app;
             const shareMessage = `Confira este desabafo no Garo: "${currentSharePost.content.substring(0, 100)}..."\n\n${postUrl}`;
             
             let shareUrl = '';
