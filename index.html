@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Garo | Desabafos Anônimos</title>
-    <meta name="description" content="Plataforma segura para desabafos anônimos. Compartilhe sem medo de julgamento.">
+    <title>Garo | Plataforma Segura para Desabafos Anônimos</title>
+    <meta name="description" content="Garo - Compartilhe seus sentimentos e desabafos de forma 100% anônima. Ambiente seguro sem julgamentos. Sua privacidade é nossa prioridade.">
+    <meta name="keywords" content="desabafos anônimos, saúde mental, apoio emocional, comunidade segura, privacidade">
+    <meta name="author" content="MECET.E.I">
+    <meta property="og:title" content="Garo | Plataforma Segura para Desabafos Anônimos">
+    <meta property="og:description" content="Compartilhe seus sentimentos e desabafos de forma 100% anônima. Ambiente seguro sem julgamentos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://garo-desabafos-anonimos.vercel.app">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2196F3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +32,7 @@
             --warning: #FFA726;
             --accent: #FF7043;
             --secondary: #26A69A;
+            --success: #4CAF50;
             --border: 1px solid rgba(0, 0, 0, 0.1);
             --radius: 12px;
             --radius-lg: 16px;
@@ -38,7 +45,7 @@
             --dark-bg: #121212;
             --dark-card: #1E1E1E;
             --dark-text: #E0E0E0;
-            --dark-border: rgba(255,255,white,0.1);
+            --dark-border: rgba(255,255,255,0.1);
         }
 
         * {
@@ -46,6 +53,10 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -138,6 +149,15 @@
 
         .btn-outline:hover {
             background: rgba(33, 150, 243, 0.1);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #d32f2f;
         }
 
         .card {
@@ -576,7 +596,7 @@
         }
 
         .dark-mode .comment-count {
-            color: rgba(255,255,white,0.6);
+            color: rgba(255,255,255,0.6);
         }
 
         /* ===== DRAWER ===== */
@@ -649,7 +669,7 @@
         }
 
         .dark-mode .drawer-close {
-            color: rgba(255,255,white,0.7);
+            color: rgba(255,255,255,0.7);
         }
 
         .drawer-body {
@@ -676,7 +696,7 @@
         }
 
         .dark-mode .drawer-item:hover {
-            background: rgba(255,255,white,0.1);
+            background: rgba(255,255,255,0.1);
         }
 
         .drawer-item i {
@@ -696,7 +716,7 @@
 
         .dark-mode .drawer-footer {
             border-top: var(--dark-border);
-            color: rgba(255,255,white,0.7);
+            color: rgba(255,255,255,0.7);
         }
 
         /* ===== LOADING ===== */
@@ -733,7 +753,7 @@
         }
 
         .dark-mode .empty-icon {
-            color: rgba(255,255,white,0.5);
+            color: rgba(255,255,255,0.5);
         }
 
         .empty-text {
@@ -741,7 +761,7 @@
         }
 
         .dark-mode .empty-text {
-            color: rgba(255,255,white,0.7);
+            color: rgba(255,255,255,0.7);
         }
 
         /* ===== TOAST ===== */
@@ -827,7 +847,7 @@
             transform: translateX(26px);
         }
 
-        /* ===== MODAL DE COMENTÁRIOS POPUP ===== */
+        /* ===== MODAIS ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -986,19 +1006,400 @@
             width: 20px;
             text-align: center;
         }
+
+        /* ===== NOVOS COMPONENTES ===== */
+        .hero-section {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .dark-mode .stat-number {
+            color: var(--primary-light);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--medium);
+        }
+
+        .dark-mode .stat-label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: var(--light-gray);
+            border-radius: var(--radius);
+        }
+
+        .dark-mode .feature-card {
+            background: #2a2a2a;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .feature-content p {
+            font-size: 0.875rem;
+            margin-bottom: 0;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--medium);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .dark-mode .filter-btn {
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 40px;
+            border: var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9375rem;
+            background-color: var(--light-gray);
+            transition: var(--transition);
+        }
+
+        .dark-mode .search-input {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            background-color: var(--white);
+        }
+
+        .dark-mode .search-input:focus {
+            background-color: #333;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium);
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .post-action-btn {
+            background: none;
+            border: none;
+            color: var(--medium);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8125rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .dark-mode .post-action-btn {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .post-action-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .post-action-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .post-action-btn.active {
+            color: var(--primary);
+        }
+
+        .report-btn {
+            color: var(--danger);
+        }
+
+        .share-btn {
+            color: var(--secondary);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .welcome-banner h3 {
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+
+        /* ===== CATEGORIAS INTELIGENTES ===== */
+        .category-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .category-mental { background: rgba(33, 150, 243, 0.1); color: var(--primary); }
+        .category-relationship { background: rgba(255, 112, 67, 0.1); color: var(--accent); }
+        .category-work { background: rgba(255, 167, 38, 0.1); color: var(--warning); }
+        .category-family { background: rgba(38, 166, 154, 0.1); color: var(--secondary); }
+        .category-health { background: rgba(76, 175, 80, 0.1); color: var(--success); }
+        .category-other { background: rgba(158, 158, 158, 0.1); color: var(--medium); }
+
+        .category-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .category-option {
+            padding: 8px 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .category-option {
+            border-color: var(--dark-border);
+        }
+
+        .category-option.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ===== MODAL DE DENÚNCIA ===== */
+        .report-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: var(--border);
+            cursor: pointer;
+        }
+
+        .dark-mode .report-option {
+            border-bottom: var(--dark-border);
+        }
+
+        .report-option:last-child {
+            border-bottom: none;
+        }
+
+        .report-option input {
+            margin-right: 12px;
+        }
+
+        .report-option label {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .report-description {
+            margin-top: 16px;
+        }
+
+        .report-description textarea {
+            width: 100%;
+            padding: 12px;
+            border: var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9375rem;
+            background-color: var(--light-gray);
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .dark-mode .report-description textarea {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        /* ===== MODAL DE COMPARTILHAMENTO ===== */
+        .share-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .share-option {
+            flex: 1;
+            min-width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            border: var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-mode .share-option {
+            border-color: var(--dark-border);
+        }
+
+        .share-option:hover {
+            background: rgba(33, 150, 243, 0.05);
+        }
+
+        .dark-mode .share-option:hover {
+            background: rgba(33, 150, 243, 0.1);
+        }
+
+        .share-option i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .share-option span {
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .share-text {
+            width: 100%;
+            padding: 12px;
+            border: var(--border);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9375rem;
+            background-color: var(--light-gray);
+            transition: var(--transition);
+            margin-top: 16px;
+            resize: none;
+        }
+
+        .dark-mode .share-text {
+            background-color: #2a2a2a;
+            border-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        .copy-btn {
+            width: 100%;
+            margin-top: 12px;
+        }
     </style>
 </head>
 <body>
     <!-- ===== TOP BAR ===== -->
-    <div class="top-bar">
-        <button class="top-bar-btn" id="menuBtn">
+    <header class="top-bar">
+        <button class="top-bar-btn" id="menuBtn" aria-label="Abrir menu">
             <i class="fas fa-bars"></i>
         </button>
         <div class="top-bar-title" id="pageTitle">Garo</div>
-        <button class="top-bar-btn" id="refreshBtn">
+        <button class="top-bar-btn" id="refreshBtn" aria-label="Atualizar feed">
             <i class="fas fa-sync-alt"></i>
         </button>
-    </div>
+    </header>
 
     <!-- ===== PÁGINAS ===== -->
     <main>
@@ -1013,6 +1414,25 @@
             </div>
             
             <div class="container">
+                <div class="welcome-banner" id="welcomeBanner">
+                    <h3>Bem-vindo ao Garo</h3>
+                    <p>Um espaço seguro para compartilhar seus sentimentos de forma anônima</p>
+                </div>
+                
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar desabafos...">
+                </div>
+                
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="mental">Saúde Mental</button>
+                    <button class="filter-btn" data-filter="relationship">Relacionamentos</button>
+                    <button class="filter-btn" data-filter="work">Trabalho</button>
+                    <button class="filter-btn" data-filter="family">Família</button>
+                    <button class="filter-btn" data-filter="health">Saúde</button>
+                </div>
+                
                 <div id="postsList">
                     <!-- Posts serão carregados aqui via JavaScript -->
                 </div>
@@ -1027,9 +1447,23 @@
         <section class="page" id="sharePage">
             <div class="section">
                 <div class="container">
+                    <div class="hero-section">
+                        <h1>Compartilhe seu desabafo</h1>
+                        <p>Seu anonimato é garantido. Não armazenamos nenhum dado pessoal.</p>
+                    </div>
+                    
                     <div class="card">
-                        <h2>Compartilhe seu desabafo</h2>
-                        <p style="margin-bottom: 16px;">Seu anonimato é garantido. Não armazenamos nenhum dado pessoal.</p>
+                        <h2>Como você está se sentindo hoje?</h2>
+                        <p style="margin-bottom: 16px;">Descreva seus sentimentos, preocupações ou experiências. A comunidade está aqui para apoiar você.</p>
+                        
+                        <div class="category-selector">
+                            <div class="category-option" data-category="mental">Saúde Mental</div>
+                            <div class="category-option" data-category="relationship">Relacionamentos</div>
+                            <div class="category-option" data-category="work">Trabalho</div>
+                            <div class="category-option" data-category="family">Família</div>
+                            <div class="category-option" data-category="health">Saúde</div>
+                            <div class="category-option" data-category="other">Outro</div>
+                        </div>
                         
                         <form id="newPostForm">
                             <div class="form-group">
@@ -1042,6 +1476,21 @@
                             </div>
                         </form>
                     </div>
+                    
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalPosts">0</span>
+                            <span class="stat-label">Desabafos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalComments">0</span>
+                            <span class="stat-label">Comentários</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalReactions">0</span>
+                            <span class="stat-label">Reações</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1050,18 +1499,58 @@
         <section class="page" id="privacyPage">
             <div class="section">
                 <div class="container">
+                    <div class="hero-section">
+                        <h1>Privacidade e Segurança</h1>
+                        <p>Sua privacidade é nossa prioridade máxima</p>
+                    </div>
+                    
                     <div class="card">
-                        <h2>Privacidade e Segurança</h2>
-                        <p style="margin-bottom: 16px;">Sua privacidade é nossa prioridade máxima:</p>
+                        <h2>Como protegemos sua privacidade</h2>
+                        <p style="margin-bottom: 16px;">Implementamos várias medidas para garantir seu anonimato e segurança:</p>
                         
-                        <ul style="list-style-position: inside; margin-bottom: 20px;">
-                            <li style="margin-bottom: 8px;">Nenhum dado pessoal é coletado</li>
-                            <li style="margin-bottom: 8px;">Não armazenamos endereços IP ou metadados</li>
-                            <li style="margin-bottom: 8px;">Tecnologia de anonimização avançada</li>
-                            <li>Totalmente livre de rastreamento</li>
-                        </ul>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-secret"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Anonimato Total</h3>
+                                <p>Não coletamos nenhum dado pessoal identificável</p>
+                            </div>
+                        </div>
                         
-                        <p><strong>Importante:</strong> Por sua segurança, evite compartilhar informações pessoais em seus desabafos.</p>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Criptografia</h3>
+                                <p>Todos os dados são criptografados em trânsito e em repouso</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Sem Rastreamento</h3>
+                                <p>Não utilizamos cookies de rastreamento ou analytics</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-eye-slash"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Sem Metadados</h3>
+                                <p>Não armazenamos endereços IP, localização ou metadados</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding-top: 16px; border-top: var(--border);">
+                            <p><strong>Importante:</strong> Por sua segurança, evite compartilhar informações pessoais em seus desabafos.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1071,17 +1560,66 @@
         <section class="page" id="aboutPage">
             <div class="section">
                 <div class="container">
+                    <div class="hero-section">
+                        <h1>Sobre o Garo</h1>
+                        <p>Um espaço seguro para expressão emocional</p>
+                    </div>
+                    
                     <div class="card about-page">
-                        <h2>Sobre o Garo</h2>
+                        <h2>Nossa Missão</h2>
                         <p>O Garo é uma plataforma de desabafos anônimos criada para proporcionar um espaço seguro onde as pessoas podem compartilhar seus pensamentos e sentimentos sem medo de julgamento.</p>
                         <p>Nossa missão é promover o bem-estar emocional através da expressão livre e anônima, criando uma comunidade de apoio mútuo.</p>
+                        
+                        <h2>Como usar o Garo</h2>
                         <p>Você pode usar o Garo para:</p>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Desabafar sobre sentimentos</h3>
+                                <p>Compartilhe suas emoções, preocupações e experiências</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Receber apoio da comunidade</h3>
+                                <p>Conecte-se com pessoas que entendem o que você está passando</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Expressar-se livremente</h3>
+                                <p>Fale abertamente sem revelar sua identidade</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Apoiar outras pessoas</h3>
+                                <p>Ofereça palavras de conforto e apoio aos outros</p>
+                            </div>
+                        </div>
+                        
+                        <h2>Nossos Valores</h2>
                         <ul style="list-style-position: inside; margin: 12px 0;">
-                            <li style="margin-bottom: 8px;">Desabafar sobre seus sentimentos</li>
-                            <li style="margin-bottom: 8px;">Compartilhar experiências pessoais</li>
-                            <li style="margin-bottom: 8px;">Receber apoio da comunidade</li>
-                            <li>Expressar-se livremente sem revelar sua identidade</li>
+                            <li style="margin-bottom: 8px;"><strong>Anonimato:</strong> Sua identidade é sempre protegida</li>
+                            <li style="margin-bottom: 8px;"><strong>Respeito:</strong> Todos merecem ser ouvidos sem julgamento</li>
+                            <li style="margin-bottom: 8px;"><strong>Empatia:</strong> Criamos um ambiente de apoio mútuo</li>
+                            <li><strong>Segurança:</strong> Sua privacidade é nossa prioridade</li>
                         </ul>
+                        
                         <p>Todos os desabafos são completamente anônimos e não armazenamos nenhum dado que possa identificar os usuários.</p>
                     </div>
                 </div>
@@ -1092,12 +1630,17 @@
         <section class="page" id="contactPage">
             <div class="section">
                 <div class="container">
+                    <div class="hero-section">
+                        <h1>Contato</h1>
+                        <p>Estamos aqui para ajudar</p>
+                    </div>
+                    
                     <div class="card contact-page">
-                        <h2>Contato</h2>
+                        <h2>Entre em contato</h2>
                         <p>Entre em contato conosco para dúvidas, sugestões ou relatar problemas.</p>
                         
                         <div class="contact-info">
-                            <p><i class="fas fa-envelope"></i> geraldoafoso042@gmail.com</p>
+                            <p><i class="fas fa-envelope"></i> apoiomecet.e.i@gmail.com</p>
                             <p><i class="fas fa-info-circle"></i> Respondemos em até 48 horas</p>
                         </div>
                         
@@ -1116,6 +1659,11 @@
         <section class="page" id="policyPage">
             <div class="section">
                 <div class="container">
+                    <div class="hero-section">
+                        <h1>Política de Privacidade</h1>
+                        <p>Transparência e segurança em primeiro lugar</p>
+                    </div>
+                    
                     <div class="card policy-page">
                         <h2>Política de Privacidade</h2>
                         <p>Última atualização: 25/07/2025</p>
@@ -1136,7 +1684,7 @@
                         <p>Podemos atualizar esta política periodicamente. A versão mais recente estará sempre disponível nesta página.</p>
                         
                         <h3 style="margin-top: 16px;">6. Contato</h3>
-                        <p>Para dúvidas sobre esta política, entre em contato pelo e-mail: geraldoafoso042@gmail.com</p>
+                        <p>Para dúvidas sobre esta política, entre em contato pelo e-mail: apoiomecet.e.i@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -1164,7 +1712,7 @@
         <div class="drawer">
             <div class="drawer-header">
                 <h3 class="drawer-title">Menu</h3>
-                <button class="drawer-close" id="drawerCloseBtn">
+                <button class="drawer-close" id="drawerCloseBtn" aria-label="Fechar menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1206,7 +1754,7 @@
             </div>
             
             <div class="drawer-footer">
-                <p>Garo v1.2.14</p>
+                <p>Garo v1.3.0</p>
                 <p>&copy; <span id="currentYear"></span> Todos os direitos reservados</p>
             </div>
         </div>
@@ -1217,7 +1765,7 @@
         <div class="modal">
             <div class="modal-header">
                 <h3 class="modal-title">Comentários</h3>
-                <button class="modal-close" id="closeCommentsBtn">
+                <button class="modal-close" id="closeCommentsBtn" aria-label="Fechar comentários">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1229,10 +1777,100 @@
             <div class="modal-footer">
                 <div class="comment-form">
                     <input type="text" class="comment-input" id="commentInput" placeholder="Escreva um comentário de apoio...">
-                    <button class="comment-submit" id="commentSubmit" disabled>
+                    <button class="comment-submit" id="commentSubmit" disabled aria-label="Enviar comentário">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL DE DENÚNCIA ===== -->
+    <div class="modal-overlay" id="reportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Denunciar Publicação</h3>
+                <button class="modal-close" id="closeReportBtn" aria-label="Fechar denúncia">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Selecione o motivo da denúncia:</p>
+                
+                <div class="report-option">
+                    <input type="radio" id="reportNudity" name="reportReason" value="nudity">
+                    <label for="reportNudity">Conteúdo sexual ou nudez</label>
+                </div>
+                
+                <div class="report-option">
+                    <input type="radio" id="reportMinor" name="reportReason" value="minor">
+                    <label for="reportMinor">Conteúdo envolvendo menores</label>
+                </div>
+                
+                <div class="report-option">
+                    <input type="radio" id="reportViolence" name="reportReason" value="violence">
+                    <label for="reportViolence">Ameaça ou incitação à violência</label>
+                </div>
+                
+                <div class="report-option">
+                    <input type="radio" id="reportHarassment" name="reportReason" value="harassment">
+                    <label for="reportHarassment">Assédio ou discurso de ódio</label>
+                </div>
+                
+                <div class="report-option">
+                    <input type="radio" id="reportSpam" name="reportReason" value="spam">
+                    <label for="reportSpam">Spam ou conteúdo comercial</label>
+                </div>
+                
+                <div class="report-option">
+                    <input type="radio" id="reportOther" name="reportReason" value="other">
+                    <label for="reportOther">Outro motivo</label>
+                </div>
+                
+                <div class="report-description">
+                    <label for="reportDescription">Descrição adicional (opcional):</label>
+                    <textarea id="reportDescription" placeholder="Descreva o problema com mais detalhes..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-block" id="submitReportBtn">Enviar Denúncia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL DE COMPARTILHAMENTO ===== -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Compartilhar Desabafo</h3>
+                <button class="modal-close" id="closeShareBtn" aria-label="Fechar compartilhamento">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <div class="share-option" data-platform="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="share-option" data-platform="facebook">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </div>
+                    <div class="share-option" data-platform="twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </div>
+                    <div class="share-option" data-platform="copy">
+                        <i class="fas fa-copy"></i>
+                        <span>Copiar Link</span>
+                    </div>
+                </div>
+                
+                <textarea class="share-text" id="shareText" readonly></textarea>
+                <button class="btn btn-primary copy-btn" id="copyShareBtn">
+                    <i class="fas fa-copy"></i> Copiar Texto
+                </button>
             </div>
         </div>
     </div>
@@ -1285,6 +1923,21 @@
         const commentSubmit = document.getElementById('commentSubmit');
         const contactForm = document.getElementById('contactForm');
         const contactMessage = document.getElementById('contactMessage');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const welcomeBanner = document.getElementById('welcomeBanner');
+        const totalPosts = document.getElementById('totalPosts');
+        const totalComments = document.getElementById('totalComments');
+        const totalReactions = document.getElementById('totalReactions');
+        const categoryOptions = document.querySelectorAll('.category-option');
+        const reportModal = document.getElementById('reportModal');
+        const closeReportBtn = document.getElementById('closeReportBtn');
+        const submitReportBtn = document.getElementById('submitReportBtn');
+        const shareModal = document.getElementById('shareModal');
+        const closeShareBtn = document.getElementById('closeShareBtn');
+        const shareOptions = document.querySelectorAll('.share-option');
+        const shareText = document.getElementById('shareText');
+        const copyShareBtn = document.getElementById('copyShareBtn');
 
         // Elementos de navegação
         const feedPage = document.getElementById('feedPage');
@@ -1307,9 +1960,38 @@
 
         // Variáveis de estado
         let posts = [];
-        let totalPosts = 0;
+        let allPosts = [];
+        let totalPostsCount = 0;
+        let totalCommentsCount = 0;
+        let totalReactionsCount = 0;
         let currentSort = 'newest';
         let currentPostId = null;
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let selectedCategory = 'mental';
+        let currentReportPostId = null;
+        let currentSharePost = null;
+
+        // Palavras-chave para categorização inteligente
+        const categoryKeywords = {
+            mental: ['depressão', 'ansiedade', 'triste', 'tristeza', 'estresse', 'psicológico', 'psicólogo', 'terapia', 'suicídio', 'pânico', 'medo', 'angústia', 'solidão', 'vazio', 'desespero', 'desânimo'],
+            relationship: ['namoro', 'namorado', 'namorada', 'casamento', 'marido', 'esposa', 'paquera', 'crush', 'traição', 'ciúmes', 'terminar', 'separação', 'amor', 'relacionamento', 'ficar', 'beijo', 'sexo'],
+            work: ['trabalho', 'emprego', 'chefe', 'colega', 'salário', 'demissão', 'entrevista', 'estágio', 'profissional', 'carreira', 'escritório', 'empresa', 'projeto', 'prazo', 'reunião'],
+            family: ['pai', 'mãe', 'filho', 'filha', 'irmão', 'irmã', 'avó', 'avô', 'família', 'parente', 'casa', 'lar', 'briga', 'conflito', 'herança', 'adoção'],
+            health: ['saúde', 'doença', 'hospital', 'médico', 'remédio', 'tratamento', 'cirurgia', 'diagnóstico', 'sintoma', 'dieta', 'exercício', 'academia', 'corpo', 'peso', 'alimentação']
+        };
+
+        // Palavras proibidas que resultam em banimento automático
+        const bannedWords = [
+            // Conteúdo sexual explícito
+            'pornô', 'porno', 'xxx', 'sexo explícito', 'nudez', 'nua', 'nu', 'genitália', 'pênis', 'vagina', 'seios',
+            // Conteúdo envolvendo menores de forma inadequada
+            'pornografia infantil', 'abuso infantil', 'menor nudez', 'criança nua', 'adolescente nua',
+            // Incitação a crimes
+            'vou matar', 'vou assassinar', 'vou explodir', 'bomba', 'terrorismo', 'sequestro',
+            // Discurso de ódio extremo
+            'odeio [grupo]', 'morte aos [grupo]', 'exterminar [grupo]'
+        ];
 
         // Inicializa o modo escuro
         function initDarkMode() {
@@ -1467,7 +2149,7 @@
             }
             
             // Aqui você pode implementar o envio para um backend ou simplesmente abrir o cliente de e-mail
-            const email = "geraldoafoso042@gmail.com";
+            const email = "apoiomecet.e.i@gmail.com";
             const subject = "Contato via Garo";
             const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
             
@@ -1482,15 +2164,28 @@
                 return;
             }
             
+            // Verificação de conteúdo proibido
+            const hasBannedContent = checkForBannedContent(content);
+            if (hasBannedContent) {
+                showToast("Seu desabafo contém conteúdo inadequado e não pode ser publicado");
+                return;
+            }
+            
+            // Categorização inteligente
+            const category = categorizeContent(content);
+            
             const newPost = {
                 content: content,
+                category: category,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 reactions: {
                     like: 0,
                     angry: 0,
                     laugh: 0,
                     sad: 0
-                }
+                },
+                reports: 0,
+                banned: false
             };
             
             try {
@@ -1504,6 +2199,45 @@
             }
         }
 
+        // Categorização inteligente baseada em palavras-chave
+        function categorizeContent(content) {
+            const contentLower = content.toLowerCase();
+            let maxMatches = 0;
+            let detectedCategory = selectedCategory; // Usa a categoria selecionada pelo usuário como padrão
+            
+            // Se o usuário não selecionou uma categoria ou selecionou "outro", faz detecção automática
+            if (selectedCategory === 'other') {
+                for (const [category, keywords] of Object.entries(categoryKeywords)) {
+                    let matches = 0;
+                    keywords.forEach(keyword => {
+                        if (contentLower.includes(keyword)) {
+                            matches++;
+                        }
+                    });
+                    
+                    if (matches > maxMatches) {
+                        maxMatches = matches;
+                        detectedCategory = category;
+                    }
+                }
+            }
+            
+            return detectedCategory;
+        }
+
+        // Verificação de conteúdo proibido
+        function checkForBannedContent(content) {
+            const contentLower = content.toLowerCase();
+            
+            for (const bannedWord of bannedWords) {
+                if (contentLower.includes(bannedWord.toLowerCase())) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
         async function updateReaction(postId, reaction) {
             try {
                 await db.collection('posts').doc(postId).update({
@@ -1512,6 +2246,104 @@
             } catch (error) {
                 console.error("Erro ao atualizar reação:", error);
                 showToast("Erro ao registrar reação");
+            }
+        }
+
+        // Sistema de denúncias
+        function openReportModal(postId) {
+            currentReportPostId = postId;
+            reportModal.classList.add('active');
+            
+            // Limpa seleções anteriores
+            document.querySelectorAll('input[name="reportReason"]').forEach(radio => {
+                radio.checked = false;
+            });
+            document.getElementById('reportDescription').value = '';
+        }
+
+        async function submitReport(reason, description) {
+            if (!reason) {
+                showToast("Por favor, selecione um motivo para a denúncia");
+                return;
+            }
+            
+            try {
+                // Incrementa contador de denúncias
+                await db.collection('posts').doc(currentReportPostId).update({
+                    reports: firebase.firestore.FieldValue.increment(1)
+                });
+                
+                // Se for conteúdo grave, verifica se deve banir
+                if (reason === 'nudity' || reason === 'minor' || reason === 'violence') {
+                    const postDoc = await db.collection('posts').doc(currentReportPostId).get();
+                    const post = postDoc.data();
+                    
+                    // Se já tem 3 denúncias ou mais, bane o post
+                    if (post.reports >= 2) { // Reduzido para teste
+                        await db.collection('posts').doc(currentReportPostId).update({
+                            banned: true
+                        });
+                        
+                        // Envia email de alerta para conteúdo grave
+                        if (reason === 'nudity' || reason === 'minor') {
+                            sendAdminAlert(currentReportPostId, post.content, reason);
+                        }
+                    }
+                }
+                
+                showToast("Denúncia enviada com sucesso. Obrigado por ajudar a manter a comunidade segura!");
+                reportModal.classList.remove('active');
+            } catch (error) {
+                console.error("Erro ao enviar denúncia:", error);
+                showToast("Erro ao enviar denúncia");
+            }
+        }
+
+        // Função para enviar alerta para administradores
+        function sendAdminAlert(postId, content, reason) {
+            const email = "apoiomecet.e.i@gmail.com";
+            const subject = `ALERTA: Conteúdo inadequado no post ${postId}`;
+            const body = `Foi detectado conteúdo potencialmente inadequado no Garo:\n\nPost ID: ${postId}\nMotivo: ${reason}\nConteúdo: ${content}\n\nPor favor, verifique imediatamente.`;
+            
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoLink, '_blank');
+        }
+
+        // Sistema de compartilhamento
+        function openShareModal(post) {
+            currentSharePost = post;
+            const postUrl = `https://garo-desabafos-anonimos.vercel.app/#post-${post.id}`;
+            const shareMessage = `Confira este desabafo no Garo: "${post.content.substring(0, 100)}..."\n\n${postUrl}`;
+            
+            shareText.value = shareMessage;
+            shareModal.classList.add('active');
+        }
+
+        function shareToPlatform(platform) {
+            const postUrl = `https://garo-desabafos-anonimos.vercel.app/#post-${currentSharePost.id}`;
+            const shareMessage = `Confira este desabafo no Garo: "${currentSharePost.content.substring(0, 100)}..."\n\n${postUrl}`;
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`;
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(postUrl).then(() => {
+                        showToast("Link copiado para a área de transferência!");
+                    });
+                    return;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
             }
         }
 
@@ -1526,65 +2358,20 @@
             }
             
             query.onSnapshot(async (snapshot) => {
-                posts = snapshot.docs.map(doc => ({
+                allPosts = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
                 
+                // Filtra posts banidos
+                allPosts = allPosts.filter(post => !post.banned);
+                
                 // Atualiza o total de posts
-                totalPosts = posts.length;
+                totalPostsCount = allPosts.length;
+                totalPosts.textContent = totalPostsCount;
                 
-                // Limpa a lista de posts
-                postsList.innerHTML = '';
-                
-                if (posts.length === 0) {
-                    postsList.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-icon">
-                                <i class="far fa-comment-dots"></i>
-                            </div>
-                            <p class="empty-text">Nenhum desabafo encontrado</p>
-                        </div>
-                    `;
-                } else {
-                    // Adiciona os posts ordenados
-                    for (const post of posts) {
-                        const postElement = await createPostElement(post);
-                        postsList.appendChild(postElement);
-                        
-                        // Adiciona eventos de reação
-                        const reactionBtns = postElement.querySelectorAll('.reaction-btn');
-                        reactionBtns.forEach(btn => {
-                            btn.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                const reaction = btn.dataset.reaction;
-                                updateReaction(post.id, reaction);
-                            });
-                        });
-                        
-                        // Adiciona evento de ler mais/ler menos para textos longos
-                        const readMoreBtn = postElement.querySelector('.read-more-btn');
-                        const postContent = postElement.querySelector('.post-content');
-                        
-                        if (readMoreBtn && postContent) {
-                            readMoreBtn.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                postContent.classList.toggle('collapsed');
-                                
-                                if (postContent.classList.contains('collapsed')) {
-                                    readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
-                                } else {
-                                    readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
-                                }
-                            });
-                        }
-                        
-                        // Adiciona evento para abrir comentários ao clicar no card
-                        postElement.addEventListener('click', () => {
-                            openCommentsModal(post.id);
-                        });
-                    }
-                }
+                // Filtra os posts
+                filterPosts();
                 
                 loadingPosts.style.display = 'none';
             }, error => {
@@ -1601,13 +2388,103 @@
             });
         }
 
-        async function createPostElement(post) {
+        function filterPosts() {
+            let filteredPosts = [...allPosts];
+            
+            // Aplica filtro de categoria
+            if (currentFilter !== 'all') {
+                filteredPosts = filteredPosts.filter(post => post.category === currentFilter);
+            }
+            
+            // Aplica busca
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filteredPosts = filteredPosts.filter(post => 
+                    post.content.toLowerCase().includes(query)
+                );
+            }
+            
+            // Atualiza a lista de posts
+            posts = filteredPosts;
+            renderPosts();
+        }
+
+        function renderPosts() {
+            // Limpa a lista de posts
+            postsList.innerHTML = '';
+            
+            if (posts.length === 0) {
+                postsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="far fa-comment-dots"></i>
+                        </div>
+                        <p class="empty-text">Nenhum desabafo encontrado</p>
+                    </div>
+                `;
+            } else {
+                // Adiciona os posts ordenados
+                posts.forEach(async (post, index) => {
+                    const postElement = await createPostElement(post, index);
+                    postsList.appendChild(postElement);
+                    
+                    // Adiciona eventos de reação
+                    const reactionBtns = postElement.querySelectorAll('.reaction-btn');
+                    reactionBtns.forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const reaction = btn.dataset.reaction;
+                            updateReaction(post.id, reaction);
+                        });
+                    });
+                    
+                    // Adiciona evento de ler mais/ler menos para textos longos
+                    const readMoreBtn = postElement.querySelector('.read-more-btn');
+                    const postContent = postElement.querySelector('.post-content');
+                    
+                    if (readMoreBtn && postContent) {
+                        readMoreBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            postContent.classList.toggle('collapsed');
+                            
+                            if (postContent.classList.contains('collapsed')) {
+                                readMoreBtn.innerHTML = 'Ler mais <i class="fas fa-chevron-down"></i>';
+                            } else {
+                                readMoreBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up"></i>';
+                            }
+                        });
+                    }
+                    
+                    // Adiciona evento para abrir comentários ao clicar no card
+                    const postCard = postElement.querySelector('.post-card');
+                    postCard.addEventListener('click', () => {
+                        openCommentsModal(post.id);
+                    });
+                    
+                    // Adiciona evento para denunciar
+                    const reportBtn = postElement.querySelector('.report-btn');
+                    reportBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openReportModal(post.id);
+                    });
+                    
+                    // Adiciona evento para compartilhar
+                    const shareBtn = postElement.querySelector('.share-btn');
+                    shareBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openShareModal(post);
+                    });
+                });
+            }
+        }
+
+        async function createPostElement(post, index) {
             const postElement = document.createElement('div');
             postElement.className = 'card';
             postElement.dataset.id = post.id;
             
             // Calcula o número do post (o mais antigo tem o menor número)
-            const postNumber = totalPosts - posts.indexOf(post) - 1;
+            const postNumber = totalPostsCount - allPosts.findIndex(p => p.id === post.id) - 1;
             
             // Verifica se o texto é longo (mais de 200 caracteres)
             const isLongText = post.content.length > 200;
@@ -1615,42 +2492,70 @@
             // Conta os comentários
             const commentsCount = await countComments(post.id);
             
+            // Calcula o total de reações
+            const reactions = post.reactions || {};
+            const totalReactions = (reactions.like || 0) + (reactions.angry || 0) + (reactions.laugh || 0) + (reactions.sad || 0);
+            
+            // Determina a classe da categoria
+            const categoryClass = `category-${post.category || 'other'}`;
+            const categoryLabels = {
+                mental: 'Saúde Mental',
+                relationship: 'Relacionamentos',
+                work: 'Trabalho',
+                family: 'Família',
+                health: 'Saúde',
+                other: 'Outro'
+            };
+            
             postElement.innerHTML = `
-                <div class="post-header">
-                    <span class="post-number">#${postNumber}</span>
-                    <span class="post-date">${formatDate(post.createdAt)}</span>
-                </div>
-                
-                <div class="post-content ${isLongText ? 'collapsed' : ''}">
-                    <p>${post.content}</p>
-                </div>
-                
-                ${isLongText ? `
-                <button class="read-more-btn">
-                    Ler mais <i class="fas fa-chevron-down"></i>
-                </button>
-                ` : ''}
-                
-                <div class="post-reactions">
-                    <button class="reaction-btn like" data-reaction="like">
-                        <span class="emoji">❤️</span>
-                        <span class="like-count">${post.reactions?.like || 0}</span>
+                <div class="post-card">
+                    <div class="post-header">
+                        <span class="post-number">#${postNumber}</span>
+                        <span class="post-date">${formatDate(post.createdAt)}</span>
+                    </div>
+                    
+                    <div class="category-tag ${categoryClass}">${categoryLabels[post.category] || 'Outro'}</div>
+                    
+                    <div class="post-content ${isLongText ? 'collapsed' : ''}">
+                        <p>${post.content}</p>
+                    </div>
+                    
+                    ${isLongText ? `
+                    <button class="read-more-btn">
+                        Ler mais <i class="fas fa-chevron-down"></i>
                     </button>
-                    <button class="reaction-btn angry" data-reaction="angry">
-                        <span class="emoji">😠</span>
-                        <span class="angry-count">${post.reactions?.angry || 0}</span>
-                    </button>
-                    <button class="reaction-btn laugh" data-reaction="laugh">
-                        <span class="emoji">😂</span>
-                        <span class="laugh-count">${post.reactions?.laugh || 0}</span>
-                    </button>
-                    <button class="reaction-btn sad" data-reaction="sad">
-                        <span class="emoji">😢</span>
-                        <span class="sad-count">${post.reactions?.sad || 0}</span>
-                    </button>
-                    <span class="comment-count">
-                        <i class="far fa-comment"></i> ${commentsCount}
-                    </span>
+                    ` : ''}
+                    
+                    <div class="post-reactions">
+                        <button class="reaction-btn like" data-reaction="like">
+                            <span class="emoji">❤️</span>
+                            <span class="like-count">${reactions.like || 0}</span>
+                        </button>
+                        <button class="reaction-btn angry" data-reaction="angry">
+                            <span class="emoji">😠</span>
+                            <span class="angry-count">${reactions.angry || 0}</span>
+                        </button>
+                        <button class="reaction-btn laugh" data-reaction="laugh">
+                            <span class="emoji">😂</span>
+                            <span class="laugh-count">${reactions.laugh || 0}</span>
+                        </button>
+                        <button class="reaction-btn sad" data-reaction="sad">
+                            <span class="emoji">😢</span>
+                            <span class="sad-count">${reactions.sad || 0}</span>
+                        </button>
+                        <span class="comment-count">
+                            <i class="far fa-comment"></i> ${commentsCount}
+                        </span>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="post-action-btn report-btn">
+                            <i class="fas fa-flag"></i> Denunciar
+                        </button>
+                        <button class="post-action-btn share-btn">
+                            <i class="fas fa-share"></i> Compartilhar
+                        </button>
+                    </div>
                 </div>
             `;
             
@@ -1797,6 +2702,77 @@
             sendContactMessage(contactMessage.value.trim());
         });
 
+        // Filtros
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                filterPosts();
+            });
+        });
+
+        // Busca
+        searchInput.addEventListener('input', () => {
+            searchQuery = searchInput.value;
+            filterPosts();
+        });
+
+        // Categorias
+        categoryOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                categoryOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                selectedCategory = option.dataset.category;
+            });
+        });
+
+        // Denúncias
+        closeReportBtn.addEventListener('click', () => {
+            reportModal.classList.remove('active');
+        });
+
+        reportModal.addEventListener('click', (e) => {
+            if (e.target === reportModal) {
+                reportModal.classList.remove('active');
+            }
+        });
+
+        submitReportBtn.addEventListener('click', () => {
+            const selectedReason = document.querySelector('input[name="reportReason"]:checked');
+            const description = document.getElementById('reportDescription').value;
+            
+            if (selectedReason) {
+                submitReport(selectedReason.value, description);
+            } else {
+                showToast("Por favor, selecione um motivo para a denúncia");
+            }
+        });
+
+        // Compartilhamento
+        closeShareBtn.addEventListener('click', () => {
+            shareModal.classList.remove('active');
+        });
+
+        shareModal.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                shareModal.classList.remove('active');
+            }
+        });
+
+        shareOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const platform = option.dataset.platform;
+                shareToPlatform(platform);
+            });
+        });
+
+        copyShareBtn.addEventListener('click', () => {
+            shareText.select();
+            document.execCommand('copy');
+            showToast("Texto copiado para a área de transferência!");
+        });
+
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             // Atualiza o ano no rodapé
@@ -1811,11 +2787,23 @@
             // Atualiza contador de caracteres inicial
             charCount.textContent = postContent.value.length;
             
+            // Seleciona a primeira categoria por padrão
+            if (categoryOptions.length > 0) {
+                categoryOptions[0].classList.add('active');
+            }
+            
             // Verifica a hash da URL para navegação inicial
             const hash = window.location.hash.substring(1);
             if (hash) {
                 navigateTo(hash);
             }
+            
+            // Esconde o banner de boas-vindas após 5 segundos
+            setTimeout(() => {
+                if (welcomeBanner) {
+                    welcomeBanner.style.display = 'none';
+                }
+            }, 5000);
         });
 
         // Service Worker para PWA
@@ -1828,65 +2816,6 @@
                 });
             });
         }
-    </script>
-
-    <!-- Manifest para PWA -->
-    <script>
-        const manifest = {
-            "name": "Garo",
-            "short_name": "Garo",
-            "description": "Plataforma de desabafos anônimos",
-            "start_url": "/",
-            "display": "standalone",
-            "background_color": "#F5F5F5",
-            "theme_color": "#2196F3",
-            "icons": [
-                {
-                    "src": "icons/icon-72x72.png",
-                    "sizes": "72x72",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-96x96.png",
-                    "sizes": "96x96",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-128x128.png",
-                    "sizes": "128x128",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-144x144.png",
-                    "sizes": "144x144",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-152x152.png",
-                    "sizes": "152x152",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-192x192.png",
-                    "sizes": "192x192",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-384x384.png",
-                    "sizes": "384x384",
-                    "type": "image/png"
-                },
-                {
-                    "src": "icons/icon-512x512.png",
-                    "sizes": "512x512",
-                    "type": "image/png"
-                }
-            ]
-        };
-
-        const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
-        const manifestUrl = URL.createObjectURL(blob);
-        document.querySelector('link[rel="manifest"]').href = manifestUrl;
     </script>
 </body>
 </html>
