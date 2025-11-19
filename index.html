@@ -6,7 +6,7 @@
     <title>Garo | Plataforma Segura para Desabafos Anônimos</title>
     <meta name="description" content="Garo - Compartilhe seus sentimentos e desabafos de forma 100% anônima. Ambiente seguro sem julgamentos. Sua privacidade é nossa prioridade.">
     <meta name="keywords" content="desabafos anônimos, saúde mental, apoio emocional, comunidade segura, privacidade">
-    <meta name="author" content="MECET.E.I">
+    <meta name="author" content="Garo">
     <meta property="og:title" content="Garo | Plataforma Segura para Desabafos Anônimos">
     <meta property="og:description" content="Compartilhe seus sentimentos e desabafos de forma 100% anônima. Ambiente seguro sem julgamentos.">
     <meta property="og:type" content="website">
@@ -158,6 +158,15 @@
 
         .btn-danger:hover {
             background-color: #d32f2f;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background-color: #388E3C;
         }
 
         .card {
@@ -1206,10 +1215,6 @@
             color: var(--danger);
         }
 
-        .share-btn {
-            color: var(--secondary);
-        }
-
         .welcome-banner {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
@@ -1320,72 +1325,75 @@
             color: var(--dark-text);
         }
 
-        /* ===== MODAL DE COMPARTILHAMENTO ===== */
-        .share-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .share-option {
-            flex: 1;
-            min-width: 120px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 16px;
-            border: var(--border);
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .dark-mode .share-option {
-            border-color: var(--dark-border);
-        }
-
-        .share-option:hover {
-            background: rgba(33, 150, 243, 0.05);
-        }
-
-        .dark-mode .share-option:hover {
-            background: rgba(33, 150, 243, 0.1);
-        }
-
-        .share-option i {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .share-option span {
-            font-size: 0.875rem;
+        /* ===== COMPARTILHAR SITE ===== */
+        .share-site-container {
             text-align: center;
+            padding: 20px;
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            margin: 20px 0;
         }
 
-        .share-text {
+        .dark-mode .share-site-container {
+            background: #2a2a2a;
+        }
+
+        .share-site-text {
             width: 100%;
             padding: 12px;
             border: var(--border);
             border-radius: var(--radius);
             font-family: 'Inter', sans-serif;
             font-size: 0.9375rem;
-            background-color: var(--light-gray);
+            background-color: var(--white);
             transition: var(--transition);
-            margin-top: 16px;
-            resize: none;
+            margin-bottom: 12px;
+            text-align: center;
         }
 
-        .dark-mode .share-text {
-            background-color: #2a2a2a;
+        .dark-mode .share-site-text {
+            background-color: #333;
             border-color: var(--dark-border);
             color: var(--dark-text);
         }
 
-        .copy-btn {
-            width: 100%;
-            margin-top: 12px;
+        .share-site-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-site-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .share-site-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .share-site-btn.facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        .share-site-btn.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .share-site-btn.copy {
+            background: var(--primary);
+            color: white;
         }
     </style>
 </head>
@@ -1550,6 +1558,29 @@
                         
                         <div style="margin-top: 20px; padding-top: 16px; border-top: var(--border);">
                             <p><strong>Importante:</strong> Por sua segurança, evite compartilhar informações pessoais em seus desabafos.</p>
+                        </div>
+                    </div>
+
+                    <!-- COMPARTILHAR SITE -->
+                    <div class="share-site-container">
+                        <h3>Compartilhe o Garo</h3>
+                        <p>Ajude outras pessoas a encontrarem este espaço seguro</p>
+                        
+                        <input type="text" class="share-site-text" id="siteUrl" value="https://garo-desabafos-anonimos.vercel.app" readonly>
+                        
+                        <div class="share-site-buttons">
+                            <button class="share-site-btn whatsapp" id="shareWhatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="share-site-btn facebook" id="shareFacebook">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </button>
+                            <button class="share-site-btn twitter" id="shareTwitter">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </button>
+                            <button class="share-site-btn copy" id="copySiteUrl">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1754,7 +1785,7 @@
             </div>
             
             <div class="drawer-footer">
-                <p>Garo v1.3.0</p>
+                <p>Garo v1.3.1</p>
                 <p>&copy; <span id="currentYear"></span> Todos os direitos reservados</p>
             </div>
         </div>
@@ -1838,43 +1869,6 @@
         </div>
     </div>
 
-    <!-- ===== MODAL DE COMPARTILHAMENTO ===== -->
-    <div class="modal-overlay" id="shareModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Compartilhar Desabafo</h3>
-                <button class="modal-close" id="closeShareBtn" aria-label="Fechar compartilhamento">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="share-options">
-                    <div class="share-option" data-platform="whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>WhatsApp</span>
-                    </div>
-                    <div class="share-option" data-platform="facebook">
-                        <i class="fab fa-facebook"></i>
-                        <span>Facebook</span>
-                    </div>
-                    <div class="share-option" data-platform="twitter">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter</span>
-                    </div>
-                    <div class="share-option" data-platform="copy">
-                        <i class="fas fa-copy"></i>
-                        <span>Copiar Link</span>
-                    </div>
-                </div>
-                
-                <textarea class="share-text" id="shareText" readonly></textarea>
-                <button class="btn btn-primary copy-btn" id="copyShareBtn">
-                    <i class="fas fa-copy"></i> Copiar Texto
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== TOAST ===== -->
     <div class="toast" id="toast"></div>
 
@@ -1933,11 +1927,11 @@
         const reportModal = document.getElementById('reportModal');
         const closeReportBtn = document.getElementById('closeReportBtn');
         const submitReportBtn = document.getElementById('submitReportBtn');
-        const shareModal = document.getElementById('shareModal');
-        const closeShareBtn = document.getElementById('closeShareBtn');
-        const shareOptions = document.querySelectorAll('.share-option');
-        const shareText = document.getElementById('shareText');
-        const copyShareBtn = document.getElementById('copyShareBtn');
+        const siteUrl = document.getElementById('siteUrl');
+        const shareWhatsapp = document.getElementById('shareWhatsapp');
+        const shareFacebook = document.getElementById('shareFacebook');
+        const shareTwitter = document.getElementById('shareTwitter');
+        const copySiteUrl = document.getElementById('copySiteUrl');
 
         // Elementos de navegação
         const feedPage = document.getElementById('feedPage');
@@ -1970,7 +1964,6 @@
         let searchQuery = '';
         let selectedCategory = 'mental';
         let currentReportPostId = null;
-        let currentSharePost = null;
 
         // Palavras-chave para categorização inteligente
         const categoryKeywords = {
@@ -2309,34 +2302,25 @@
             window.open(mailtoLink, '_blank');
         }
 
-        // Sistema de compartilhamento
-        function openShareModal(post) {
-            currentSharePost = post;
-            const postUrl = `https://garo-desabafos-anonimos.vercel.app;
-            const shareMessage = `Confira este desabafo no Garo: "${post.content.substring(0, 100)}..."\n\n${postUrl}`;
-            
-            shareText.value = shareMessage;
-            shareModal.classList.add('active');
-        }
-
-        function shareToPlatform(platform) {
-            const postUrl = `https://garo-desabafos-anonimos.vercel.app;
-            const shareMessage = `Confira este desabafo no Garo: "${currentSharePost.content.substring(0, 100)}..."\n\n${postUrl}`;
+        // Sistema de compartilhamento do site
+        function shareSite(platform) {
+            const siteUrl = "https://garo-desabafos-anonimos.vercel.app";
+            const message = "Conheça o Garo - Uma plataforma segura para desabafos anônimos. Compartilhe seus sentimentos sem medo de julgamento.";
             
             let shareUrl = '';
             
             switch(platform) {
                 case 'whatsapp':
-                    shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`;
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(message + ' ' + siteUrl)}`;
                     break;
                 case 'facebook':
-                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`;
                     break;
                 case 'twitter':
-                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`;
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(siteUrl)}`;
                     break;
                 case 'copy':
-                    navigator.clipboard.writeText(postUrl).then(() => {
+                    navigator.clipboard.writeText(siteUrl).then(() => {
                         showToast("Link copiado para a área de transferência!");
                     });
                     return;
@@ -2467,13 +2451,6 @@
                         e.stopPropagation();
                         openReportModal(post.id);
                     });
-                    
-                    // Adiciona evento para compartilhar
-                    const shareBtn = postElement.querySelector('.share-btn');
-                    shareBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openShareModal(post);
-                    });
                 });
             }
         }
@@ -2551,9 +2528,6 @@
                     <div class="post-actions">
                         <button class="post-action-btn report-btn">
                             <i class="fas fa-flag"></i> Denunciar
-                        </button>
-                        <button class="post-action-btn share-btn">
-                            <i class="fas fa-share"></i> Compartilhar
                         </button>
                     </div>
                 </div>
@@ -2749,28 +2723,21 @@
             }
         });
 
-        // Compartilhamento
-        closeShareBtn.addEventListener('click', () => {
-            shareModal.classList.remove('active');
+        // Compartilhamento do site
+        shareWhatsapp.addEventListener('click', () => {
+            shareSite('whatsapp');
         });
 
-        shareModal.addEventListener('click', (e) => {
-            if (e.target === shareModal) {
-                shareModal.classList.remove('active');
-            }
+        shareFacebook.addEventListener('click', () => {
+            shareSite('facebook');
         });
 
-        shareOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const platform = option.dataset.platform;
-                shareToPlatform(platform);
-            });
+        shareTwitter.addEventListener('click', () => {
+            shareSite('twitter');
         });
 
-        copyShareBtn.addEventListener('click', () => {
-            shareText.select();
-            document.execCommand('copy');
-            showToast("Texto copiado para a área de transferência!");
+        copySiteUrl.addEventListener('click', () => {
+            shareSite('copy');
         });
 
         // Inicialização
